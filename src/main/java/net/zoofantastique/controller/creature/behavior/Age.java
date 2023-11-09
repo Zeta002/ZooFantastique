@@ -1,4 +1,4 @@
-package net.zoofantastique.controller.creature;
+package net.zoofantastique.controller.creature.behavior;
 
 public enum Age {
     BABY("Bébé"),
