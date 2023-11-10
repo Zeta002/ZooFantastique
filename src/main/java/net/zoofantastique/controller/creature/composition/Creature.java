@@ -106,7 +106,7 @@ public abstract class Creature implements Alive {
         return weight;
     }
 
-    public void setWeight(float weight) {
+    public void setWeight(double weight) {
         this.weight = weight;
     }
 
@@ -114,7 +114,7 @@ public abstract class Creature implements Alive {
         return height;
     }
 
-    public void setHeight(float height) {
+    public void setHeight(double height) {
         this.height = height;
     }
 
