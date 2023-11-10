@@ -1,40 +1,59 @@
 package net.zoofantastique.controller.creature.composition;
 
+import net.zoofantastique.controller.creature.behavior.Age;
 import net.zoofantastique.controller.creature.behavior.Gender;
 import net.zoofantastique.controller.creature.behavior.Hunger;
-import net.zoofantastique.controller.creature.consumable.Beefsteak;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class CreatureTest {
     @org.junit.jupiter.api.Test
-    void isEatCorrect() {
+    void isEatWorking() {
+        // TODO
+    }
+
+    @org.junit.jupiter.api.Test
+    void isShoutWorking() {
         Creature c = new Unicorn("Test", Gender.MALE, 1000.0, 2.0);
-        c.setHunger(8);
-        c.eat(new Beefsteak());
-        System.out.println(c.getHungerState());
+        c.shout();
     }
 
     @org.junit.jupiter.api.Test
-    void shout() {
+    void isHealedWorking() {
+        Creature c = new Unicorn("Test", Gender.MALE, 1000.0, 2.0);
+        c.setSick(true);
+        c.healed();
+        assertFalse(c.isSick());
     }
 
     @org.junit.jupiter.api.Test
-    void healed() {
+    void isToggleSleepingWorking() {
+        Creature c = new Unicorn("Test", Gender.MALE, 1000.0, 2.0);
+        c.toggleSleeping();
+        assertTrue(c.isSleeping());
     }
 
     @org.junit.jupiter.api.Test
-    void toggleSleeping() {
+    void isAgingWorking() {
+        Creature c = new Unicorn("Test", Gender.MALE, 1000.0, 2.0);
+        c.aging();
+        assertEquals(Age.CHILD, c.getAge());
     }
 
     @org.junit.jupiter.api.Test
-    void aging() {
+    void isAgingToDeathWorking() {
+        Creature c = new Unicorn("Test", Gender.MALE, 1000.0, 2.0);
+        c.aging();
+        c.aging();
+        c.aging();
+        c.aging();
+        assertEquals(Age.DEAD, c.getAge());
     }
 
     @org.junit.jupiter.api.Test
     void getAge() {
         Creature c = new Unicorn("Test", Gender.MALE, 1000.0, 2.0);
-        assertEquals("Bébé", c.getAge());
+        assertEquals("Bébé", c.getAgeState());
     }
 
     @org.junit.jupiter.api.Test
