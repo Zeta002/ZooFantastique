@@ -4,6 +4,6 @@ import net.zoofantastique.controller.creature.behavior.Gender;
 
 public class Dragon extends Creature {
     public Dragon(String name, Gender sexe, double weight, double height) {
-        super(name, sexe, weight, height, "Graou");
+        super(name, sexe, weight, height, "graou");
     }
 }
