@@ -68,7 +68,7 @@ public abstract class Creature implements Alive {
      * agie sur l'attribut health
      */
     public void healed() {
-        isSick = true;
+        isSick = false;
     }
 
     /**
