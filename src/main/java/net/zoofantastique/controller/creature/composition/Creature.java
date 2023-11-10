@@ -8,6 +8,7 @@ import net.zoofantastique.controller.creature.consumable.Food;
 public abstract class Creature implements Alive {
     // Attributs
     private String name;
+    private String shout;
     private Gender sexe;
     private double weight;
     private double height;
@@ -26,11 +27,12 @@ public abstract class Creature implements Alive {
      * @param weight Poids en kg
      * @param height Taille en m
      */
-    public Creature(String name, Gender sexe, double weight, double height) {
+    public Creature(String name, Gender sexe, double weight, double height, String shout) {
         this.name = name;
         this.sexe = sexe;
         this.weight = weight;
         this.height = height;
+        this.shout = shout;
 
         this.isSleeping = false;
         this.isSick = false;
@@ -56,8 +58,9 @@ public abstract class Creature implements Alive {
      * La creature crie, emet un son, si besoin on peut changer
      * le nom en scream, shout voulant dire la meme chose
      */
-    public void shout() {
-        System.out.println(name + ": *bruit*");
+    public void shout()
+    {
+        System.out.println(name + " fait " + shout);
     }
 
     /**
