@@ -4,8 +4,9 @@ import net.zoofantastique.controller.creature.behavior.Flying;
 import net.zoofantastique.controller.creature.behavior.Gender;
 import net.zoofantastique.controller.creature.behavior.Runner;
 import net.zoofantastique.controller.creature.behavior.Swimmer;
+import net.zoofantastique.controller.creature.oviparous.Oviparous;
 
-public class Dragon extends Creature implements Flying, Runner, Swimmer {
+public class Dragon extends Oviparous implements Flying, Runner, Swimmer {
     public Dragon(String name, Gender sexe, double weight, double height) {
         super(name, sexe, weight, height, "graou");
     }
