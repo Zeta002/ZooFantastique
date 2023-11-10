@@ -86,7 +86,11 @@ public abstract class Creature implements Alive {
     }
 
     // Getter et Setter
-    public String getAge() {
+    public Age getAge() {
+        return age;
+    }
+
+    public String getAgeState() {
         return age.getValue();
     }
 

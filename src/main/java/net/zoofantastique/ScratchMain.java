@@ -12,6 +12,6 @@ public class ScratchMain {
 //        System.out.println(c1.getHunger().getState());
 
         Creature c2 = new Unicorn("Unicorn", Gender.MALE, 720.0, 2);
-        System.out.println(c2.getAge());
+        System.out.println(c2.getAgeState());
     }
 }
