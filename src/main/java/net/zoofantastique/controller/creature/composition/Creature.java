@@ -3,7 +3,7 @@ package net.zoofantastique.controller.creature.composition;
 import net.zoofantastique.controller.creature.behavior.Age;
 import net.zoofantastique.controller.creature.behavior.Gender;
 import net.zoofantastique.controller.creature.behavior.Hunger;
-import net.zoofantastique.controller.creature.consumable.Food;
+import net.zoofantastique.controller.creature.consumable.composition.Food;
 
 public abstract class Creature implements Alive {
     // Attributs
