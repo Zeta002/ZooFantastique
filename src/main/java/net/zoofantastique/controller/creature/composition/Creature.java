@@ -82,7 +82,7 @@ public abstract class Creature implements Alive {
      * Passe a l'age suivant,
      */
     public void aging() {
-        this.age = age.nextAge();
+        this.age = this.age.nextAge();
     }
 
     // Getter et Setter
@@ -91,62 +91,63 @@ public abstract class Creature implements Alive {
     }
 
     public String getAgeState() {
-        return age.getValue();
+        return this.age.getValue();
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
 
-    public String getSexe() {
-        return sexe.getSexe();
+    public Gender getSexe() {
+        return this.sexe.getSexe();
+    }
+
+    public String getSexeStatus() {
+        return this.sexe.getSexeStatus();
     }
 
     public double getWeight() {
-        return weight;
+        return this.weight;
     }
-
     public void setWeight(double weight) {
         this.weight = weight;
     }
 
     public double getHeight() {
-        return height;
+        return this.height;
     }
-
     public void setHeight(double height) {
         this.height = height;
+    }
+
+    public String getShout() {
+        return this.shout;
     }
 
     public String getHungerState() {
         return hunger.getState();
     }
-
     public Hunger getHunger() {
-        return hunger;
+        return this.hunger;
     }
-
     public void setHunger(int hunger) {
         this.hunger.setHunger(hunger);
     }
 
     public boolean isSleeping() {
-        return isSleeping;
+        return this.isSleeping;
     }
-
     public void setSleeping(boolean sleeping) {
-        isSleeping = sleeping;
+        this.isSleeping = sleeping;
     }
 
     public boolean isSick() {
-        return isSick;
+        return this.isSick;
     }
-
     public void setSick(boolean sick) {
-        isSick = sick;
+        this.isSick = sick;
     }
 }

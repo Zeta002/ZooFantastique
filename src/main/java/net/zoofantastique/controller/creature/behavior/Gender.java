@@ -10,7 +10,11 @@ public enum Gender {
         this.sexe = sexe;
     }
 
-    public String getSexe() {
-        return sexe;
+    public Gender getSexe() {
+        return this;
+    }
+
+    public String getSexeStatus() {
+        return this.sexe;
     }
 }
