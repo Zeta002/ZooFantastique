@@ -7,17 +7,13 @@ public enum Hunger {
     private String state;
     private int hunger;
 
-    private Hunger(String state, int hunger) {
+    Hunger(String state, int hunger) {
         this.state = state;
         this.hunger = hunger;
     }
 
     public String getState() {
         return state;
-    }
-
-    public int getHunger() {
-        return hunger;
     }
 
     public void setHunger(int hunger) {
