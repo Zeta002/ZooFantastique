@@ -8,8 +8,8 @@ import net.zoofantastique.controller.creature.consumable.Food;
 public abstract class Creature implements Alive {
     // Attributs
     private String name;
-    private String shout;
-    private Gender sexe;
+    private final String shout;
+    private final Gender sexe;
     private double weight;
     private double height;
     private boolean isSleeping;
