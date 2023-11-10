@@ -9,7 +9,7 @@ public enum Age {
 
     private final String value;
 
-    private Age(String value) {
+    Age(String value) {
         this.value = value;
     }
 
