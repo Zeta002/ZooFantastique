@@ -5,31 +5,29 @@ import net.zoofantastique.controller.creature.behavior.Gender;
 import net.zoofantastique.controller.creature.behavior.Hunger;
 import net.zoofantastique.controller.creature.consumable.composition.Food;
 
-public abstract class Creature implements Alive {
+public abstract class Creature extends Alive {
     // Attributs
-    private String name;
     private final String shout;
-    private final Gender sexe;
     private double weight;
     private double height;
     private boolean isSleeping;
     private boolean isSick;
 
     // Attributs speciaux type enumeration
-    private Age age;
     private Hunger hunger;
 
     /**
      * Constructeur
      *
+     * @author Angelo P.
      * @param name Nom de l'espece
      * @param sexe Male ou femelle
      * @param weight Poids en kg
      * @param height Taille en m
      */
     public Creature(String name, Gender sexe, double weight, double height, String shout) {
-        this.name = name;
-        this.sexe = sexe;
+        super(name, sexe, Age.BABY);
+
         this.weight = weight;
         this.height = height;
         this.shout = shout;
@@ -37,7 +35,6 @@ public abstract class Creature implements Alive {
         this.isSleeping = false;
         this.isSick = false;
 
-        this.age = Age.BABY;
         this.hunger = Hunger.SATISFIED;
     }
 
@@ -45,6 +42,7 @@ public abstract class Creature implements Alive {
     /**
      * Donne de la nourriture a la creature
      *
+     * @author Angelo P.
      * @param food  nourriture donner a la creature
      */
     public void eat(Food food) {
@@ -57,6 +55,8 @@ public abstract class Creature implements Alive {
     /**
      * La creature crie, emet un son, si besoin on peut changer
      * le nom en scream, shout voulant dire la meme chose
+     *
+     * @author Angelo P.
      */
     public void shout()
     {
@@ -65,7 +65,9 @@ public abstract class Creature implements Alive {
 
     /**
      * La creature est soigne, suposement par un acteur externe,
-     * agie sur l'attribut health
+     * agie sur l'attribut isSick qui est la santé
+     *
+     * @author Angelo P.
      */
     public void healed() {
         isSick = false;
@@ -73,13 +75,17 @@ public abstract class Creature implements Alive {
 
     /**
      * Switch l'etat de sommeil de la creature
+     *
+     * @author Angelo P.
      */
     public void toggleSleeping() {
         isSleeping = !isSleeping;
     }
 
     /**
-     * Passe a l'age suivant,
+     * Passe a l'age suivant
+     *
+     * @author Angelo P.
      */
     public void aging() {
         this.age = this.age.nextAge();
@@ -89,7 +95,6 @@ public abstract class Creature implements Alive {
     public Age getAge() {
         return age;
     }
-
     public String getAgeState() {
         return this.age.getValue();
     }
@@ -104,7 +109,6 @@ public abstract class Creature implements Alive {
     public Gender getSexe() {
         return this.sexe.getSexe();
     }
-
     public String getSexeStatus() {
         return this.sexe.getSexeStatus();
     }

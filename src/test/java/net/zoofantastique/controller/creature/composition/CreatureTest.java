@@ -72,7 +72,7 @@ class CreatureTest {
     @org.junit.jupiter.api.Test
     void getSexe() {
         Creature c = new Unicorn("Test", Gender.MALE, 1000.0, 2.0);
-        assertEquals("Male", c.getSexe());
+        assertEquals(Gender.MALE, c.getSexe());
     }
 
     @org.junit.jupiter.api.Test
