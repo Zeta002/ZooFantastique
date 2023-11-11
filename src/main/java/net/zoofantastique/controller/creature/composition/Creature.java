@@ -20,8 +20,6 @@ public abstract class Creature extends Alive {
      * Constructeur
      *
      * @author Angelo P.
-     * @param name Nom de l'espece
-     * @param sexe Male ou femelle
      * @param weight Poids en kg
      * @param height Taille en m
      */

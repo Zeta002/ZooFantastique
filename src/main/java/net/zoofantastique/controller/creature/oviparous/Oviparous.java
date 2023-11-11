@@ -6,22 +6,39 @@ import net.zoofantastique.controller.creature.composition.Creature;
 import java.util.Random;
 
 public class Oviparous extends Creature{
+    // durée d'incubation
     private int incubationDuration;
 
-    public Oviparous(String name, Gender sexe, double weight, double height, String shout) {
+    // Constructeur
+    protected Oviparous(String name, Gender sexe, double weight, double height, String shout) {
         super(name, sexe, weight, height, shout);
     }
 
+    /**
+     * retourne une instance d'un ovipare au bout d'un
+     * certain temps d'incubation
+     *
+     * @author Aurore M.
+     * @return une instance d'un ovipare
+     */
     public Oviparous layEggs() {
         // ajouter temps d'attente
         return eggsHatch();
     }
 
+    /**
+     * retourne une instance de bébé creature de la même
+     * espèce que ces parents
+     *
+     * @author Aurore M.
+     * @return un bébé ovipare
+     */
     private Oviparous eggsHatch() {
         Random random = new Random();
         double babyWeight = 0.0;
         double babyHeight = 0.0;
         Gender babySexe;
+        // TODO modifier le switch pour qu'il prenne en compte l'espece des parents
         switch (getName()) {
             case "Dragon":
                 babyWeight = 7.0 + (12.0 - 7.0) * random.nextDouble();
@@ -37,15 +54,14 @@ public class Oviparous extends Creature{
                 break;
         }
 
-        if (0 + (2 - 1) * random.nextInt() == 1) {
+        if (random.nextInt(2) == 1) {
             babySexe = Gender.FEMALE;
         }
         else {
             babySexe = Gender.MALE;
         }
 
-        Oviparous baby = new Oviparous(getName(), babySexe, babyWeight, babyHeight, getShout());
-        return baby;
+        return new Oviparous(getName(), babySexe, babyWeight, babyHeight, getShout());
     }
 
     public String toString() {
@@ -54,7 +70,6 @@ public class Oviparous extends Creature{
                 ", weight = "+getWeight()+", height = "+getHeight()+
                 ", shout = "+getShout()+"]";
     }
-
 }
 
 

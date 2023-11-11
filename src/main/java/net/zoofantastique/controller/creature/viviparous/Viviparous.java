@@ -8,20 +8,35 @@ import java.util.Random;
 public class Viviparous extends Creature{
     private int gestationDuration;
 
-    public Viviparous(String name, Gender sexe, double weight, double height, String shout) {
+    protected Viviparous(String name, Gender sexe, double weight, double height, String shout) {
         super(name, sexe, weight, height, shout);
     }
 
-    public Viviparous getPregnant() {
+    /**
+     * retourne une instance d'un vivipare au bout d'un
+     * certain temps de gestation
+     *
+     * @author Aurore M.
+     * @return une instance d'un vivipare
+     */
+    public Viviparous initiatePregnancy() {
         // ajouter temps de grosses
         return giveBirth();
     }
 
+    /**
+     * retourne une instance de bébé creature de la même
+     * espèce que ces parents
+     *
+     * @author Aurore M.
+     * @return un bébé vivipare
+     */
     private Viviparous giveBirth() {
         Random random = new Random();
         double babyWeight = 0.0;
         double babyHeight = 0.0;
         Gender babySexe;
+        // TODO modifier le switch pour qu'il prenne en compte l'espece des parents
         switch (getName()) {
             case "Lycanthrope":
             case "Mermaid":
@@ -35,15 +50,14 @@ public class Viviparous extends Creature{
                 break;
         }
 
-        if (0 + (2 - 1) * random.nextInt() == 1) {
+        if (random.nextInt() == 1) {
             babySexe = Gender.FEMALE;
         }
         else {
             babySexe = Gender.MALE;
         }
 
-        Viviparous baby = new Viviparous(getName(), babySexe, babyWeight, babyHeight, getShout());
-        return baby;
+        return new Viviparous(getName(), babySexe, babyWeight, babyHeight, getShout());
     }
 
     public String toString() {

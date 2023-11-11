@@ -4,9 +4,11 @@ public enum Hunger {
     SATISFIED("Répu",10),
     HUNGRY("Affamé(e)", 3);
 
+    // Attributs
     private String state;
     private int hunger;
 
+    // Constructeur
     Hunger(String state, int hunger) {
         this.state = state;
         this.hunger = hunger;
@@ -21,5 +23,6 @@ public enum Hunger {
             this.state = HUNGRY.state;
         }
         this.state = SATISFIED.state;
+        // TODO corriger la methode
     }
 }
