@@ -150,6 +150,12 @@ public abstract class Creature extends Alive {
         return this.isSick;
     }
     public void setSick(boolean sick) {
+        checkSick();
         this.isSick = sick;
+    }
+    public void checkSick() {
+        if (isSick) {
+            age = Age.DEAD;
+        }
     }
 }

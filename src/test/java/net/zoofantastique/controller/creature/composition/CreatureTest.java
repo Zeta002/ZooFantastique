@@ -3,6 +3,7 @@ package net.zoofantastique.controller.creature.composition;
 import net.zoofantastique.controller.creature.behavior.Age;
 import net.zoofantastique.controller.creature.behavior.Gender;
 import net.zoofantastique.controller.creature.behavior.Hunger;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -142,5 +143,13 @@ class CreatureTest {
         Creature c = new Unicorn("Test", Gender.MALE, 1000.0, 2.0);
         c.setSick(true);
         assertTrue(c.isSick());
+    }
+
+    @Test
+    void checkSick() {
+        Creature c = new Unicorn("Test", Gender.MALE, 1000.0, 2.0);
+        c.setSick(true);
+        c.setSick(true);
+        assertEquals(Age.DEAD, c.getAge());
     }
 }
