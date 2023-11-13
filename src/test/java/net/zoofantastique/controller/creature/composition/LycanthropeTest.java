@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 class LycanthropeTest {
 
     @Test
-    void run() {
+    void canTheLycanthropRun() {
         Lycanthrope k = new Lycanthrope("Lycanthrope", Gender.MALE, 20000, 50);
         k.run();
     }

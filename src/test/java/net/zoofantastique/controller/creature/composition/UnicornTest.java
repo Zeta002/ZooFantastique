@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 class UnicornTest {
 
     @Test
-    void run() {
+    void canTheUnicornRun() {
         Unicorn c = new Unicorn("Unicorn", Gender.MALE, 10000, 20);
         c.run();
     }

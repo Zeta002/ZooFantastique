@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 class MegalodonTest {
 
     @Test
-    void swim() {
+    void canTheMegalodoncSwim() {
         Megalodon c = new Megalodon("Megalodon", Gender.MALE, 10000, 20);
         c.swim();
     }

@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 class KrakenTest {
 
     @Test
-    void swim() {
+    void canTheKrakenSwim() {
         Kraken k = new Kraken("Kraken", Gender.MALE, 20000, 50);
         k.swim();
     }

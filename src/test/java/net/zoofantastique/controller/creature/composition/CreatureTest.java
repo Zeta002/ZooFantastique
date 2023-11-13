@@ -152,4 +152,11 @@ class CreatureTest {
         c.setSick(true);
         assertEquals(Age.DEAD, c.getAge());
     }
+
+    @Test
+    void setAge() {
+        Creature c = new Unicorn("Test", Gender.MALE, 1000.0, 2.0);
+        c.setAge(Age.DEAD);
+        assertEquals(Age.DEAD, c.getAge());
+    }
 }

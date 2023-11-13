@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 class MermaidTest {
 
     @Test
-    void swim() {
+    void canTheMermaidSwim() {
         Mermaid c = new Mermaid("Mermaid", Gender.MALE, 10000, 20);
         c.swim();
     }

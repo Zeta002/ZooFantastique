@@ -89,12 +89,21 @@ public abstract class Creature extends Alive {
         this.age = this.age.nextAge();
     }
 
+    public void checkSick() {
+        if (isSick) {
+            age = Age.DEAD;
+        }
+    }
+
     // Getter et Setter
     public Age getAge() {
         return age;
     }
     public String getAgeState() {
         return this.age.getValue();
+    }
+    public void setAge(Age age) {
+        this.age = age;
     }
 
     public String getName() {
@@ -152,10 +161,5 @@ public abstract class Creature extends Alive {
     public void setSick(boolean sick) {
         checkSick();
         this.isSick = sick;
-    }
-    public void checkSick() {
-        if (isSick) {
-            age = Age.DEAD;
-        }
     }
 }
