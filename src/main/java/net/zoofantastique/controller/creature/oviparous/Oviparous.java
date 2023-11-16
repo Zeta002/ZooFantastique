@@ -64,11 +64,10 @@ public class Oviparous extends Creature{
         return new Oviparous(getName(), babySexe, babyWeight, babyHeight, getShout());
     }
 
+    @Override
     public String toString() {
-        return "0viparous[nameSpecies = "+getName()+
-                ", sexe = "+getSexe()+
-                ", weight = "+getWeight()+", height = "+getHeight()+
-                ", shout = "+getShout()+"]";
+        return super.toString() + "\n" +
+                "Durée d'incubation: " + incubationDuration + "s";
     }
 }
 

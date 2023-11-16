@@ -18,16 +18,17 @@ public class ScratchMain {
 //        Creature c2 = new Unicorn("Unicorn", Gender.MALE, 720.0, 2);
 //        System.out.println(c2.getAgeState());
 
-        Gender female = Gender.FEMALE;
-        Gender male = Gender.MALE;
-        Oviparous v1 = new Dragon("Dragon", Gender.MALE, 15.0, 20000);
-        Oviparous v2 = new Dragon("Dragon", Gender.MALE, 15.0, 20000);
-        System.out.println(v2.layEggs());
-        Oviparous n = v2.layEggs();
-        System.out.println(n);
+//        Gender female = Gender.FEMALE;
+//        Gender male = Gender.MALE;
+//        Oviparous v1 = new Dragon("Dragon", Gender.MALE, 15.0, 20000);
+//        Oviparous v2 = new Dragon("Dragon", Gender.MALE, 15.0, 20000);
+//        System.out.println(v2.layEggs());
+//        Oviparous n = v2.layEggs();
+//        System.out.println(n);
 //        System.out.println("\n suite \n");
 //        System.out.println(v2.layEggs());
 //        System.out.println(v1.getSexe());
 //        System.out.println(v2.getSexe());
+        System.out.println(new Dragon("Dragon", Gender.MALE, 20000.0, 30.0));
     }
 }

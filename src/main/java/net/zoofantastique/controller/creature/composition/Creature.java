@@ -162,4 +162,15 @@ public abstract class Creature extends Alive {
         checkSick();
         this.isSick = sick;
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + "\n" +
+                "Cri: " + shout + "\n" +
+                "Poids: " + weight + "kg" + "\n" +
+                "Taille: " + height + "m"+ "\n" +
+                "Dort: " + (isSleeping ? "Oui" : "Non") + "\n" +
+                "Malade: " + (isSick ? "Oui" : "Non") + "\n" +
+                "Faim: " + hunger.getState();
+    }
 }

@@ -159,4 +159,9 @@ class CreatureTest {
         c.setAge(Age.DEAD);
         assertEquals(Age.DEAD, c.getAge());
     }
+
+    @Test
+    void testToString() {
+        // TODO
+    }
 }
