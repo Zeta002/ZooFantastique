@@ -2,39 +2,42 @@ package net.zoofantastique.controller.creature.composition;
 
 import net.zoofantastique.controller.creature.behavior.Age;
 import net.zoofantastique.controller.creature.behavior.Gender;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class PhoenixTest {
+    private Phoenix phoenix;
+
+    @BeforeEach
+    void setUp() {
+        phoenix = new Phoenix("Phoenix", Gender.MALE, 10000, 20);
+    }
 
     @Test
     void canThePhoenixFly() {
-        Phoenix c = new Phoenix("Phoenix", Gender.MALE, 10000, 20);
-        c.fly();
+        phoenix.fly();
     }
 
     @Test
     void didAgingRebirthWhenDead() {
-        Phoenix c = new Phoenix("Phoenix", Gender.MALE, 10000, 20);
-        c.aging();
-        c.aging();
-        c.aging();
-        c.aging();
-        assertEquals(Age.BABY, c.getAge());
+        phoenix.aging();
+        phoenix.aging();
+        phoenix.aging();
+        phoenix.aging();
+        assertEquals(Age.BABY, phoenix.getAge());
     }
 
     @Test
     void didSetAgeRebirthWhenDead() {
-        Phoenix c = new Phoenix("Phoenix", Gender.MALE, 10000, 20);
-        c.setAge(Age.DEAD);
-        assertEquals(Age.BABY, c.getAge());
+        phoenix.setAge(Age.DEAD);
+        assertEquals(Age.BABY, phoenix.getAge());
     }
 
     @Test
     void didRebirthChangeNothingWhenItSupposeTo() {
-        Phoenix c = new Phoenix("Phoenix", Gender.MALE, 10000, 20);
-        c.rebirth();
-        assertEquals(Age.BABY, c.getAge());
+        phoenix.rebirth();
+        assertEquals(Age.BABY, phoenix.getAge());
     }
 }
