@@ -1,15 +1,28 @@
 package net.zoofantastique.controller.creature.viviparous;
 
 import net.zoofantastique.controller.creature.behavior.Gender;
+import net.zoofantastique.controller.creature.composition.Mermaid;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ViviparousTest {
 
     @Test
     void testToString() {
-        Viviparous v = new Viviparous("Viviparous", Gender.MALE, 1.0, 0.5, "Test");
-        // TODO
+        Viviparous v = new Mermaid("Mermaid", Gender.MALE, 1000.0, 2.0);
+        assertEquals("""
+                <-/ Mermaid \\->
+                --------------
+                Nom: Mermaid
+                Sexe: Male
+                Age: Bébé
+                Cri: *chant mélodieux*
+                Poids: 1000.0kg
+                Taille: 2.0m
+                Dort: Non
+                Malade: Non
+                Faim: Répu
+                Durée d'incubation: 0s""", v.toString());
     }
 }

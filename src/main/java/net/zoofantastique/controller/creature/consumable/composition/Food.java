@@ -103,4 +103,14 @@ public abstract class Food {
     public void setDesc(String desc) {
         this.desc = desc;
     }
+
+    @Override
+    public String toString() {
+        return "<-/ " + getClass().getSimpleName() + " \\->" +
+               "\n--------------\n" +
+               "Nom: " + name + "\n" +
+               "Valeur: " + value + "\n" +
+               "Type: " + foodType.getValue() + "\n" +
+               "Description: " + desc;
+    }
 }
