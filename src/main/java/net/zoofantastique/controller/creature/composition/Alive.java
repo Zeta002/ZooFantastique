@@ -5,7 +5,9 @@ import net.zoofantastique.controller.creature.behavior.Gender;
 
 public abstract class Alive {
     // Attributs
-    // Nom de l'espece ou nom propre
+    // Nom de l'espece
+    private final String species = getClass().getSimpleName();
+    // Nom pour l'être vivant
     String name;
     // Male ou femelle uniquement
     Gender sexe;
@@ -28,10 +30,11 @@ public abstract class Alive {
 
     @Override
     public String toString() {
-        return "<-/ " + getClass().getSimpleName() + " \\->" +
-                "\n--------------\n" +
-                "Nom: " + name + "\n" +
-                "Sexe: " + sexe.getSexeStatus() + "\n" +
-                "Age: " + age.getValue();
+        StringBuilder sb = new StringBuilder("<-/ " + species + " \\->\n");
+        sb.append("--------------")
+                .append("\nNom: ").append(name)
+                .append("\nSexe: ").append(sexe.getSexeStatus())
+                .append("\nAge: ").append(age.getValue());
+        return sb.toString();
     }
 }

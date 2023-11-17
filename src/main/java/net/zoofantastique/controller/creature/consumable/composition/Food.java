@@ -106,11 +106,12 @@ public abstract class Food {
 
     @Override
     public String toString() {
-        return "<-/ " + getClass().getSimpleName() + " \\->" +
-               "\n--------------\n" +
-               "Nom: " + name + "\n" +
-               "Valeur: " + value + "\n" +
-               "Type: " + foodType.getValue() + "\n" +
-               "Description: " + desc;
+        StringBuilder sb = new StringBuilder("<-/ " + name + " \\->\n");
+        sb.append("--------------")
+                .append("\nValeur: ").append(value)
+                .append("\nType: ").append(foodType.getValue())
+                .append("\nDescription: ").append(desc)
+                .append("\n");
+        return sb.toString();
     }
 }

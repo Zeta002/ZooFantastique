@@ -161,11 +161,11 @@ class CreatureTest {
 
     @org.junit.jupiter.api.Test
     void testToString() {
-        Creature c = new Unicorn("Test", Gender.MALE, 1000.0, 2.0);
+        Creature c = new Unicorn("Lucie", Gender.MALE, 1000.0, 2.0);
         assertEquals("""
                 <-/ Unicorn \\->
                 --------------
-                Nom: Test
+                Nom: Lucie
                 Sexe: Male
                 Age: Bébé
                 Cri: hihihiha
@@ -174,6 +174,7 @@ class CreatureTest {
                 Dort: Non
                 Malade: Non
                 Faim: Répu
-                Durée d'incubation: 0s""", c.toString());
+                Durée d'incubation: 0s
+                """, c.toString());
     }
 }

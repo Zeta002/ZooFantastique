@@ -10,11 +10,11 @@ class ViviparousTest {
 
     @Test
     void testToString() {
-        Viviparous v = new Mermaid("Mermaid", Gender.MALE, 1000.0, 2.0);
+        Viviparous v = new Mermaid("Thalassa", Gender.MALE, 1000.0, 2.0);
         assertEquals("""
                 <-/ Mermaid \\->
                 --------------
-                Nom: Mermaid
+                Nom: Thalassa
                 Sexe: Male
                 Age: Bébé
                 Cri: *chant mélodieux*
@@ -23,6 +23,7 @@ class ViviparousTest {
                 Dort: Non
                 Malade: Non
                 Faim: Répu
-                Durée d'incubation: 0s""", v.toString());
+                Durée d'incubation: 0s
+                """, v.toString());
     }
 }

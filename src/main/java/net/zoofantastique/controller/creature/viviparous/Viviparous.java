@@ -62,7 +62,9 @@ public class Viviparous extends Creature{
 
     @Override
     public String toString() {
-        return super.toString() + "\n" +
-                "Durée d'incubation: " + gestationDuration + "s";
+        StringBuilder sb = new StringBuilder(super.toString());
+        sb.append("\nDurée d'incubation: ").append(gestationDuration).append("s")
+                .append("\n");
+        return sb.toString();
     }
 }

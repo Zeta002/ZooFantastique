@@ -75,11 +75,11 @@ class FoodTest {
     void testToString() {
         Food f = new Beefsteak();
         assertEquals("""
-                <-/ Beefsteak \\->
+                <-/ Steak \\->
                 --------------
-                Nom: Steak
                 Valeur: 3
                 Type: Terrestre
-                Description: Un morceau généreux de steak fantastique, prélevé avec soin des bêtes extraordinaires qui errent dans les vastes prairies magiques. Le Beefsteak est réputé pour sa tendreté incomparable et sa saveur riche. C'est une délicieuse source de protéines pour les créatures qui courent avec agilité, offrant une expérience culinaire robuste et nourrissante.""", f.toString());
+                Description: Un morceau généreux de steak fantastique, prélevé avec soin des bêtes extraordinaires qui errent dans les vastes prairies magiques. Le Beefsteak est réputé pour sa tendreté incomparable et sa saveur riche. C'est une délicieuse source de protéines pour les créatures qui courent avec agilité, offrant une expérience culinaire robuste et nourrissante.
+                """, f.toString());
     }
 }

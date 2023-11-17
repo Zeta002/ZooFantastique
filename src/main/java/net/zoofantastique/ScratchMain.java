@@ -7,7 +7,7 @@ import net.zoofantastique.controller.creature.oviparous.Oviparous;
 
 public class ScratchMain {
     public static void main(String[] args) {
-        Oviparous v = new Dragon("Dragon", Gender.MALE, 1000.0, 2.0);
+        Oviparous v = new Dragon("Cauchemar", Gender.MALE, 1000.0, 2.0);
         System.out.println(v);
 
         System.out.println(new Beefsteak());

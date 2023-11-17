@@ -66,8 +66,10 @@ public class Oviparous extends Creature{
 
     @Override
     public String toString() {
-        return super.toString() + "\n" +
-                "Durée d'incubation: " + incubationDuration + "s";
+        StringBuilder sb = new StringBuilder(super.toString());
+        sb.append("\nDurée d'incubation: ").append(incubationDuration).append("s")
+                .append("\n");
+        return sb.toString();
     }
 }
 

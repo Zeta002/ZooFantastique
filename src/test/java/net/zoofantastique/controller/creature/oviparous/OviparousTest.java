@@ -10,11 +10,11 @@ class OviparousTest {
 
     @Test
     void testToString() {
-        Oviparous v = new Dragon("Dragon", Gender.MALE, 1000.0, 2.0);
+        Oviparous v = new Dragon("Charles", Gender.MALE, 1000.0, 2.0);
         assertEquals("""
                 <-/ Dragon \\->
                 --------------
-                Nom: Dragon
+                Nom: Charles
                 Sexe: Male
                 Age: Bébé
                 Cri: graou
@@ -23,6 +23,7 @@ class OviparousTest {
                 Dort: Non
                 Malade: Non
                 Faim: Répu
-                Durée d'incubation: 0s""", v.toString());
+                Durée d'incubation: 0s
+                """, v.toString());
     }
 }

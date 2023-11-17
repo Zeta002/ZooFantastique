@@ -165,12 +165,13 @@ public abstract class Creature extends Alive {
 
     @Override
     public String toString() {
-        return super.toString() + "\n" +
-                "Cri: " + shout + "\n" +
-                "Poids: " + weight + "kg" + "\n" +
-                "Taille: " + height + "m"+ "\n" +
-                "Dort: " + (isSleeping ? "Oui" : "Non") + "\n" +
-                "Malade: " + (isSick ? "Oui" : "Non") + "\n" +
-                "Faim: " + hunger.getState();
+        StringBuilder sb = new StringBuilder(super.toString());
+        sb.append("\nCri: ").append(shout)
+                .append("\nPoids: ").append(weight).append("kg")
+                .append("\nTaille: ").append(height).append("m")
+                .append("\nDort: ").append(isSleeping ? "Oui" : "Non")
+                .append("\nMalade: ").append(isSick ? "Oui" : "Non")
+                .append("\nFaim: ").append(hunger.getState());
+        return sb.toString();
     }
 }

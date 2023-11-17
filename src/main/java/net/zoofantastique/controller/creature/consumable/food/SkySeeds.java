@@ -7,10 +7,12 @@ public class SkySeeds extends Food {
     public SkySeeds() {
         super.setName("Graine céleste");
         super.setValue(4);
-        super.setDesc("Des graines magiques récoltées dans les cieux enchantés," +
-                " ces Sky Seeds sont riches en éléments aériens essentiels pour les" +
-                " créatures qui peuvent voler. Elles confèrent une énergie légère et" +
-                " aident à maintenir la vitalité dans les cieux.");
+        StringBuilder desc = new StringBuilder();
+        desc.append("Des graines magiques récoltées dans les cieux enchantés,")
+                .append(" ces Sky Seeds sont riches en éléments aériens essentiels pour les")
+                .append(" créatures qui peuvent voler. Elles confèrent une énergie légère et")
+                .append(" aident à maintenir la vitalité dans les cieux.");
+        super.setDesc(desc.toString());
         super.setFoodType(FoodType.AERIAL);
     }
 }
