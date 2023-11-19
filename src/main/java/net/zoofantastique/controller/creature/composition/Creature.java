@@ -5,6 +5,9 @@ import net.zoofantastique.controller.creature.behavior.Gender;
 import net.zoofantastique.controller.creature.behavior.Hunger;
 import net.zoofantastique.controller.creature.consumable.composition.Food;
 
+import static net.zoofantastique.controller.creature.behavior.Hunger.HUNGRY;
+import static net.zoofantastique.controller.creature.behavior.Hunger.SATISFIED;
+
 public abstract class Creature extends Alive {
     // Attributs
     private final String shout;
@@ -33,12 +36,15 @@ public abstract class Creature extends Alive {
         this.isSleeping = false;
         this.isSick = false;
 
-        this.hunger = Hunger.SATISFIED;
+        this.hunger = SATISFIED;
     }
 
     // Methodes
     /**
-     * Donne de la nourriture a la creature
+     * Donne de la nourriture a la creature, agie
+     * sur l'attribut hunger, si elle dors alors renvoie
+     * une erreur dans le terminal, met à jour l'enum en
+     * lui même et la valeur de la faim via le setter setValue()
      *
      * @author Angelo P.
      * @param food  nourriture donner a la creature
@@ -47,7 +53,12 @@ public abstract class Creature extends Alive {
         if (isSleeping) {
             System.err.println("Tu ne peux pas faire ça car la créature sélectionner dors actuellement.");
         }
-        hunger.setHunger(food.getValue());
+        hunger.setValue(food.getValue());
+        if (hunger.getValue() + food.getValue() <= 3) {
+            hunger = HUNGRY;
+        } else {
+            hunger = SATISFIED;
+        }
     }
 
     /**
@@ -144,8 +155,21 @@ public abstract class Creature extends Alive {
     public Hunger getHunger() {
         return this.hunger;
     }
-    public void setHunger(int hunger) {
-        this.hunger.setHunger(hunger);
+
+    /**
+     * Setter de la faim, agie sur l'attribut hunger,
+     * met à jour l'enum en lui même et la valeur de la faim
+     *
+     * @author Angelo P.
+     * @param value valeur de la faim
+     */
+    public void setHunger(int value) {
+        if (value <= HUNGRY.getValue()) {
+            this.hunger = HUNGRY;
+        } else {
+            this.hunger = SATISFIED;
+        }
+        this.hunger.setValue(value);
     }
 
     public boolean isSleeping() {

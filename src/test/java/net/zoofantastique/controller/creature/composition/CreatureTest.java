@@ -3,6 +3,7 @@ package net.zoofantastique.controller.creature.composition;
 import net.zoofantastique.controller.creature.behavior.Age;
 import net.zoofantastique.controller.creature.behavior.Gender;
 import net.zoofantastique.controller.creature.behavior.Hunger;
+import net.zoofantastique.controller.creature.consumable.food.Beefsteak;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -18,7 +19,9 @@ class CreatureTest {
 
     @Test
     void isEatWorking() {
-        // TODO
+        c.setHunger(0);
+        c.eat(new Beefsteak());
+        assertEquals(Hunger.SATISFIED, c.getHunger());
     }
 
     @Test
@@ -109,7 +112,8 @@ class CreatureTest {
 
     @Test
     void setHunger() {
-        // TODO
+        c.setHunger(3);
+        assertEquals(Hunger.HUNGRY, c.getHunger());
     }
 
     @Test

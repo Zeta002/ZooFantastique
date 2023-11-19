@@ -6,7 +6,7 @@ import net.zoofantastique.controller.creature.consumable.behavior.FoodType;
 public class Beefsteak extends Food {
     public Beefsteak() {
         super.setName("Steak");
-        super.setValue(3);
+        super.setValue(4);
         StringBuilder desc = new StringBuilder();
         desc.append("Un morceau généreux de steak fantastique, prélevé")
                 .append(" avec soin des bêtes extraordinaires qui errent dans les vastes")
