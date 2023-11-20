@@ -2,6 +2,7 @@ package net.zoofantastique.controller.creature.viviparous;
 
 import net.zoofantastique.controller.creature.behavior.Gender;
 import net.zoofantastique.controller.creature.composition.Creature;
+import net.zoofantastique.controller.creature.oviparous.Oviparous;
 
 import java.util.Random;
 
@@ -16,12 +17,18 @@ public abstract class Viviparous extends Creature{
      * retourne une instance d'un vivipare au bout d'un
      * certain temps de gestation
      *
-     * @author Aurore M.
-     * @return une instance d'un vivipare
+     * @author Aurore M., Quentin B.
      */
-    public Viviparous initiatePregnancy() {
+    public Viviparous initiatePregnancy(Creature partenaire) {
+        Creature female = fertilizable(partenaire);
+        if (female == null) {
+            System.out.println("L'accouplement semble impossible");
+            return null;
+        }
+        System.out.println("Un nouvel arrivant semble être prévu pour bientôt");
+        female.setPregnant(true);
         // ajouter temps de grosses
-        return giveBirth();
+        return ((Viviparous) female).giveBirth();
     }
 
     /**

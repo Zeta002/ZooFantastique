@@ -4,6 +4,7 @@ import net.zoofantastique.controller.creature.behavior.Age;
 import net.zoofantastique.controller.creature.behavior.Gender;
 import net.zoofantastique.controller.creature.behavior.Hunger;
 import net.zoofantastique.controller.creature.consumable.composition.Food;
+import net.zoofantastique.controller.creature.oviparous.Oviparous;
 
 import static net.zoofantastique.controller.creature.behavior.Hunger.HUNGRY;
 import static net.zoofantastique.controller.creature.behavior.Hunger.SATISFIED;
@@ -15,6 +16,7 @@ public abstract class Creature extends Alive {
     private double height;
     private boolean isSleeping;
     private boolean isSick;
+    private boolean isPregnant;
 
     // Attributs speciaux type enumeration
     private Hunger hunger;
@@ -185,6 +187,28 @@ public abstract class Creature extends Alive {
     public void setSick(boolean sick) {
         checkSick();
         this.isSick = sick;
+    }
+
+    public boolean isPregnant() {
+        return isPregnant;
+    }
+    public void setPregnant(boolean pregnant) {
+        isPregnant = pregnant;
+    }
+
+    public Creature fertilizable(Creature partenaire) {
+        if (partenaire.isPregnant() || this.isPregnant()) return null;
+
+        if (this.getClass().equals(partenaire.getClass())) {
+            if (this.getSexe() != partenaire.getSexe()) {
+                if (this.getSexe() == Gender.FEMALE) {
+                    return this;
+                } else {
+                    return partenaire;
+                }
+            }
+        }
+        return null;
     }
 
     @Override
