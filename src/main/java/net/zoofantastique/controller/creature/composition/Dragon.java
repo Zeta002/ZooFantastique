@@ -41,4 +41,19 @@ public class Dragon extends Oviparous implements Flying, Runner, Swimmer, Rebirt
             setAge(Age.BABY);
         }
     }
+
+    @Ovveride
+    public Oviparous eggsHatch(){
+        Random random = new Random();
+        double babyWeight = 7.0 + (12.0 - 7.0) * random.nextDouble();
+        double babyHeight = 0.9 + (1.20 - 0.9) * random.nextDouble();
+
+        if (random.nextInt(2)) {
+            Gender babySexe = Gender.FEMALE;
+        }
+        else {
+            Gender babySexe = Gender.MALE;
+        }
+        return new Dragon(getName(), babySexe, babyWeight, babyHeight, getShout());
+    }
 }

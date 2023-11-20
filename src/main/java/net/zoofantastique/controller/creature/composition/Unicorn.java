@@ -13,4 +13,19 @@ public class Unicorn extends Viviparous implements Runner {
     public void run() {
         System.out.println(super.getName() + " *cours*");
     }
+
+    @Ovveride
+    public Viviparous giveBirth(){
+        Random random = new Random();
+        double babyWeight = 0.5 + (0.75 - 0.5) * random.nextDouble();
+        double babyHeight = 0.9 + (1.15 - 0.9) * random.nextDouble();
+
+        if (random.nextInt(2)) {
+            Gender babySexe = Gender.FEMALE;
+        }
+        else {
+            Gender babySexe = Gender.MALE;
+        }
+        return new Unicorn(getName(), babySexe, babyWeight, babyHeight, getShout());
+    }
 }

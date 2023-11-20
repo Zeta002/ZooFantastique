@@ -34,4 +34,19 @@ public class Phoenix extends Oviparous implements Flying, Rebirth {
             setAge(Age.BABY);
         }
     }
+
+    @Ovveride
+    public Oviparous eggsHatch(){
+        Random random = new Random();
+        double babyWeight = 2.5 + (4.3 - 2.5) * random.nextDouble();
+        double babyHeight = 0.45 + (0.55 - 0.45) * random.nextDouble();
+
+        if (random.nextInt(2)) {
+            Gender babySexe = Gender.FEMALE;
+        }
+        else {
+            Gender babySexe = Gender.MALE;
+        }
+        return new Phoenix(getName(), babySexe, babyWeight, babyHeight, getShout());
+    }
 }
