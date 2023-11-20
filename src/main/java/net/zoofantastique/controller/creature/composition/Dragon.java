@@ -3,6 +3,8 @@ package net.zoofantastique.controller.creature.composition;
 import net.zoofantastique.controller.creature.behavior.*;
 import net.zoofantastique.controller.creature.oviparous.Oviparous;
 
+import java.util.Random;
+
 public class Dragon extends Oviparous implements Flying, Runner, Swimmer, Rebirth {
     public Dragon(String name, Gender sexe, double weight, double height) {
         super(name, sexe, weight, height, "graou");
@@ -42,18 +44,18 @@ public class Dragon extends Oviparous implements Flying, Runner, Swimmer, Rebirt
         }
     }
 
-    @Ovveride
+    @Override
     public Oviparous eggsHatch(){
         Random random = new Random();
+        Gender babySexe = Gender.MALE;
+
         double babyWeight = 7.0 + (12.0 - 7.0) * random.nextDouble();
         double babyHeight = 0.9 + (1.20 - 0.9) * random.nextDouble();
 
-        if (random.nextInt(2)) {
-            Gender babySexe = Gender.FEMALE;
+        if (random.nextInt(2) == 1) {
+            babySexe = Gender.FEMALE;
         }
-        else {
-            Gender babySexe = Gender.MALE;
-        }
-        return new Dragon(getName(), babySexe, babyWeight, babyHeight, getShout());
+
+        return new Dragon(getName(), babySexe, babyWeight, babyHeight);
     }
 }

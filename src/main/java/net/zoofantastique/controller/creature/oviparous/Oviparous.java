@@ -5,7 +5,7 @@ import net.zoofantastique.controller.creature.composition.Creature;
 
 import java.util.Random;
 
-public class Oviparous extends Creature{
+public abstract class Oviparous extends Creature{
     // durée d'incubation
     private int incubationDuration;
 
@@ -34,7 +34,7 @@ public class Oviparous extends Creature{
      * @return un bébé ovipare
      */
 
-    public abstract  Oviparous eggsHatch();
+    public abstract Oviparous eggsHatch();
 
 
     @Override

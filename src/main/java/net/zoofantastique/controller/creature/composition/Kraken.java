@@ -4,6 +4,8 @@ import net.zoofantastique.controller.creature.behavior.Gender;
 import net.zoofantastique.controller.creature.behavior.Swimmer;
 import net.zoofantastique.controller.creature.oviparous.Oviparous;
 
+import java.util.Random;
+
 public class Kraken extends Oviparous implements Swimmer {
     public Kraken(String name, Gender sexe, double weight, double height) {
         super(name, sexe, weight, height, "bulou bulou bulou");
@@ -14,17 +16,16 @@ public class Kraken extends Oviparous implements Swimmer {
         System.out.println(super.getName() + " *nage*");
     }
 
-    @Ovveride
+    @Override
     public Oviparous eggsHatch(){
         Random random = new Random();
+        Gender babySexe = Gender.MALE;
+
         double babyWeight = 7.20 + (8.700 - 7.20) * random.nextDouble();
         double babyHeight = 85.0 + (105.0 - 85.0) * random.nextDouble();
-        if (random.nextInt(2)) {
-            Gender babySexe = Gender.FEMALE;
+        if (random.nextInt(2) == 1) {
+            babySexe = Gender.FEMALE;
         }
-        else {
-            Gender babySexe = Gender.MALE;
-        }
-        return new Kraken(getName(), babySexe, babyWeight, babyHeight, getShout());
+        return new Kraken(getName(), babySexe, babyWeight, babyHeight);
     }
 }

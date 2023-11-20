@@ -4,6 +4,8 @@ import net.zoofantastique.controller.creature.behavior.Gender;
 import net.zoofantastique.controller.creature.behavior.Runner;
 import net.zoofantastique.controller.creature.viviparous.Viviparous;
 
+import java.util.Random;
+
 public class Unicorn extends Viviparous implements Runner {
     public Unicorn(String name, Gender sexe, double weight, double height) {
         super(name, sexe, weight, height, "hihihiha");
@@ -14,18 +16,18 @@ public class Unicorn extends Viviparous implements Runner {
         System.out.println(super.getName() + " *cours*");
     }
 
-    @Ovveride
+    @Override
     public Viviparous giveBirth(){
         Random random = new Random();
+        Gender babySexe = Gender.MALE;
+
         double babyWeight = 0.5 + (0.75 - 0.5) * random.nextDouble();
         double babyHeight = 0.9 + (1.15 - 0.9) * random.nextDouble();
 
-        if (random.nextInt(2)) {
-            Gender babySexe = Gender.FEMALE;
+        if (random.nextInt(2) == 1) {
+            babySexe = Gender.FEMALE;
         }
-        else {
-            Gender babySexe = Gender.MALE;
-        }
-        return new Unicorn(getName(), babySexe, babyWeight, babyHeight, getShout());
+
+        return new Unicorn(getName(), babySexe, babyWeight, babyHeight);
     }
 }

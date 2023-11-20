@@ -5,7 +5,7 @@ import net.zoofantastique.controller.creature.composition.Creature;
 
 import java.util.Random;
 
-public class Viviparous extends Creature{
+public abstract class Viviparous extends Creature{
     private int gestationDuration;
 
     protected Viviparous(String name, Gender sexe, double weight, double height, String shout) {
