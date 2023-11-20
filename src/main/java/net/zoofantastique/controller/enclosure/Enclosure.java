@@ -1,6 +1,5 @@
 package net.zoofantastique.controller.enclosure;
 
-import net.zoofantastique.controller.creature.behavior.Hunger;
 import net.zoofantastique.controller.creature.composition.Creature;
 import net.zoofantastique.controller.creature.consumable.composition.Food;
 
@@ -17,13 +16,14 @@ public abstract class Enclosure {
     private int max;
     private int nbCreature;
     private ArrayList<Creature> listCreature = new ArrayList<Creature>();
+
+    // Attribus spéciaux type enum
     private Cleanness cleanness;
 
     public Enclosure(String name, double surface, int max) {
         this.name = name;
         this.surface = surface;
         this.max = max;
-
         this.listCreature = new ArrayList<Creature>(0);
         this.nbCreature = 0;
         this.cleanness = Cleanness.CORRECT;
@@ -65,12 +65,20 @@ public abstract class Enclosure {
     public void feedCreature(Food food, Creature creature){
         if (listCreature.contains(creature)) {
             // TODO : Vérifier si la nourriture est compatible avec la créature
+            // TODO : la méthode n'est pas terminé tant que hunger est cassé, il faut que la créature ne puisse pas manger en étant "Répu"
             if (creature.getHunger().getValue() != SATISFIED.getValue()) {
                 creature.eat(food);
             }
         } else {
             System.err.println("La créature:\n" + creature + "\nn'est pas dans l'enclos!");
         }
+    }
+
+    public void maintenance() {
+        System.out.println(getClass().getSimpleName() + " : " + getName() + " est en maintenance.");
+        // TODO : thread d'un temps aléatoire dans une intervalle donné
+        getCleanness().clean();
+        System.out.println(getClass().getSimpleName() + " : " + getName() + " est maintenant " + getCleanness().getValue());
     }
 
     // Getter et Setter
@@ -123,7 +131,7 @@ public abstract class Enclosure {
                 .append("\nSuperficie: ").append(getSurface())
                 .append("\nMax creatures: ").append(getMax())
                 .append("\nNb creatures: ").append(getNbCreature())
-                .append("\nPropreté: ").append(getCleanness().getCleenness());
+                .append("\nPropreté: ").append(getCleanness().getValue());
         // Ajoute le toString de chaque creature
         for (Creature creature : listCreature) {
             sb.append("\n").append(creature.toString());
