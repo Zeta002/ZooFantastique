@@ -18,12 +18,18 @@ public abstract class Oviparous extends Creature{
      * retourne une instance d'un ovipare au bout d'un
      * certain temps d'incubation
      *
-     * @author Aurore M.
-     * @return une instance d'un ovipare
+     * @author Aurore M., Quentin B.
      */
-    public Oviparous layEggs() {
+    public Oviparous layEggs(Creature partenaire) {
+        Creature female = fertilizable(partenaire);
+        if (female == null) {
+            System.out.println("La fécondation semble impossible");
+            return null;
+        }
+        System.out.println("Un nouvel arrivant semble être prévu pour bientôt");
+        female.setPregnant(true);
         // ajouter temps d'attente
-        return eggsHatch();
+        return ((Oviparous) female).eggsHatch();
     }
 
     /**
