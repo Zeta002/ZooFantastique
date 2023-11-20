@@ -6,7 +6,9 @@ public enum Hunger {
     HUNGRY("Affamé(e)", 3);
 
     // Attributs
+    // Etat de la faim en français
     private String state;
+    // Valeur de la faim
     private int value;
 
     // Constructeur
@@ -15,32 +17,41 @@ public enum Hunger {
         this.value = value;
     }
 
+    // Getter et Setter
     public String getState() {
         return state;
     }
 
-    public int getValue() {
+    public int getHungerValue() {
         return value;
-        // TODO : à refaire
     }
 
     /**
-     * Setter de l'enum en lui même et
-     * de la valeur de la faim
+     * Setter de la valeur de la faim, met à jour l'enum
+     * en appellant la méthode updateHunger()
      *
-     * @author Quentin B.
      * @author Angelo P.
      * @param value valeur de la faim
      */
     public void setValue(int value) {
-        if (value <= HUNGRY.value) {
-            this.state = HUNGRY.state;
-        } else if(value <= MEDIUM.value) {
-            this.state = MEDIUM.state;
-        } else {
-            this.state = SATISFIED.state;
-        }
         this.value = value;
-        // TODO : à refaire
+        updateHunger();
+    }
+
+    /**
+     * Met à jour l'état de l'enum en fonction
+     * de la valeur de la faim
+     *
+     * @author Quentin B.
+     * @author Angelo P.
+     */
+    public void updateHunger() {
+        if (this.value >= 10) {
+            this.state = "Répu";
+        } else if (value > 3) {
+            this.state = "Moyen";
+        } else {
+            this.state = "Affamé(e)";
+        }
     }
 }

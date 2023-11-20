@@ -112,7 +112,7 @@ class CreatureTest {
 
     @Test
     void setHunger() {
-        c.getHunger().setValue(3);
+        c.setHunger(Hunger.HUNGRY);
         assertEquals(Hunger.HUNGRY, c.getHunger());
     }
 

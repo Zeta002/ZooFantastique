@@ -15,7 +15,7 @@ public abstract class Enclosure {
     private double surface;
     private int max;
     private int nbCreature;
-    private ArrayList<Creature> listCreature = new ArrayList<Creature>();
+    private ArrayList<Creature> listCreature = new ArrayList<>();
 
     // Attribus spéciaux type enum
     private Cleanness cleanness;
@@ -24,7 +24,7 @@ public abstract class Enclosure {
         this.name = name;
         this.surface = surface;
         this.max = max;
-        this.listCreature = new ArrayList<Creature>(0);
+        this.listCreature = new ArrayList<>(0);
         this.nbCreature = 0;
         this.cleanness = Cleanness.CORRECT;
     }
@@ -65,8 +65,7 @@ public abstract class Enclosure {
     public void feedCreature(Food food, Creature creature){
         if (listCreature.contains(creature)) {
             // TODO : Vérifier si la nourriture est compatible avec la créature
-            // TODO : la méthode n'est pas terminé tant que hunger est cassé, il faut que la créature ne puisse pas manger en étant "Répu"
-            if (creature.getHunger().getValue() != SATISFIED.getValue()) {
+            if (creature.getHunger() != SATISFIED) {
                 creature.eat(food);
             }
         } else {

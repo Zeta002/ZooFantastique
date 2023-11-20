@@ -4,7 +4,6 @@ import net.zoofantastique.controller.creature.behavior.Age;
 import net.zoofantastique.controller.creature.behavior.Gender;
 import net.zoofantastique.controller.creature.behavior.Hunger;
 import net.zoofantastique.controller.creature.consumable.composition.Food;
-import net.zoofantastique.controller.creature.oviparous.Oviparous;
 
 import static net.zoofantastique.controller.creature.behavior.Hunger.*;
 
@@ -42,25 +41,29 @@ public abstract class Creature extends Alive {
 
     // Methodes
     /**
-     * Donne de la nourriture a la creature, agie
-     * sur l'attribut hunger, si elle dors alors renvoie
-     * une erreur dans le terminal, met à jour l'enum en
-     * lui même et la valeur de la faim via le setter setValue()
+     * La creature mange, agie sur l'enum hunger,
+     * si elle dort alors elle ne peut pas manger,
      *
      * @author Angelo P.
-     * @param food  nourriture donner a la creature
+     * @param food nourriture donner a la creature
      */
     public void eat(Food food) {
         if (isSleeping) {
-            System.err.println("Tu ne peux pas faire ça car la créature sélectionner dors actuellement.");
+            System.out.println("Tu ne peux pas faire ça car la créature sélectionner dors actuellement.");
+            return;
         }
-        // hunger.setValue(food.getValue());
-        if (hunger.getValue() + food.getValue() <= 3) {
-            hunger = HUNGRY;
-        } else if (hunger.getValue() + food.getValue() <= 5){
-            hunger = MEDIUM;
+
+        int totalHungerValue = this.hunger.getHungerValue() + food.getValue();
+
+        if (totalHungerValue >= 10) {
+            this.hunger.setValue(10);
+            setHunger(SATISFIED);
+        } else if (totalHungerValue > 3) {
+            this.hunger.setValue(totalHungerValue);
+            setHunger(MEDIUM);
         } else {
-            hunger = SATISFIED;
+            this.hunger.setValue(totalHungerValue);
+            setHunger(HUNGRY);
         }
     }
 
@@ -154,11 +157,12 @@ public abstract class Creature extends Alive {
 
     public String getHungerState() {
         return hunger.getState();
-        // TODO : à refaire
     }
     public Hunger getHunger() {
         return this.hunger;
-        // TODO : à refaire
+    }
+    public void setHunger(Hunger hunger) {
+        this.hunger = hunger;
     }
 
     public boolean isSleeping() {
