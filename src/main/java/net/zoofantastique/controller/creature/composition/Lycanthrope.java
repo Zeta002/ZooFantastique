@@ -13,4 +13,19 @@ public class Lycanthrope extends Viviparous implements Runner {
     public void run() {
         System.out.println(super.getName() + " *cours*");
     }
+
+    @Ovveride
+    public Viviparous giveBirth(){
+        Random random = new Random();
+        double babyWeight = 2.5 + (4.3 - 2.5) * random.nextDouble();
+        double babyHeight = 0.45 + (0.55 - 0.45) * random.nextDouble();
+
+        if (random.nextInt(2)) {
+            Gender babySexe = Gender.FEMALE;
+        }
+        else {
+            Gender babySexe = Gender.MALE;
+        }
+        return new Lycanthrope(getName(), babySexe, babyWeight, babyHeight, getShout());
+    }
 }
