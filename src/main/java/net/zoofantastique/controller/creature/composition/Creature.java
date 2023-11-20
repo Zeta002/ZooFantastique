@@ -6,8 +6,7 @@ import net.zoofantastique.controller.creature.behavior.Hunger;
 import net.zoofantastique.controller.creature.consumable.composition.Food;
 import net.zoofantastique.controller.creature.oviparous.Oviparous;
 
-import static net.zoofantastique.controller.creature.behavior.Hunger.HUNGRY;
-import static net.zoofantastique.controller.creature.behavior.Hunger.SATISFIED;
+import static net.zoofantastique.controller.creature.behavior.Hunger.*;
 
 public abstract class Creature extends Alive {
     // Attributs
@@ -55,9 +54,11 @@ public abstract class Creature extends Alive {
         if (isSleeping) {
             System.err.println("Tu ne peux pas faire ça car la créature sélectionner dors actuellement.");
         }
-        hunger.setValue(food.getValue());
+        // hunger.setValue(food.getValue());
         if (hunger.getValue() + food.getValue() <= 3) {
             hunger = HUNGRY;
+        } else if (hunger.getValue() + food.getValue() <= 5){
+            hunger = MEDIUM;
         } else {
             hunger = SATISFIED;
         }
@@ -153,25 +154,11 @@ public abstract class Creature extends Alive {
 
     public String getHungerState() {
         return hunger.getState();
+        // TODO : à refaire
     }
     public Hunger getHunger() {
         return this.hunger;
-    }
-
-    /**
-     * Setter de la faim, agie sur l'attribut hunger,
-     * met à jour l'enum en lui même et la valeur de la faim
-     *
-     * @author Angelo P.
-     * @param value valeur de la faim
-     */
-    public void setHunger(int value) {
-        if (value <= HUNGRY.getValue()) {
-            this.hunger = HUNGRY;
-        } else {
-            this.hunger = SATISFIED;
-        }
-        this.hunger.setValue(value);
+        // TODO : à refaire
     }
 
     public boolean isSleeping() {

@@ -19,9 +19,9 @@ class CreatureTest {
 
     @Test
     void isEatWorking() {
-        c.setHunger(0);
+        c.getHunger().setValue(0);
         c.eat(new Beefsteak());
-        assertEquals(Hunger.SATISFIED, c.getHunger());
+        assertEquals(Hunger.MEDIUM, c.getHunger());
     }
 
     @Test
@@ -112,7 +112,7 @@ class CreatureTest {
 
     @Test
     void setHunger() {
-        c.setHunger(3);
+        c.getHunger().setValue(3);
         assertEquals(Hunger.HUNGRY, c.getHunger());
     }
 

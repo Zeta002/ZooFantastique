@@ -7,6 +7,8 @@ import net.zoofantastique.controller.creature.consumable.composition.Food;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import static net.zoofantastique.controller.creature.behavior.Hunger.SATISFIED;
+
 public abstract class Enclosure {
     // Attributs
     private final String enclosureType = getClass().getSimpleName();
@@ -63,7 +65,7 @@ public abstract class Enclosure {
     public void feedCreature(Food food, Creature creature){
         if (listCreature.contains(creature)) {
             // TODO : Vérifier si la nourriture est compatible avec la créature
-            if (creature.getHunger() != Hunger.SATISFIED) {
+            if (creature.getHunger().getValue() != SATISFIED.getValue()) {
                 creature.eat(food);
             }
         } else {

@@ -2,6 +2,7 @@ package net.zoofantastique.controller.creature.behavior;
 
 public enum Hunger {
     SATISFIED("Répu", 10),
+    MEDIUM("Moyen", 5),
     HUNGRY("Affamé(e)", 3);
 
     // Attributs
@@ -20,6 +21,7 @@ public enum Hunger {
 
     public int getValue() {
         return value;
+        // TODO : à refaire
     }
 
     /**
@@ -33,9 +35,12 @@ public enum Hunger {
     public void setValue(int value) {
         if (value <= HUNGRY.value) {
             this.state = HUNGRY.state;
+        } else if(value <= MEDIUM.value) {
+            this.state = MEDIUM.state;
         } else {
             this.state = SATISFIED.state;
         }
         this.value = value;
+        // TODO : à refaire
     }
 }
