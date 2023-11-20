@@ -67,9 +67,9 @@ class FoodTest {
         food = new OceanDelight();
         assertEquals(new StringBuilder()
                 .append("Un festin délicieux composé de divers délices marins, l'Ocean Delight")
-                .append(" est conçu pour émerveiller les palais des créatures qui nagent dans")
-                .append(" les océans fantastiques. Il offre une expérience culinaire digne des fonds")
-                .append(" marins enchanteurs.").toString(), food.getDesc());
+                .append(" \nest conçu pour émerveiller les palais des créatures qui nagent dans")
+                .append(" \nles océans fantastiques. Il offre une expérience culinaire digne des fonds")
+                .append(" \nmarins enchanteurs.").toString(), food.getDesc());
     }
 
     @Test
@@ -87,7 +87,12 @@ class FoodTest {
                 --------------
                 Valeur: 4
                 Type: Terrestre
-                Description: Un morceau généreux de steak fantastique, prélevé avec soin des bêtes extraordinaires qui errent dans les vastes prairies magiques. Le Beefsteak est réputé pour sa tendreté incomparable et sa saveur riche. C'est une délicieuse source de protéines pour les créatures qui courent avec agilité, offrant une expérience culinaire robuste et nourrissante.
+                Description: Un morceau généreux de steak fantastique, prélevé\s
+                avec soin des bêtes extraordinaires qui errent dans les vastes\s
+                prairies magiques. Le Beefsteak est réputé pour sa tendreté\s
+                incomparable et sa saveur riche. C'est une délicieuse source\s
+                de protéines pour les créatures qui courent avec agilité, offrant\s
+                une expérience culinaire robuste et nourrissante.
                 """, food.toString());
     }
 }

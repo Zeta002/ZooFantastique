@@ -9,11 +9,11 @@ public class Beefsteak extends Food {
         super.setValue(4);
         StringBuilder desc = new StringBuilder();
         desc.append("Un morceau généreux de steak fantastique, prélevé")
-                .append(" avec soin des bêtes extraordinaires qui errent dans les vastes")
-                .append(" prairies magiques. Le Beefsteak est réputé pour sa tendreté")
-                .append(" incomparable et sa saveur riche. C'est une délicieuse source")
-                .append(" de protéines pour les créatures qui courent avec agilité, offrant")
-                .append(" une expérience culinaire robuste et nourrissante.");
+                .append(" \navec soin des bêtes extraordinaires qui errent dans les vastes")
+                .append(" \nprairies magiques. Le Beefsteak est réputé pour sa tendreté")
+                .append(" \nincomparable et sa saveur riche. C'est une délicieuse source")
+                .append(" \nde protéines pour les créatures qui courent avec agilité, offrant")
+                .append(" \nune expérience culinaire robuste et nourrissante.");
         super.setDesc(desc.toString());
         super.setFoodType(FoodType.TERRESTRIAL);
     }
