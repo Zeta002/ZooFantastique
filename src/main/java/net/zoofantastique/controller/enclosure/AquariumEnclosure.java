@@ -13,7 +13,6 @@ public class AquariumEnclosure extends Enclosure {
         super(name, surface, max);
         this.basinSalinity = Salinity.BRACKISHWATER;
         this.basinDepth = basinDepth;
-
     }
 
     public AquariumEnclosure(String name, double surface, double basinDepth, int max, ArrayList<Creature> listCreature) {
@@ -25,7 +24,7 @@ public class AquariumEnclosure extends Enclosure {
     public void maintenance(double basinDepth, Salinity basinSalinity) {
         System.out.println(getClass().getSimpleName() + " : " + getName() + " est en maintenance.");
         // TODO : thread d'un temps aléatoire dans une intervalle donné
-        // TODO : Améliorer la salinité du bassin en prenant en compte la profondeur du bassin
+        // TODO : Avec la réponse par mail du prof, adapté le code
         basinSalinity.inscreaseSalinity();
         System.out.println(getClass().getSimpleName() + " : " + getName() + " est maintenant " + getCleanness().getValue());
     }
