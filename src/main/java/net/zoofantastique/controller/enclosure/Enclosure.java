@@ -77,7 +77,7 @@ public abstract class Enclosure {
         System.out.println(getClass().getSimpleName() + " : " + getName() + " est en maintenance.");
         // TODO : thread d'un temps aléatoire dans une intervalle donné
         getCleanness().clean();
-        System.out.println(getClass().getSimpleName() + " : " + getName() + " est maintenant " + getCleanness().getValue());
+        System.out.println(getClass().getSimpleName() + " : " + getName() + " est maintenant " + getCleanness().getValue() + ".");
     }
 
     // Getter et Setter
