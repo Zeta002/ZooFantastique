@@ -8,18 +8,34 @@ import java.util.Arrays;
 
 import static net.zoofantastique.controller.creature.behavior.Hunger.SATISFIED;
 
-public abstract class Enclosure {
-    // Attributs
+/**
+ * Classe Enclosure représentant un enclos dans un zoo.
+ * Un enclos a un type, un nom, une surface, un nombre maximum de créatures, un nombre actuel de créatures, une liste de créatures et un niveau de propreté.
+ */
+public class Enclosure {
+    // Le type de l'enclos est déterminé par le nom de la classe qui l'étend
     private final String enclosureType = getClass().getSimpleName();
+    // Le nom de l'enclos
     private String name;
+    // La surface de l'enclos en mètres carrés
     private double surface;
+    // Le nombre maximum de créatures que l'enclos peut contenir
     private int max;
+    // Le nombre actuel de créatures dans l'enclos
     private int nbCreature;
+    // La liste des créatures actuellement dans l'enclos
     private ArrayList<Creature> listCreature = new ArrayList<>();
-
-    // Attribus spéciaux type enum
+    // Le niveau de propreté de l'enclos
     private Cleanness cleanness;
 
+    /**
+     * Constructeur de la classe Enclosure avec nom, surface et nombre maximum de créatures.
+     * Initialise également la liste des créatures à une liste vide, le nombre de créatures à 0 et la propreté à CORRECT.
+     *
+     * @param name    le nom de l'enclos.
+     * @param surface la surface de l'enclos en mètres carrés.
+     * @param max     le nombre maximum de créatures que l'enclos peut contenir.
+     */
     public Enclosure(String name, double surface, int max) {
         this.name = name;
         this.surface = surface;
@@ -29,17 +45,31 @@ public abstract class Enclosure {
         this.cleanness = Cleanness.CORRECT;
     }
 
+    /**
+     * Constructeur de la classe Enclosure avec nom, surface, nombre maximum de créatures et liste de créatures.
+     * Initialise également le nombre de créatures à 0 et la propreté à CORRECT.
+     *
+     * @param name          le nom de l'enclos.
+     * @param surface       la surface de l'enclos en mètres carrés.
+     * @param max           le nombre maximum de créatures que l'enclos peut contenir.
+     * @param listCreature  la liste des créatures à ajouter à l'enclos lors de la création.
+     */
     public Enclosure(String name, double surface, int max, ArrayList<Creature> listCreature) {
         this.name = name;
         this.surface = surface;
         this.max = max;
         this.listCreature = listCreature;
-
         this.nbCreature = 0;
         this.cleanness = Cleanness.CORRECT;
     }
 
-    // Méthodes
+    /**
+     * Méthode pour ajouter des créatures à l'enclos.
+     * Si le nombre total de créatures après l'ajout ne dépasse pas le maximum autorisé, les créatures sont ajoutées à l'enclos.
+     * Sinon, un message d'erreur est affiché.
+     *
+     * @param creatures Les créatures à ajouter à l'enclos.
+     */
     public void addCreature(Creature... creatures) {
         int totalCreatures = nbCreature + creatures.length;
 
@@ -51,6 +81,13 @@ public abstract class Enclosure {
         }
     }
 
+    /**
+     * Méthode pour retirer des créatures de l'enclos.
+     * Parcourt la liste des créatures à retirer. Si une créature est présente dans l'enclos, elle est retirée et le nombre de créatures est décrémenté.
+     * Si une créature n'est pas présente dans l'enclos, un message d'erreur est affiché.
+     *
+     * @param creaturesToRemove Les créatures à retirer de l'enclos.
+     */
     public void removeCreature(Creature... creaturesToRemove) {
         for (Creature creature : creaturesToRemove) {
             if (listCreature.contains(creature)) {
@@ -62,9 +99,16 @@ public abstract class Enclosure {
         }
     }
 
+    /**
+     * Méthode pour nourrir une créature dans l'enclos.
+     * Si la créature est présente dans l'enclos et qu'elle n'est pas rassasiée, elle mange la nourriture fournie.
+     * Si la créature n'est pas présente dans l'enclos, un message d'erreur est affiché.
+     *
+     * @param food La nourriture à donner à la créature.
+     * @param creature La créature à nourrir.
+     */
     public void feedCreature(Food food, Creature creature){
         if (listCreature.contains(creature)) {
-            // TODO : Vérifier si la nourriture est compatible avec la créature
             if (creature.getHunger() != SATISFIED) {
                 creature.eat(food);
             }
@@ -73,14 +117,18 @@ public abstract class Enclosure {
         }
     }
 
+    /**
+     * Méthode pour effectuer la maintenance de l'enclos.
+     * Affiche un message indiquant que l'enclos est en maintenance, nettoie l'enclos, puis affiche un message indiquant le nouvel état de propreté de l'enclos.
+     */
     public void maintenance() {
         System.out.println(getClass().getSimpleName() + " : " + getName() + " est en maintenance.");
-        // TODO : thread d'un temps aléatoire dans une intervalle donné
         getCleanness().clean();
         System.out.println(getClass().getSimpleName() + " : " + getName() + " est maintenant " + getCleanness().getValue() + ".");
     }
 
-    // Getter et Setter
+    // Getter et setter
+
     public String getName() {
         return name;
     }
@@ -123,6 +171,12 @@ public abstract class Enclosure {
         this.cleanness = cleanness;
     }
 
+    /**
+     * Méthode pour obtenir une représentation sous forme de chaîne de caractères de l'enclos.
+     * Construit une chaîne de caractères contenant le type d'enclos, le nom, la surface, le nombre maximum de créatures, le nombre actuel de créatures, le niveau de propreté et la liste des créatures.
+     *
+     * @return Une chaîne de caractères représentant l'enclos.
+     */
     public String toString() {
         StringBuilder sb = new StringBuilder("<-/ " + enclosureType + " \\->\n");
         sb.append("-------------------------")
@@ -132,7 +186,6 @@ public abstract class Enclosure {
                 .append("\nNb creatures: ").append(getNbCreature())
                 .append(" / ").append(getMax())
                 .append("\nPropreté: ").append(getCleanness().getValue()).append("\n");
-        // Ajoute le toString de chaque creature
         for (Creature creature : listCreature) {
             sb.append("\n").append(creature.toString());
         }

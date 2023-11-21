@@ -41,24 +41,25 @@ public class AviaryEnclosure extends Enclosure {
         this.roofHeight = roofHeight;
     }
 
-    /**
-     * Retourne la hauteur du toit de la volière.
-     *
-     * @return la hauteur du toit de la volière en mètres
-     */
+    // Getter et setter
+
     public double getRoofHeight() {
         return roofHeight;
     }
-
-    /**
-     * Définit la hauteur du toit de la volière.
-     *
-     * @param roofHeight la nouvelle hauteur du toit de la volière en mètres
-     */
     public void setRoofHeight(double roofHeight) {
         this.roofHeight = roofHeight;
     }
 
+    // Méthodes
+
+    /**
+     * Méthode pour effectuer la maintenance de la volière.
+     * Affiche un message indiquant que la volière est en maintenance.
+     * En fonction de la hauteur du toit, effectue une opération de nettoyage et affiche un message indiquant que la volière est maintenant propre.
+     * Si la hauteur du toit ne correspond à aucun des intervalles définis, affiche un message indiquant que la volière reste dans son état de propreté actuel.
+     *
+     * @param roofHeight La hauteur du toit de la volière en mètres.
+     */
     public void maintenance(double roofHeight) {
         System.out.println(getClass().getSimpleName() + " : " + getName() + " est en maintenance.");
         // TODO : thread d'un temps aléatoire dans une intervalle donné, plus la hauteur du toit est grande, plus le temps est long

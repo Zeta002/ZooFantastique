@@ -2,10 +2,7 @@ package net.zoofantastique;
 
 import net.zoofantastique.controller.creature.behavior.Gender;
 import net.zoofantastique.controller.creature.composition.Dragon;
-import net.zoofantastique.controller.creature.consumable.food.Beefsteak;
-import net.zoofantastique.controller.creature.oviparous.Oviparous;
 import net.zoofantastique.controller.enclosure.Enclosure;
-import net.zoofantastique.controller.enclosure.StandardEnclosure;
 
 public class ScratchMain {
     public static void main(String[] args) {
@@ -19,7 +16,7 @@ public class ScratchMain {
 //            e.add(new Truc(name))
 //            e.rem(i)
 
-        Enclosure e = new StandardEnclosure("Le nom", 100.0, 10);
+        Enclosure e = new Enclosure("Le nom", 100.0, 10);
 
         for (int i = 0; i < 4; i++) {
             e.addCreature(new Dragon("Test", Gender.MALE, 200.0, 200.0));
