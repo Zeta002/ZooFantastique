@@ -125,12 +125,13 @@ public abstract class Enclosure {
 
     public String toString() {
         StringBuilder sb = new StringBuilder("<-/ " + enclosureType + " \\->\n");
-        sb.append("--------------")
+        sb.append("-------------------------")
                 .append("\nNom: ").append(name)
-                .append("\nSuperficie: ").append(getSurface())
+                .append("\nSuperficie: ").append(getSurface()).append("m²")
                 .append("\nMax creatures: ").append(getMax())
                 .append("\nNb creatures: ").append(getNbCreature())
-                .append("\nPropreté: ").append(getCleanness().getValue());
+                .append(" / ").append(getMax())
+                .append("\nPropreté: ").append(getCleanness().getValue()).append("\n");
         // Ajoute le toString de chaque creature
         for (Creature creature : listCreature) {
             sb.append("\n").append(creature.toString());

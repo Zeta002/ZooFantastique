@@ -21,4 +21,12 @@ public class AquariumEnclosure extends Enclosure {
         this.basinSalinity = Salinity.BRACKISHWATER;
         this.basinDepth = basinDepth;
     }
+
+    public void maintenance(double basinDepth, Salinity basinSalinity) {
+        System.out.println(getClass().getSimpleName() + " : " + getName() + " est en maintenance.");
+        // TODO : thread d'un temps aléatoire dans une intervalle donné
+        // TODO : Améliorer la salinité du bassin en prenant en compte la profondeur du bassin
+        basinSalinity.inscreaseSalinity();
+        System.out.println(getClass().getSimpleName() + " : " + getName() + " est maintenant " + getCleanness().getValue());
+    }
 }
