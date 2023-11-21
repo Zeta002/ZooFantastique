@@ -34,8 +34,6 @@ public class AquariumEnclosure extends Enclosure {
     /**
      * Construit un nouvel AquariumEnclosure avec les paramètres spécifiés.
      *
-     * @author Angelo P.
-     * @author Aurore M.
      * @param name         le nom de l'aquarium
      * @param surface      la surface de l'aquarium en mètres carrés
      * @param basinDepth   la profondeur du bassin dans l'aquarium en mètres

@@ -23,7 +23,6 @@ public enum Age {
      * methode permettant d'augmenter l'age de 1, si l'age
      * est à l'état de mort, alors il ne s'augmente plus
      *
-     * @author Quentin B.
      * @return objet enum Age dont l'age est augmenter de 1
      */
     public Age nextAge() {

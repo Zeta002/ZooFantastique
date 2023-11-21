@@ -20,7 +20,6 @@ public enum FoodType {
      * getter de la valeur du type, qui est
      * la traduction français pour l'affichage
      *
-     * @author Angelo P.
      * @return valeur du type d'aliment en français
      */
     public String getValue() {

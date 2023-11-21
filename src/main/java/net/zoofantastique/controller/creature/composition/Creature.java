@@ -22,7 +22,6 @@ public abstract class Creature extends Alive {
     /**
      * Constructeur
      *
-     * @author Angelo P.
      * @param weight Poids en kg
      * @param height Taille en m
      */
@@ -44,7 +43,6 @@ public abstract class Creature extends Alive {
      * La creature mange, agie sur l'enum hunger,
      * si elle dort alors elle ne peut pas manger,
      *
-     * @author Angelo P.
      * @param food nourriture donner a la creature
      */
     public void eat(Food food) {
@@ -70,8 +68,6 @@ public abstract class Creature extends Alive {
     /**
      * La creature crie, emet un son, si besoin on peut changer
      * le nom en scream, shout voulant dire la meme chose
-     *
-     * @author Angelo P.
      */
     public void shout()
     {
@@ -81,8 +77,6 @@ public abstract class Creature extends Alive {
     /**
      * La creature est soigne, suposement par un acteur externe,
      * agie sur l'attribut isSick qui est la santé
-     *
-     * @author Angelo P.
      */
     public void healed() {
         isSick = false;
@@ -91,7 +85,6 @@ public abstract class Creature extends Alive {
     /**
      * Switch l'etat de sommeil de la creature
      *
-     * @author Angelo P.
      */
     public void toggleSleeping() {
         isSleeping = !isSleeping;
@@ -99,8 +92,6 @@ public abstract class Creature extends Alive {
 
     /**
      * Passe a l'age suivant
-     *
-     * @author Angelo P.
      */
     public void aging() {
         this.age = this.age.nextAge();

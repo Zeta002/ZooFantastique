@@ -17,7 +17,6 @@ public abstract class Food {
     /**
      * getter du nom de l'aliment
      *
-     * @author Angelo P.
      * @return nom de l'aliment
      */
     public String getName() {
@@ -27,7 +26,6 @@ public abstract class Food {
     /**
      * setter du nom de l'aliment
      *
-     * @author Angelo P.
      * @param name nom de l'aliment
      */
     public void setName(String name) {
@@ -37,7 +35,6 @@ public abstract class Food {
     /**
      * getter de la valeur nutritionel de l'aliment
      *
-     * @author Angelo P.
      * @return valeur nutritionel de l'aliment
      */
     public int getValue() {
@@ -47,7 +44,6 @@ public abstract class Food {
     /**
      * setter du la valeur nutritionel de l'aliment
      *
-     * @author Angelo P.
      * @param value valeur nutritionel de l'aliment
      */
     public void setValue(int value) {
@@ -57,7 +53,6 @@ public abstract class Food {
     /**
      * getter du type de nourriture
      *
-     * @author Angelo P.
      * @return objet FoodType définissant le type d'aliment
      */
     public FoodType getFoodType() {
@@ -67,7 +62,6 @@ public abstract class Food {
     /**
      * getter de la valeur d'affichage du type d'aliment
      *
-     * @author Angelo P.
      * @return la valeur d'affichage du type d'aliment
      */
     public String getFoodTypeValue() {
@@ -77,7 +71,6 @@ public abstract class Food {
     /**
      * setter du type de nourriture
      *
-     * @author Angelo P.
      * @param foodType type de l'aliment
      */
     public void setFoodType(FoodType foodType) {
@@ -87,7 +80,6 @@ public abstract class Food {
     /**
      * getter de la description de l'aliment
      *
-     * @author Angelo P.
      * @return description de l'aliment
      */
     public String getDesc() {
@@ -97,7 +89,6 @@ public abstract class Food {
     /**
      * setter de la description de l'aliment
      *
-     * @author Angelo P.
      * @param desc description de l'aliment
      */
     public void setDesc(String desc) {

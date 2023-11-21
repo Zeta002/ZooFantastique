@@ -30,7 +30,6 @@ public enum Hunger {
      * Setter de la valeur de la faim, met à jour l'enum
      * en appellant la méthode updateHunger()
      *
-     * @author Angelo P.
      * @param value valeur de la faim
      */
     public void setValue(int value) {
@@ -41,9 +40,6 @@ public enum Hunger {
     /**
      * Met à jour l'état de l'enum en fonction
      * de la valeur de la faim
-     *
-     * @author Quentin B.
-     * @author Angelo P.
      */
     public void updateHunger() {
         if (this.value >= 10) {

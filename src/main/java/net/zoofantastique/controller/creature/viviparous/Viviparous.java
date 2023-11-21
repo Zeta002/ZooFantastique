@@ -16,8 +16,6 @@ public abstract class Viviparous extends Creature{
     /**
      * retourne une instance d'un vivipare au bout d'un
      * certain temps de gestation
-     *
-     * @author Aurore M., Quentin B.
      */
     public Viviparous initiatePregnancy(Creature partenaire) {
         Creature female = fertilizable(partenaire);
@@ -35,7 +33,6 @@ public abstract class Viviparous extends Creature{
      * retourne une instance de bébé creature de la même
      * espèce que ces parents
      *
-     * @author Aurore M.
      * @return un bébé vivipare
      */
     public abstract Viviparous giveBirth();

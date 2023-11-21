@@ -17,8 +17,6 @@ public abstract class Oviparous extends Creature{
     /**
      * retourne une instance d'un ovipare au bout d'un
      * certain temps d'incubation
-     *
-     * @author Aurore M., Quentin B.
      */
     public Oviparous layEggs(Creature partenaire) {
         Creature female = fertilizable(partenaire);
@@ -36,7 +34,6 @@ public abstract class Oviparous extends Creature{
      * retourne une instance de bébé creature de la même
      * espèce que ces parents
      *
-     * @author Aurore M.
      * @return un bébé ovipare
      */
 

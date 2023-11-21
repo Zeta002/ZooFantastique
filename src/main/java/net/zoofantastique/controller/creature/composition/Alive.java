@@ -17,7 +17,6 @@ public abstract class Alive {
     /**
      * Constructeur
      *
-     * @author Angelo P.
      * @param name Nom de l'espèce
      * @param sexe Male ou femelle
      * @param age Age initial
