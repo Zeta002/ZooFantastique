@@ -20,10 +20,10 @@ public enum Age {
     }
 
     /**
-     * methode permettant d'augmenter l'age de 1, si l'age
-     * est à l'état de mort, alors il ne s'augmente plus
+     * Méthode pour obtenir l'âge suivant d'une créature.
+     * Cette méthode renvoie l'âge suivant dans l'énumération Age, à moins que la créature soit déjà à l'âge le plus élevé (DEAD), auquel cas l'âge reste inchangé.
      *
-     * @return objet enum Age dont l'age est augmenter de 1
+     * @return Le nouvel âge de la créature.
      */
     public Age nextAge() {
         Age[] ages = Age.values();

@@ -2,9 +2,8 @@ package net.zoofantastique.controller.creature.behavior;
 
 public interface Runner {
     /**
-     * permet de courir, la method par défaut permet à n'importe quoi de courir
-     * sans préciser le nom, est souvent @Override dans des classes pour préciser
-     * le nom de l'espèce de l'animal courant
+     * Méthode par défaut pour faire courir une créature.
+     * Affiche un message indiquant que la créature court.
      */
     default void run() {
         System.out.println("*cours*");

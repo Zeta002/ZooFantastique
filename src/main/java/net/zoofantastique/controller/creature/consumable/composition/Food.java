@@ -4,97 +4,54 @@ import net.zoofantastique.controller.creature.consumable.behavior.FoodType;
 
 public abstract class Food {
     // Attributs
-    // Nom de l'aliment
+    // Le nom de la nourriture.
     String name;
-    // Valeur nutritionel
+    // La valeur nutritionnelle de la nourriture.
     int value;
-    // Description de l'aliment
+    // La description de la nourriture.
     String desc;
-    // Type de l'aliment
+    // Le type de la nourriture, défini par l'énumération FoodType.
     FoodType foodType;
 
     // Getter et Setter
-    /**
-     * getter du nom de l'aliment
-     *
-     * @return nom de l'aliment
-     */
+
     public String getName() {
         return name;
     }
-
-    /**
-     * setter du nom de l'aliment
-     *
-     * @param name nom de l'aliment
-     */
     public void setName(String name) {
         this.name = name;
     }
 
-    /**
-     * getter de la valeur nutritionel de l'aliment
-     *
-     * @return valeur nutritionel de l'aliment
-     */
     public int getValue() {
         return value;
     }
-
-    /**
-     * setter du la valeur nutritionel de l'aliment
-     *
-     * @param value valeur nutritionel de l'aliment
-     */
     public void setValue(int value) {
         this.value = value;
     }
 
-    /**
-     * getter du type de nourriture
-     *
-     * @return objet FoodType définissant le type d'aliment
-     */
     public FoodType getFoodType() {
         return foodType;
     }
-
-    /**
-     * getter de la valeur d'affichage du type d'aliment
-     *
-     * @return la valeur d'affichage du type d'aliment
-     */
     public String getFoodTypeValue() {
         return foodType.getValue();
     }
-
-    /**
-     * setter du type de nourriture
-     *
-     * @param foodType type de l'aliment
-     */
     public void setFoodType(FoodType foodType) {
         this.foodType = foodType;
     }
 
-    /**
-     * getter de la description de l'aliment
-     *
-     * @return description de l'aliment
-     */
     public String getDesc() {
         return desc;
     }
-
-    /**
-     * setter de la description de l'aliment
-     *
-     * @param desc description de l'aliment
-     */
     public void setDesc(String desc) {
         this.desc = desc;
     }
 
+    /**
+     * Méthode pour obtenir une représentation sous forme de chaîne de caractères de la nourriture.
+     * Construit une chaîne de caractères contenant le nom, la valeur nutritionnelle, le type et la description de la nourriture.
+     *
+     * @return Une chaîne de caractères représentant la nourriture.
+     */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("<-/ " + name + " \\->\n");

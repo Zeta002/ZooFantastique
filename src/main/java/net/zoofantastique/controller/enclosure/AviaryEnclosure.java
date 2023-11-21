@@ -5,9 +5,12 @@ import net.zoofantastique.controller.creature.composition.Creature;
 import java.util.ArrayList;
 
 /**
- * Classe représentant une volière.
+ * Classe AviaryEnclosure qui représente une volière dans un zoo.
+ * Une volière est un type d'enclos qui a une hauteur de toit en plus des attributs d'un enclos.
+ * Cette classe étend la classe Enclosure.
  */
 public class AviaryEnclosure extends Enclosure {
+    // Attributs
 
     /**
      * La hauteur du toit de la volière.

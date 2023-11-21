@@ -12,10 +12,10 @@ public enum Gender {
         this.sexe = sexe;
     }
 
+    // Getter et setter
     public Gender getSexe() {
         return this;
     }
-
     public String getSexeStatus() {
         return this.sexe;
     }

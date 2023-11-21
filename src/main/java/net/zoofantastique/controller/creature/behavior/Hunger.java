@@ -6,9 +6,10 @@ public enum Hunger {
     HUNGRY("Affamé(e)", 3);
 
     // Attributs
-    // Etat de la faim en français
+
+    // L'état de la faim de la créature, peut être "Répu", "Moyen" ou "Affamé(e)".
     private String state;
-    // Valeur de la faim
+    // La valeur numérique de la faim de la créature, utilisée pour déterminer l'état de la faim.
     private int value;
 
     // Constructeur
@@ -27,10 +28,10 @@ public enum Hunger {
     }
 
     /**
-     * Setter de la valeur de la faim, met à jour l'enum
-     * en appellant la méthode updateHunger()
+     * Méthode pour définir la valeur de la faim de la créature.
+     * Cette méthode met à jour la valeur de la faim et appelle ensuite la méthode updateHunger pour mettre à jour l'état de la faim en fonction de la nouvelle valeur.
      *
-     * @param value valeur de la faim
+     * @param value La nouvelle valeur de la faim de la créature.
      */
     public void setValue(int value) {
         this.value = value;
@@ -38,8 +39,10 @@ public enum Hunger {
     }
 
     /**
-     * Met à jour l'état de l'enum en fonction
-     * de la valeur de la faim
+     * Méthode pour mettre à jour l'état de la faim de la créature en fonction de la valeur de la faim.
+     * Si la valeur de la faim est supérieure ou égale à 10, l'état de la faim est défini sur "Répu".
+     * Si la valeur de la faim est supérieure à 3 mais inférieure à 10, l'état de la faim est défini sur "Moyen".
+     * Si la valeur de la faim est inférieure ou égale à 3, l'état de la faim est défini sur "Affamé(e)".
      */
     public void updateHunger() {
         if (this.value >= 10) {

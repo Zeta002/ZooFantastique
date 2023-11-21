@@ -4,6 +4,11 @@ import net.zoofantastique.controller.creature.composition.Creature;
 
 import java.util.ArrayList;
 
+/**
+ * Classe AquariumEnclosure qui représente un aquarium dans un zoo.
+ * Un aquarium est un type d'enclos qui a une profondeur de bassin et une salinité de bassin en plus des attributs d'un enclos.
+ * Cette classe étend la classe Enclosure.
+ */
 public class AquariumEnclosure extends Enclosure {
     /**
      * La profondeur du bassin dans l'aquarium en mètres.

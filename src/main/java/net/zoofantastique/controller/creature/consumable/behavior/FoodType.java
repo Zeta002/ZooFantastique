@@ -6,7 +6,7 @@ public enum FoodType {
     AERIAL("Aérien");
 
     // Attributs
-    // valeur du type d'aliment en français
+    // La valeur de l'énumération FoodType, qui représente le type de nourriture.
     private final String value;
 
     // Constructeur
@@ -14,14 +14,7 @@ public enum FoodType {
         this.value = value;
     }
 
-    // Getter
-
-    /**
-     * getter de la valeur du type, qui est
-     * la traduction français pour l'affichage
-     *
-     * @return valeur du type d'aliment en français
-     */
+    // Getter et setter
     public String getValue() {
         return value;
     }
