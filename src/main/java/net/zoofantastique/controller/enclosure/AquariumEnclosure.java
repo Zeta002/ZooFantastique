@@ -1,5 +1,6 @@
 package net.zoofantastique.controller.enclosure;
 
+import net.zoofantastique.controller.creature.behavior.Swimmer;
 import net.zoofantastique.controller.creature.composition.Creature;
 
 import java.util.ArrayList;
@@ -51,6 +52,35 @@ public class AquariumEnclosure extends Enclosure {
         super(name, surface, max, listCreature);
         this.basinSalinity = Salinity.BRACKISHWATER;
         this.basinDepth = basinDepth;
+    }
+
+    /**
+     * Ajoute une ou plusieurs créatures à l'aquarium.
+     *
+     * @param creatures les créatures à ajouter à l'aquarium
+     *
+     * <p>Pour chaque créature :</p>
+     * <ul>
+     *   <li>Si la créature est une instance de Swimmer, elle peut être ajoutée à l'aquarium.</li>
+     *   <li>Si l'aquarium a de la place, la créature est ajoutée à la liste des créatures de l'aquarium et le nombre de créatures dans l'aquarium est incrémenté.</li>
+     *   <li>Si l'aquarium est plein, un message d'erreur est affiché.</li>
+     *   <li>Si la créature n'est pas une instance de Swimmer, un message d'erreur est affiché et la créature n'est pas ajoutée à l'aquarium.</li>
+     * </ul>
+     */
+    @Override
+    public void addCreature(Creature... creatures) {
+        for (Creature creature : creatures) {
+            if (creature instanceof Swimmer) {
+                if (getNbCreature() + 1 <= getMax()) {
+                    getListCreature().add(creature);
+                    setNbCreature(getNbCreature() + 1);
+                } else {
+                    System.err.println("Pas assez de places disponibles!");
+                }
+            } else {
+                System.err.println("La créature:\n" + creature + "\nne peut pas nager et ne peut donc pas être ajoutée à l'aquarium!");
+            }
+        }
     }
 
     /**
