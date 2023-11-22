@@ -119,9 +119,14 @@ public class Enclosure {
 
     /**
      * Méthode pour effectuer la maintenance de l'enclos.
-     * Affiche un message indiquant que l'enclos est en maintenance, nettoie l'enclos, puis affiche un message indiquant le nouvel état de propreté de l'enclos.
+     * Si l'enclos est vide, une erreur est affichée et la fonction s'arrête.
+     * Sinon, affiche un message indiquant que l'enclos est en maintenance, nettoie l'enclos, puis affiche un message indiquant le nouvel état de propreté de l'enclos.
      */
     public void maintenance() {
+        if (listCreature.isEmpty()) {
+            System.err.println("L'enclos est vide!");
+            return;
+        }
         System.out.println(getClass().getSimpleName() + " : " + getName() + " est en maintenance.");
         getCleanness().clean();
         System.out.println(getClass().getSimpleName() + " : " + getName() + " est maintenant " + getCleanness().getValue() + ".");

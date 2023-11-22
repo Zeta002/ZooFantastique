@@ -56,14 +56,27 @@ public class AviaryEnclosure extends Enclosure {
     // Méthodes
 
     /**
-     * Méthode pour effectuer la maintenance de la volière.
-     * Affiche un message indiquant que la volière est en maintenance.
-     * En fonction de la hauteur du toit, effectue une opération de nettoyage et affiche un message indiquant que la volière est maintenant propre.
-     * Si la hauteur du toit ne correspond à aucun des intervalles définis, affiche un message indiquant que la volière reste dans son état de propreté actuel.
+     * Effectue une maintenance sur la volière en fonction de la hauteur du toit.
      *
-     * @param roofHeight La hauteur du toit de la volière en mètres.
+     * @param roofHeight la hauteur du toit de la volière en mètres
+     *
+     * <p>Si la volière est vide, un message est affiché et la méthode est terminée.</p>
+     * <p>Si la volière n'est pas vide, un message indiquant que la volière est en maintenance est affiché.</p>
+     * <p>Ensuite, en fonction de la hauteur du toit :</p>
+     * <ul>
+     *   <li>Si la hauteur est <= 20 mètres, la propreté de la volière est augmentée.</li>
+     *   <li>Si la hauteur est > 20 mètres et <= 40 mètres, la propreté de la volière est augmentée.</li>
+     *   <li>Si la hauteur est > 40 mètres et <= 60 mètres, la propreté de la volière est augmentée.</li>
+     *   <li>Si la hauteur est > 60 mètres, la propreté de la volière est augmentée.</li>
+     * </ul>
+     * <p>Après chaque augmentation de la propreté, un message indiquant la nouvelle propreté de la volière est affiché.</p>
+     * <p>Si aucune des conditions de hauteur n'est remplie, un message indiquant la propreté actuelle de la volière est affiché.</p>
      */
     public void maintenance(double roofHeight) {
+        if (getListCreature().isEmpty()) {
+            System.out.println(getClass().getSimpleName() + " : " + getName() + " est vide.");
+            return;
+        }
         System.out.println(getClass().getSimpleName() + " : " + getName() + " est en maintenance.");
         // TODO : thread d'un temps aléatoire dans une intervalle donné, plus la hauteur du toit est grande, plus le temps est long
         if (roofHeight <= 20) {

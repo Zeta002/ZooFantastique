@@ -56,15 +56,25 @@ public class AquariumEnclosure extends Enclosure {
     /**
      * Effectue une maintenance sur l'aquarium en fonction de la profondeur du bassin.
      *
-     * @param basinDepth     la profondeur du bassin en mètres
+     * @param basinDepth la profondeur du bassin en mètres
      *
-     * <p>Si la profondeur du bassin est <= 80 mètres, effectuer une maintenance et augmenter la salinité du bassin.</p>
-     * <p>Si la profondeur du bassin est > 80 mètres et <= 100 mètres, augmenter également la salinité du bassin.</p>
-     * <p>Si la profondeur du bassin est > 100 mètres et <= 120 mètres, augmenter également la salinité du bassin.</p>
-     * <p>Si la profondeur du bassin est >= 120 mètres, augmenter également la salinité du bassin.</p>
-     * <p>Si aucune de ces conditions n'est remplie, afficher la propreté actuelle de l'aquarium.</p>
+     * <p>Si l'aquarium est vide, un message est affiché et la méthode est terminée.</p>
+     * <p>Si l'aquarium n'est pas vide, un message indiquant que l'aquarium est en maintenance est affiché.</p>
+     * <p>Ensuite, en fonction de la profondeur du bassin :</p>
+     * <ul>
+     *   <li>Si la profondeur est <= 80 mètres, la salinité du bassin est augmentée.</li>
+     *   <li>Si la profondeur est > 80 mètres et <= 100 mètres, la salinité du bassin est augmentée.</li>
+     *   <li>Si la profondeur est > 100 mètres et <= 120 mètres, la salinité du bassin est augmentée.</li>
+     *   <li>Si la profondeur est > 120 mètres, la salinité du bassin est augmentée.</li>
+     * </ul>
+     * <p>Après chaque augmentation de la salinité, un message indiquant la nouvelle salinité du bassin est affiché.</p>
+     * <p>Si aucune des conditions de profondeur n'est remplie, un message indiquant la salinité actuelle du bassin est affiché.</p>
      */
     public void maintenance(double basinDepth) {
+        if (getListCreature().isEmpty()) {
+            System.out.println(getClass().getSimpleName() + " : " + getName() + " est vide.");
+            return;
+        }
         System.out.println(getClass().getSimpleName() + " : " + getName() + " est en maintenance.");
         // TODO : thread d'un temps aléatoire dans une intervalle donné plus la profondeur du bassin est grande, plus le temps est long
         if (basinDepth <= 80) {
@@ -79,7 +89,7 @@ public class AquariumEnclosure extends Enclosure {
             // TODO
             basinSalinity.inscreaseSalinity();
             System.out.println(getClass().getSimpleName() + " : " + getName() + " est maintenant " + basinSalinity.getValue() + ".");
-        } else if (basinDepth >= 120) {
+        } else if (basinDepth > 120) {
             // TODO
             basinSalinity.inscreaseSalinity();
             System.out.println(getClass().getSimpleName() + " : " + getName() + " est maintenant " + basinSalinity.getValue() + ".");
