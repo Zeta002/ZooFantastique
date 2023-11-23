@@ -29,7 +29,7 @@ public abstract class Creature extends Alive {
     private boolean isPregnant;
 
     // Attributs speciaux type enumeration
-    private Hunger hunger;
+    private int hunger;
 
     /**
      * Constructeur de la classe Creature avec nom, sexe, poids, taille et cri.
@@ -51,7 +51,7 @@ public abstract class Creature extends Alive {
         this.isSleeping = false;
         this.isSick = false;
 
-        this.hunger = SATISFIED;
+        this.hunger = MAX.getValue();
     }
 
     // Methodes
@@ -70,18 +70,9 @@ public abstract class Creature extends Alive {
             return;
         }
 
-        int totalHungerValue = this.hunger.getHungerValue() + food.getValue();
+        int totalHungerValue = this.getHunger() + food.getValue();
 
-        if (totalHungerValue >= 10) {
-            this.hunger.setValue(10);
-            setHunger(SATISFIED);
-        } else if (totalHungerValue > 3) {
-            this.hunger.setValue(totalHungerValue);
-            setHunger(MEDIUM);
-        } else {
-            this.hunger.setValue(totalHungerValue);
-            setHunger(HUNGRY);
-        }
+        this.setHunger(totalHungerValue);
     }
 
     /**
@@ -203,12 +194,15 @@ public abstract class Creature extends Alive {
     }
 
     public String getHungerState() {
-        return hunger.getState();
+        return Hunger.getStateFromValue(this.hunger);
     }
-    public Hunger getHunger() {
+    public int getHunger() {
         return this.hunger;
     }
-    public void setHunger(Hunger hunger) {
+    public void setHunger(int hunger) {
+        if (hunger > 10) {
+            this.hunger = 10;
+        }
         this.hunger = hunger;
     }
 
@@ -242,7 +236,7 @@ public abstract class Creature extends Alive {
                 .append("\nTaille: ").append(height).append("m")
                 .append("\nDort: ").append(isSleeping ? "Oui" : "Non")
                 .append("\nMalade: ").append(isSick ? "Oui" : "Non")
-                .append("\nFaim: ").append(hunger.getState());
+                .append("\nFaim: ").append(this.getHungerState());
         return sb.toString();
     }
 }

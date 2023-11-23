@@ -5,6 +5,7 @@ import net.zoofantastique.controller.creature.consumable.composition.Food;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Objects;
 
 import static net.zoofantastique.controller.creature.behavior.Hunger.SATISFIED;
 
@@ -109,7 +110,7 @@ public class Enclosure {
      */
     public void feedCreature(Food food, Creature creature){
         if (listCreature.contains(creature)) {
-            if (creature.getHunger() != SATISFIED) {
+            if (!creature.getHungerState().equals(SATISFIED.getState())) {
                 creature.eat(food);
             }
         } else {

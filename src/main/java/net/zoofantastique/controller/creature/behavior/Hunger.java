@@ -1,8 +1,13 @@
 package net.zoofantastique.controller.creature.behavior;
 
+import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
+
 public enum Hunger {
-    SATISFIED("Répu", 10),
-    MEDIUM("Moyen", 5),
+    MAX("Répu", 10),
+    SATISFIED("Satisfait", 9),
+    MEDIUM("Moyen", 6),
     HUNGRY("Affamé(e)", 3);
 
     // Attributs
@@ -18,39 +23,24 @@ public enum Hunger {
         this.value = value;
     }
 
-    // Getter et Setter
+    @Nullable
+    public static String getStateFromValue(int value) {
+        Hunger[] states = Hunger.values();
+        for (int i = states.length-1 ; i >= 0 ; i--) {
+            if (value <= states[i].getValue()) {
+                return states[i].state;
+            }
+        }
+        return null;
+    }
+
+    // Getter
     public String getState() {
         return state;
     }
 
-    public int getHungerValue() {
+    public int getValue() {
         return value;
     }
 
-    /**
-     * Méthode pour définir la valeur de la faim de la créature.
-     * Cette méthode met à jour la valeur de la faim et appelle ensuite la méthode updateHunger pour mettre à jour l'état de la faim en fonction de la nouvelle valeur.
-     *
-     * @param value La nouvelle valeur de la faim de la créature.
-     */
-    public void setValue(int value) {
-        this.value = value;
-        updateHunger();
-    }
-
-    /**
-     * Méthode pour mettre à jour l'état de la faim de la créature en fonction de la valeur de la faim.
-     * Si la valeur de la faim est supérieure ou égale à 10, l'état de la faim est défini sur "Répu".
-     * Si la valeur de la faim est supérieure à 3 mais inférieure à 10, l'état de la faim est défini sur "Moyen".
-     * Si la valeur de la faim est inférieure ou égale à 3, l'état de la faim est défini sur "Affamé(e)".
-     */
-    public void updateHunger() {
-        if (this.value >= 10) {
-            this.state = "Répu";
-        } else if (value > 3) {
-            this.state = "Moyen";
-        } else {
-            this.state = "Affamé(e)";
-        }
-    }
 }
