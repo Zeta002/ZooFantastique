@@ -1,13 +1,14 @@
 package net.zoofantastique.controller.enclosure;
 
 import net.zoofantastique.controller.entity.creature.behavior.Swimmer;
+import net.zoofantastique.controller.entity.creature.composition.Creature;
 
 /**
  * Classe AquariumEnclosure qui représente un aquarium dans un zoo.
  * Un aquarium est un type d'enclos qui a une profondeur de bassin et une salinité de bassin en plus des attributs d'un enclos.
  * Cette classe étend la classe Enclosure.
  */
-public class AquariumEnclosure<T> extends Enclosure<T> {
+public class AquariumEnclosure<T extends Creature> extends Enclosure<T> {
     /**
      * La profondeur du bassin dans l'aquarium en mètres.
      */

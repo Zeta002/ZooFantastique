@@ -1,13 +1,14 @@
 package net.zoofantastique.controller.enclosure;
 
 import net.zoofantastique.controller.entity.creature.behavior.Flying;
+import net.zoofantastique.controller.entity.creature.composition.Creature;
 
 /**
  * Classe AviaryEnclosure qui représente une volière dans un zoo.
  * Une volière est un type d'enclos qui a une hauteur de toit en plus des attributs d'un enclos.
  * Cette classe étend la classe Enclosure.
  */
-public class AviaryEnclosure<T> extends Enclosure<T> {
+public class AviaryEnclosure<T extends Creature> extends Enclosure<T> {
     // Attributs
 
     /**

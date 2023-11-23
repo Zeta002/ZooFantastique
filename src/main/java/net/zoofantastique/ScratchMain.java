@@ -16,17 +16,6 @@ public class ScratchMain {
 //            e.add(new Truc(name))
 //            e.rem(i)
 
-        Enclosure e = new Enclosure("Le nom", 100.0, 10);
 
-        for (int i = 0; i < 4; i++) {
-            e.addCreature(new Dragon("Test", Gender.MALE, 200.0, 200.0));
-        }
-
-        System.out.println(e);
-
-        e.removeCreature(e.getListCreature().get(0));
-
-        System.out.println("--------");
-        System.out.println(e);
     }
 }

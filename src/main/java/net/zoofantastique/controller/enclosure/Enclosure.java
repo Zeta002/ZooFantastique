@@ -5,6 +5,7 @@ import net.zoofantastique.controller.consumable.composition.Food;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 import static net.zoofantastique.controller.entity.creature.behavior.Hunger.SATISFIED;
@@ -13,7 +14,7 @@ import static net.zoofantastique.controller.entity.creature.behavior.Hunger.SATI
  * Classe Enclosure représentant un enclos dans un zoo.
  * Un enclos a un type, un nom, une surface, un nombre maximum de créatures, un nombre actuel de créatures, une liste de créatures et un niveau de propreté.
  */
-public class Enclosure<T> {
+public class Enclosure<T extends Creature> {
     // Le type de l'enclos est déterminé par le nom de la classe qui l'étend
     private final String enclosureType = getClass().getSimpleName();
     // Le nom de l'enclos
@@ -25,7 +26,7 @@ public class Enclosure<T> {
     // Le nombre actuel de créatures dans l'enclos
     private int nbCreature;
     // La liste des créatures actuellement dans l'enclos
-    private ArrayList<T> listCreature = new ArrayList<>();
+    private List<T> listCreature;
     // Le niveau de propreté de l'enclos
     private Cleanness cleanness;
 
@@ -41,32 +42,15 @@ public class Enclosure<T> {
         this.name = name;
         this.surface = surface;
         this.max = max;
-        this.listCreature = new ArrayList<>(0);
+        this.listCreature = new ArrayList<T>();
         this.nbCreature = 0;
         this.cleanness = Cleanness.CORRECT;
     }
 
-    /**
-     * Constructeur de la classe Enclosure avec nom, surface, nombre maximum de créatures et liste de créatures.
-     * Initialise également le nombre de créatures à 0 et la propreté à CORRECT.
-     *
-     * @param name          le nom de l'enclos.
-     * @param surface       la surface de l'enclos en mètres carrés.
-     * @param max           le nombre maximum de créatures que l'enclos peut contenir.
-     * @param listCreature  la liste des créatures à ajouter à l'enclos lors de la création.
-     */
-
-    /**
-     * Méthode pour ajouter des créatures à l'enclos.
-     * Si le nombre total de créatures après l'ajout ne dépasse pas le maximum autorisé, les créatures sont ajoutées à l'enclos.
-     * Sinon, un message d'erreur est affiché.
-     *
-     * @param creatures Les créatures à ajouter à l'enclos.
-     */
     public void addCreature(T... creatures) {
         int totalCreatures = nbCreature + creatures.length;
         if (totalCreatures <= max) {
-            this.listCreature.addAll(Arrays.asList(creatures));
+            this.listCreature.addAll(List.of(creatures));
             nbCreature += creatures.length;
         } else {
             System.err.println("Pas assez de places disponibles!");
@@ -93,7 +77,7 @@ public class Enclosure<T> {
      * @param food La nourriture à donner à la créature.
      * @param creature La créature à nourrir.
      */
-    public void feedCreature(Food food, Creature creature){
+    public void feedCreature(Food food, T creature){
         if (listCreature.contains(creature)) {
             if (!creature.getHungerState().equals(SATISFIED.getState())) {
                 creature.eat(food);
@@ -148,7 +132,7 @@ public class Enclosure<T> {
         this.nbCreature = nbCreature;
     }
 
-    public ArrayList<T> getListCreature() {
+    public List<T> getListCreature() {
         return listCreature;
     }
     public void setListCreature(ArrayList<T> listCreature) {
