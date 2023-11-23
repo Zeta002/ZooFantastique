@@ -1,16 +1,13 @@
 package net.zoofantastique.controller.enclosure;
 
-import net.zoofantastique.controller.creature.behavior.Flying;
-import net.zoofantastique.controller.creature.composition.Creature;
-
-import java.util.ArrayList;
+import net.zoofantastique.controller.entity.creature.behavior.Flying;
 
 /**
  * Classe AviaryEnclosure qui représente une volière dans un zoo.
  * Une volière est un type d'enclos qui a une hauteur de toit en plus des attributs d'un enclos.
  * Cette classe étend la classe Enclosure.
  */
-public class AviaryEnclosure extends Enclosure {
+public class AviaryEnclosure<T> extends Enclosure<T> {
     // Attributs
 
     /**
@@ -48,19 +45,6 @@ public void addCreature(Creature... creatures) {
         this.roofHeight = roofHeight;
     }
 
-    /**
-     * Construit un nouvel AviaryEnclosure avec les paramètres spécifiés.
-     *
-     * @param name         le nom de la volière
-     * @param surface      la surface de la volière en mètres carrés
-     * @param roofHeight   la hauteur du toit de la volière en mètres
-     * @param max          le nombre maximum de créatures qui peuvent être logées dans la volière
-     * @param listCreature la liste des créatures actuellement logées dans la volière
-     */
-    public AviaryEnclosure(String name, double surface, double roofHeight, int max, ArrayList<Creature> listCreature) {
-        super(name, surface, max, listCreature);
-        this.roofHeight = roofHeight;
-    }
 
     // Getter et setter
 
@@ -87,8 +71,8 @@ public void addCreature(Creature... creatures) {
      * </ul>
      */
     @Override
-    public void addCreature(Creature... creatures) {
-        for (Creature creature : creatures) {
+    public void addCreature(T... creatures) {
+        for (T creature : creatures) {
             if (creature instanceof Flying) {
                 if (getNbCreature() + 1 <= getMax()) {
                     getListCreature().add(creature);

@@ -1,16 +1,13 @@
 package net.zoofantastique.controller.enclosure;
 
-import net.zoofantastique.controller.creature.behavior.Swimmer;
-import net.zoofantastique.controller.creature.composition.Creature;
-
-import java.util.ArrayList;
+import net.zoofantastique.controller.entity.creature.behavior.Swimmer;
 
 /**
  * Classe AquariumEnclosure qui représente un aquarium dans un zoo.
  * Un aquarium est un type d'enclos qui a une profondeur de bassin et une salinité de bassin en plus des attributs d'un enclos.
  * Cette classe étend la classe Enclosure.
  */
-public class AquariumEnclosure extends Enclosure {
+public class AquariumEnclosure<T> extends Enclosure<T> {
     /**
      * La profondeur du bassin dans l'aquarium en mètres.
      */
@@ -38,23 +35,6 @@ public class AquariumEnclosure extends Enclosure {
     }
 
     /**
-     * Construit un nouvel AquariumEnclosure avec les paramètres spécifiés.
-     *
-     * @param name         le nom de l'aquarium
-     * @param surface      la surface de l'aquarium en mètres carrés
-     * @param basinDepth   la profondeur du bassin dans l'aquarium en mètres
-     * @param max          le nombre maximum de créatures qui peuvent être logées dans l'aquarium
-     * @param listCreature la liste des créatures actuellement logées dans l'aquarium
-     *
-     * <p>La salinité du bassin est initialisée à BRACKISHWATER.</p>
-     */
-    public AquariumEnclosure(String name, double surface, double basinDepth, int max, ArrayList<Creature> listCreature) {
-        super(name, surface, max, listCreature);
-        this.basinSalinity = Salinity.BRACKISHWATER;
-        this.basinDepth = basinDepth;
-    }
-
-    /**
      * Ajoute une ou plusieurs créatures à l'aquarium.
      *
      * @param creatures les créatures à ajouter à l'aquarium
@@ -68,8 +48,8 @@ public class AquariumEnclosure extends Enclosure {
      * </ul>
      */
     @Override
-    public void addCreature(Creature... creatures) {
-        for (Creature creature : creatures) {
+    public void addCreature(T... creatures) {
+        for (T creature : creatures) {
             if (creature instanceof Swimmer) {
                 if (getNbCreature() + 1 <= getMax()) {
                     getListCreature().add(creature);

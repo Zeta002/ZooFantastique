@@ -1,8 +1,8 @@
 package net.zoofantastique.controller.creature.oviparous;
 
-import net.zoofantastique.controller.creature.behavior.Gender;
-import net.zoofantastique.controller.creature.composition.oviparous.Dragon;
-import net.zoofantastique.controller.creature.composition.oviparous.Oviparous;
+import net.zoofantastique.controller.entity.creature.behavior.Gender;
+import net.zoofantastique.controller.entity.creature.composition.oviparous.Dragon;
+import net.zoofantastique.controller.entity.creature.composition.oviparous.Oviparous;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
