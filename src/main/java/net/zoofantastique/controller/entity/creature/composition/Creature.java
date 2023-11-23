@@ -50,7 +50,7 @@ public abstract class Creature extends Alive {
         this.isSleeping = false;
         this.isSick = false;
 
-        this.hunger = MAX.getValue();
+        this.hunger = Hunger.MAX.getValue();
     }
 
     // Methodes
@@ -69,7 +69,7 @@ public abstract class Creature extends Alive {
             return;
         }
 
-        int totalHungerValue = this.hunger.getHungerValue() + food.getValue();
+        int totalHungerValue = getHunger() + food.getValue();
 
         this.setHunger(totalHungerValue);
     }
