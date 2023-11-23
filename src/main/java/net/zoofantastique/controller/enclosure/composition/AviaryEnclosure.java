@@ -1,5 +1,6 @@
-package net.zoofantastique.controller.enclosure;
+package net.zoofantastique.controller.enclosure.composition;
 
+import net.zoofantastique.controller.enclosure.composition.Enclosure;
 import net.zoofantastique.controller.entity.creature.behavior.Flying;
 import net.zoofantastique.controller.entity.creature.composition.Creature;
 
@@ -21,23 +22,6 @@ public class AviaryEnclosure<T extends Creature> extends Enclosure<T> {
      *
      * @param name       le nom de la volière
      * @param surface    la surface de la volière en mètres carrésimport net.zoofantastique.controller.creature.behavior.Flying;
-
-// ...
-
-public void addCreature(Creature... creatures) {
-    for (Creature creature : creatures) {
-        if (creature instanceof Flying) {
-            if (nbCreature + 1 <= max) {
-                this.listCreature.add(creature);
-                nbCreature++;
-            } else {
-                System.err.println("Pas assez de places disponibles!");
-            }
-        } else {
-            System.err.println("La créature:\n" + creature + "\nne peut pas voler et ne peut donc pas être ajoutée à la volière!");
-        }
-    }
-}
      * @param roofHeight la hauteur du toit de la volière en mètres
      * @param max        le nombre maximum de créatures qui peuvent être logées dans la volière
      */
@@ -59,29 +43,31 @@ public void addCreature(Creature... creatures) {
     // Méthodes
 
     /**
-     * Ajoute une ou plusieurs créatures à la volière.
+     * Cette méthode est utilisée pour ajouter des créatures à la volière.
+     * Elle accepte un tableau de créatures et vérifie si chaque créature est une instance de Flying.
+     * Si la créature est un Flying et qu'il y a assez de place dans la volière, la créature est ajoutée.
+     * Si la volière est pleine, un message d'erreur est affiché.
+     * Si la créature n'est pas un Flying, un message d'erreur est affiché.
      *
-     * @param creatures les créatures à ajouter à la volière
-     *
-     * <p>Pour chaque créature :</p>
-     * <ul>
-     *   <li>Si la créature est une instance de Flying, elle peut être ajoutée à la volière.</li>
-     *   <li>Si la volière a de la place, la créature est ajoutée à la liste des créatures de la volière et le nombre de créatures dans la volière est incrémenté.</li>
-     *   <li>Si la volière est pleine, un message d'erreur est affiché.</li>
-     *   <li>Si la créature n'est pas une instance de Flying, un message d'erreur est affiché et la créature n'est pas ajoutée à la volière.</li>
-     * </ul>
+     * @param creatures Un tableau de créatures à ajouter à la volière.
      */
     @Override
     public void addCreature(T... creatures) {
         for (T creature : creatures) {
+            // Vérifie si la créature est un Flying
             if (creature instanceof Flying) {
+                // Vérifie s'il y a assez de place dans la volière
                 if (getNbCreature() + 1 <= getMax()) {
+                    // Ajoute la créature à la volière
                     getListCreature().add(creature);
+                    // Augmente le nombre de créatures dans la volière
                     setNbCreature(getNbCreature() + 1);
                 } else {
+                    // Affiche un message d'erreur si la volière est pleine
                     System.err.println("Pas assez de places disponibles!");
                 }
             } else {
+                // Affiche un message d'erreur si la créature n'est pas un Flying
                 System.err.println("La créature:\n" + creature + "\nne peut pas voler et ne peut donc pas être ajoutée à la volière!");
             }
         }

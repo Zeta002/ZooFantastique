@@ -1,6 +1,6 @@
 package net.zoofantastique.controller.enclosure;
 
-import org.junit.jupiter.api.BeforeEach;
+import net.zoofantastique.controller.enclosure.behavior.Salinity;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

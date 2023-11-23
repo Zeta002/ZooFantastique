@@ -1,9 +1,5 @@
 package net.zoofantastique;
 
-import net.zoofantastique.controller.entity.creature.behavior.Gender;
-import net.zoofantastique.controller.entity.creature.composition.oviparous.Dragon;
-import net.zoofantastique.controller.enclosure.Enclosure;
-
 public class ScratchMain {
     public static void main(String[] args) {
 //        Oviparous v = new Dragon("Cauchemar", Gender.MALE, 1000.0, 2.0);

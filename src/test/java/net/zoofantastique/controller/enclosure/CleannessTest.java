@@ -1,5 +1,6 @@
 package net.zoofantastique.controller.enclosure;
 
+import net.zoofantastique.controller.enclosure.behavior.Cleanness;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

@@ -1,7 +1,7 @@
 package net.zoofantastique.controller.entity.zoomaster;
 
 import net.zoofantastique.controller.consumable.composition.Food;
-import net.zoofantastique.controller.enclosure.Enclosure;
+import net.zoofantastique.controller.enclosure.composition.Enclosure;
 import net.zoofantastique.controller.entity.Alive;
 import net.zoofantastique.controller.entity.creature.behavior.Age;
 import net.zoofantastique.controller.entity.creature.behavior.Gender;

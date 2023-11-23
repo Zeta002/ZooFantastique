@@ -1,5 +1,6 @@
-package net.zoofantastique.controller.enclosure;
+package net.zoofantastique.controller.enclosure.composition;
 
+import net.zoofantastique.controller.enclosure.behavior.Salinity;
 import net.zoofantastique.controller.entity.creature.behavior.Swimmer;
 import net.zoofantastique.controller.entity.creature.composition.Creature;
 
@@ -36,29 +37,31 @@ public class AquariumEnclosure<T extends Creature> extends Enclosure<T> {
     }
 
     /**
-     * Ajoute une ou plusieurs créatures à l'aquarium.
+     * Cette méthode est utilisée pour ajouter des créatures à l'enclos de l'aquarium.
+     * Elle accepte un tableau de créatures et vérifie si chaque créature est une instance de Swimmer.
+     * Si la créature est un Swimmer et qu'il y a assez de place dans l'aquarium, la créature est ajoutée.
+     * Si l'aquarium est plein, un message d'erreur est affiché.
+     * Si la créature n'est pas un Swimmer, un message d'erreur est affiché.
      *
-     * @param creatures les créatures à ajouter à l'aquarium
-     *
-     * <p>Pour chaque créature :</p>
-     * <ul>
-     *   <li>Si la créature est une instance de Swimmer, elle peut être ajoutée à l'aquarium.</li>
-     *   <li>Si l'aquarium a de la place, la créature est ajoutée à la liste des créatures de l'aquarium et le nombre de créatures dans l'aquarium est incrémenté.</li>
-     *   <li>Si l'aquarium est plein, un message d'erreur est affiché.</li>
-     *   <li>Si la créature n'est pas une instance de Swimmer, un message d'erreur est affiché et la créature n'est pas ajoutée à l'aquarium.</li>
-     * </ul>
+     * @param creatures Un tableau de créatures à ajouter à l'aquarium.
      */
     @Override
     public void addCreature(T... creatures) {
         for (T creature : creatures) {
+            // Vérifie si la créature est un Swimmer
             if (creature instanceof Swimmer) {
+                // Vérifie s'il y a assez de place dans l'aquarium
                 if (getNbCreature() + 1 <= getMax()) {
+                    // Ajoute la créature à l'aquarium
                     getListCreature().add(creature);
+                    // Augmente le nombre de créatures dans l'aquarium
                     setNbCreature(getNbCreature() + 1);
                 } else {
+                    // Affiche un message d'erreur si l'aquarium est plein
                     System.err.println("Pas assez de places disponibles!");
                 }
             } else {
+                // Affiche un message d'erreur si la créature n'est pas un Swimmer
                 System.err.println("La créature:\n" + creature + "\nne peut pas nager et ne peut donc pas être ajoutée à l'aquarium!");
             }
         }

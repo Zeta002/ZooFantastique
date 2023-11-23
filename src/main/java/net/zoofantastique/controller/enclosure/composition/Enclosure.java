@@ -1,12 +1,11 @@
-package net.zoofantastique.controller.enclosure;
+package net.zoofantastique.controller.enclosure.composition;
 
+import net.zoofantastique.controller.enclosure.behavior.Cleanness;
 import net.zoofantastique.controller.entity.creature.composition.Creature;
 import net.zoofantastique.controller.consumable.composition.Food;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 
 import static net.zoofantastique.controller.entity.creature.behavior.Hunger.SATISFIED;
 
@@ -47,6 +46,14 @@ public class Enclosure<T extends Creature> {
         this.cleanness = Cleanness.CORRECT;
     }
 
+    /**
+     * Cette méthode est utilisée pour ajouter des créatures à l'enclos.
+     * Elle accepte un tableau de créatures et vérifie si l'enclos a la capacité d'accueillir toutes les créatures.
+     * Si l'enclos a la capacité, toutes les créatures sont ajoutées à l'enclos et le nombre actuel de créatures est mis à jour.
+     * Si l'enclos n'a pas la capacité, un message d'erreur est affiché.
+     *
+     * @param creatures Un tableau de créatures à ajouter à l'enclos.
+     */
     public void addCreature(T... creatures) {
         int totalCreatures = nbCreature + creatures.length;
         if (totalCreatures <= max) {
@@ -57,7 +64,14 @@ public class Enclosure<T extends Creature> {
         }
     }
 
-    // TODO
+    /**
+     * Cette méthode est utilisée pour retirer des créatures de l'enclos.
+     * Elle accepte un tableau de créatures à retirer et vérifie si chaque créature est présente dans l'enclos.
+     * Si la créature est présente dans l'enclos, elle est retirée.
+     * Si la créature n'est pas présente dans l'enclos, un message d'erreur est affiché.
+     *
+     * @param creaturesToRemove Un tableau de créatures à retirer de l'enclos.
+     */
     public void removeCreature(T... creaturesToRemove) {
         for (T creature : creaturesToRemove) {
             if (listCreature.contains(creature)) {

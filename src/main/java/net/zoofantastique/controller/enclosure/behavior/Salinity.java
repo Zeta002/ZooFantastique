@@ -1,4 +1,4 @@
-package net.zoofantastique.controller.enclosure;
+package net.zoofantastique.controller.enclosure.behavior;
 
 /**
  * Enumération Salinity représentant les différents niveaux de salinité de l'eau.

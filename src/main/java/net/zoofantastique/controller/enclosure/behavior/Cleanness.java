@@ -1,4 +1,4 @@
-package net.zoofantastique.controller.enclosure;
+package net.zoofantastique.controller.enclosure.behavior;
 
 public enum Cleanness {
     BAD("Mauvais"),
