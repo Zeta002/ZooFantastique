@@ -9,7 +9,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ViviparousTest {
 
-    // TODO : ne fonctionne pas seulement parce que getHungerState() ne fonctionne pas, pareil tous seul il fonctionne
     @Test
     void testToString() {
         Viviparous v = new Mermaid("Thalassa", Gender.MALE, 1000.0, 2.0);

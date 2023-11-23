@@ -102,7 +102,6 @@ class CreatureTest {
         assertEquals(3.0, c.getHeight());
     }
 
-    // TODO : essayer de faire un test avec un mock si vous y arrivez, le test seul fonctionne mais pas avec les autres
     @Test
     void getHungerState() {
         assertEquals("Répu", c.getHungerState());
