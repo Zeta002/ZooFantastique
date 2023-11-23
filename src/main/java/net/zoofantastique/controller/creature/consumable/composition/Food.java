@@ -5,13 +5,15 @@ import net.zoofantastique.controller.creature.consumable.behavior.FoodType;
 public abstract class Food {
     // Attributs
     // Le nom de la nourriture.
-    String name;
+    private String name;
     // La valeur nutritionnelle de la nourriture.
-    int value;
+    private int value;
     // La description de la nourriture.
-    String desc;
+    private String desc;
     // Le type de la nourriture, défini par l'énumération FoodType.
-    FoodType foodType;
+    private FoodType foodType;
+
+
 
     // Getter et Setter
 
