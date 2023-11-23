@@ -21,9 +21,9 @@ class CreatureTest {
 
     @Test
     void isEatWorking() {
-        c.getHunger().setValue(0);
+        c.setHunger(0);
         c.eat(new Beefsteak());
-        assertEquals(Hunger.MEDIUM, c.getHunger());
+        assertEquals(Hunger.MEDIUM.getState(), c.getHungerState());
     }
 
     @Test
@@ -102,7 +102,6 @@ class CreatureTest {
         assertEquals(3.0, c.getHeight());
     }
 
-    // TODO : essayer de faire un test avec un mock si vous y arrivez, le test seul fonctionne mais pas avec les autres
     @Test
     void getHungerState() {
         assertEquals("Répu", c.getHungerState());
@@ -110,13 +109,13 @@ class CreatureTest {
 
     @Test
     void getHunger() {
-        assertEquals(Hunger.SATISFIED, c.getHunger());
+        assertEquals(Hunger.MAX.getValue(), c.getHunger());
     }
 
     @Test
     void setHunger() {
-        c.setHunger(Hunger.HUNGRY);
-        assertEquals(Hunger.HUNGRY, c.getHunger());
+        c.setHunger(Hunger.HUNGRY.getValue());
+        assertEquals(Hunger.HUNGRY.getState(), c.getHungerState());
     }
 
     @Test
