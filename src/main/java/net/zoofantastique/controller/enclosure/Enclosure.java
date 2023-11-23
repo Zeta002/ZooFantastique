@@ -1,12 +1,12 @@
 package net.zoofantastique.controller.enclosure;
 
-import net.zoofantastique.controller.creature.composition.Creature;
-import net.zoofantastique.controller.creature.consumable.composition.Food;
+import net.zoofantastique.controller.entity.creature.composition.Creature;
+import net.zoofantastique.controller.consumable.composition.Food;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import static net.zoofantastique.controller.creature.behavior.Hunger.SATISFIED;
+import static net.zoofantastique.controller.entity.creature.behavior.Hunger.SATISFIED;
 
 /**
  * Classe Enclosure représentant un enclos dans un zoo.

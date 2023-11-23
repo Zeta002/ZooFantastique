@@ -1,7 +1,7 @@
 package net.zoofantastique.controller.creature.composition;
 
-import net.zoofantastique.controller.creature.behavior.Gender;
-import net.zoofantastique.controller.creature.composition.oviparous.Kraken;
+import net.zoofantastique.controller.entity.creature.behavior.Gender;
+import net.zoofantastique.controller.entity.creature.composition.oviparous.Kraken;
 import org.junit.jupiter.api.Test;
 
 class KrakenTest {

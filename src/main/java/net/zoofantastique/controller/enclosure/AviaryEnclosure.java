@@ -1,9 +1,6 @@
 package net.zoofantastique.controller.enclosure;
 
-import net.zoofantastique.controller.creature.behavior.Flying;
-import net.zoofantastique.controller.creature.composition.Creature;
-
-import java.util.ArrayList;
+import net.zoofantastique.controller.entity.creature.behavior.Flying;
 
 /**
  * Classe AviaryEnclosure qui représente une volière dans un zoo.

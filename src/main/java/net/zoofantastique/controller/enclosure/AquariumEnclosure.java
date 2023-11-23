@@ -1,9 +1,6 @@
 package net.zoofantastique.controller.enclosure;
 
-import net.zoofantastique.controller.creature.behavior.Swimmer;
-import net.zoofantastique.controller.creature.composition.Creature;
-
-import java.util.ArrayList;
+import net.zoofantastique.controller.entity.creature.behavior.Swimmer;
 
 /**
  * Classe AquariumEnclosure qui représente un aquarium dans un zoo.

@@ -1,9 +1,10 @@
 package net.zoofantastique.controller.creature.consumable.composition;
 
-import net.zoofantastique.controller.creature.consumable.behavior.FoodType;
-import net.zoofantastique.controller.creature.consumable.food.Beefsteak;
-import net.zoofantastique.controller.creature.consumable.food.OceanDelight;
-import net.zoofantastique.controller.creature.consumable.food.SkySeeds;
+import net.zoofantastique.controller.consumable.behavior.FoodType;
+import net.zoofantastique.controller.consumable.composition.Food;
+import net.zoofantastique.controller.consumable.food.Beefsteak;
+import net.zoofantastique.controller.consumable.food.OceanDelight;
+import net.zoofantastique.controller.consumable.food.SkySeeds;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

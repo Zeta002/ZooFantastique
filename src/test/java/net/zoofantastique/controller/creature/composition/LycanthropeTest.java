@@ -1,7 +1,7 @@
 package net.zoofantastique.controller.creature.composition;
 
-import net.zoofantastique.controller.creature.behavior.Gender;
-import net.zoofantastique.controller.creature.composition.viviparous.Lycanthrope;
+import net.zoofantastique.controller.entity.creature.behavior.Gender;
+import net.zoofantastique.controller.entity.creature.composition.viviparous.Lycanthrope;
 import org.junit.jupiter.api.Test;
 
 class LycanthropeTest {
