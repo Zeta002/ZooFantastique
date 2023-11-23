@@ -1,10 +1,7 @@
-package net.zoofantastique.controller.creature.viviparous;
+package net.zoofantastique.controller.creature.composition.viviparous;
 
 import net.zoofantastique.controller.creature.behavior.Gender;
 import net.zoofantastique.controller.creature.composition.Creature;
-import net.zoofantastique.controller.creature.oviparous.Oviparous;
-
-import java.util.Random;
 
 /**
  * Classe abstraite Viviparous qui représente une créature vivipare dans un zoo.

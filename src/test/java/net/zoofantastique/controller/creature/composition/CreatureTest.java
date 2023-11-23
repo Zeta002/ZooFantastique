@@ -3,6 +3,7 @@ package net.zoofantastique.controller.creature.composition;
 import net.zoofantastique.controller.creature.behavior.Age;
 import net.zoofantastique.controller.creature.behavior.Gender;
 import net.zoofantastique.controller.creature.behavior.Hunger;
+import net.zoofantastique.controller.creature.composition.viviparous.Unicorn;
 import net.zoofantastique.controller.creature.consumable.food.Beefsteak;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

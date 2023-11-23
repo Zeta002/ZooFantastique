@@ -1,6 +1,7 @@
 package net.zoofantastique.controller.creature.composition;
 
 import net.zoofantastique.controller.creature.behavior.Gender;
+import net.zoofantastique.controller.creature.composition.viviparous.Unicorn;
 import org.junit.jupiter.api.Test;
 
 class UnicornTest {

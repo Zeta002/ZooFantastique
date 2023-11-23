@@ -2,6 +2,7 @@ package net.zoofantastique.controller.creature.composition;
 
 import net.zoofantastique.controller.creature.behavior.Age;
 import net.zoofantastique.controller.creature.behavior.Gender;
+import net.zoofantastique.controller.creature.composition.oviparous.Phoenix;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

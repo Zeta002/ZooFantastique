@@ -1,7 +1,7 @@
 package net.zoofantastique;
 
 import net.zoofantastique.controller.creature.behavior.Gender;
-import net.zoofantastique.controller.creature.composition.Dragon;
+import net.zoofantastique.controller.creature.composition.oviparous.Dragon;
 import net.zoofantastique.controller.enclosure.Enclosure;
 
 public class ScratchMain {

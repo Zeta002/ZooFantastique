@@ -1,7 +1,8 @@
 package net.zoofantastique.controller.creature.viviparous;
 
 import net.zoofantastique.controller.creature.behavior.Gender;
-import net.zoofantastique.controller.creature.composition.Mermaid;
+import net.zoofantastique.controller.creature.composition.viviparous.Mermaid;
+import net.zoofantastique.controller.creature.composition.viviparous.Viviparous;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

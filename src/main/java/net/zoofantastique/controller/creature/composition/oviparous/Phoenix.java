@@ -1,10 +1,9 @@
-package net.zoofantastique.controller.creature.composition;
+package net.zoofantastique.controller.creature.composition.oviparous;
 
 import net.zoofantastique.controller.creature.behavior.Age;
 import net.zoofantastique.controller.creature.behavior.Flying;
 import net.zoofantastique.controller.creature.behavior.Gender;
 import net.zoofantastique.controller.creature.behavior.Rebirth;
-import net.zoofantastique.controller.creature.oviparous.Oviparous;
 
 import java.util.Random;
 

@@ -1,7 +1,6 @@
-package net.zoofantastique.controller.creature.composition;
+package net.zoofantastique.controller.creature.composition.viviparous;
 
 import net.zoofantastique.controller.creature.behavior.Gender;
-import net.zoofantastique.controller.creature.viviparous.Viviparous;
 
 import java.util.Random;
 
