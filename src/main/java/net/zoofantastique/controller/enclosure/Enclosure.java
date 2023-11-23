@@ -12,7 +12,7 @@ import static net.zoofantastique.controller.creature.behavior.Hunger.SATISFIED;
  * Classe Enclosure représentant un enclos dans un zoo.
  * Un enclos a un type, un nom, une surface, un nombre maximum de créatures, un nombre actuel de créatures, une liste de créatures et un niveau de propreté.
  */
-public class Enclosure {
+public class Enclosure<T> {
     // Le type de l'enclos est déterminé par le nom de la classe qui l'étend
     private final String enclosureType = getClass().getSimpleName();
     // Le nom de l'enclos
@@ -24,7 +24,7 @@ public class Enclosure {
     // Le nombre actuel de créatures dans l'enclos
     private int nbCreature;
     // La liste des créatures actuellement dans l'enclos
-    private ArrayList<Creature> listCreature = new ArrayList<>();
+    private ArrayList<T> listCreature = new ArrayList<>();
     // Le niveau de propreté de l'enclos
     private Cleanness cleanness;
 
@@ -54,14 +54,6 @@ public class Enclosure {
      * @param max           le nombre maximum de créatures que l'enclos peut contenir.
      * @param listCreature  la liste des créatures à ajouter à l'enclos lors de la création.
      */
-    public Enclosure(String name, double surface, int max, ArrayList<Creature> listCreature) {
-        this.name = name;
-        this.surface = surface;
-        this.max = max;
-        this.listCreature = listCreature;
-        this.nbCreature = 0;
-        this.cleanness = Cleanness.CORRECT;
-    }
 
     /**
      * Méthode pour ajouter des créatures à l'enclos.
@@ -70,9 +62,8 @@ public class Enclosure {
      *
      * @param creatures Les créatures à ajouter à l'enclos.
      */
-    public void addCreature(Creature... creatures) {
+    public void addCreature(T... creatures) {
         int totalCreatures = nbCreature + creatures.length;
-
         if (totalCreatures <= max) {
             this.listCreature.addAll(Arrays.asList(creatures));
             nbCreature += creatures.length;
@@ -81,15 +72,9 @@ public class Enclosure {
         }
     }
 
-    /**
-     * Méthode pour retirer des créatures de l'enclos.
-     * Parcourt la liste des créatures à retirer. Si une créature est présente dans l'enclos, elle est retirée et le nombre de créatures est décrémenté.
-     * Si une créature n'est pas présente dans l'enclos, un message d'erreur est affiché.
-     *
-     * @param creaturesToRemove Les créatures à retirer de l'enclos.
-     */
-    public void removeCreature(Creature... creaturesToRemove) {
-        for (Creature creature : creaturesToRemove) {
+    // TODO
+    public void removeCreature(T... creaturesToRemove) {
+        for (T creature : creaturesToRemove) {
             if (listCreature.contains(creature)) {
                 listCreature.remove(creature);
                 nbCreature--;
@@ -162,10 +147,10 @@ public class Enclosure {
         this.nbCreature = nbCreature;
     }
 
-    public ArrayList<Creature> getListCreature() {
+    public ArrayList<T> getListCreature() {
         return listCreature;
     }
-    public void setListCreature(ArrayList<Creature> listCreature) {
+    public void setListCreature(ArrayList<T> listCreature) {
         this.listCreature = listCreature;
     }
 
@@ -191,7 +176,7 @@ public class Enclosure {
                 .append("\nNb creatures: ").append(getNbCreature())
                 .append(" / ").append(getMax())
                 .append("\nPropreté: ").append(getCleanness().getValue()).append("\n");
-        for (Creature creature : listCreature) {
+        for (T creature : listCreature) {
             sb.append("\n").append(creature.toString());
         }
         return sb.toString();
