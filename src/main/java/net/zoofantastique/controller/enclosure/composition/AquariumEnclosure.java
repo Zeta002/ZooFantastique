@@ -67,48 +67,71 @@ public class AquariumEnclosure<T extends Creature> extends Enclosure<T> {
         }
     }
 
-    /**
-     * Effectue une maintenance sur l'aquarium en fonction de la profondeur du bassin.
-     *
-     * @param basinDepth la profondeur du bassin en mètres
-     *
-     * <p>Si l'aquarium est vide, un message est affiché et la méthode est terminée.</p>
-     * <p>Si l'aquarium n'est pas vide, un message indiquant que l'aquarium est en maintenance est affiché.</p>
-     * <p>Ensuite, en fonction de la profondeur du bassin :</p>
-     * <ul>
-     *   <li>Si la profondeur est <= 80 mètres, la salinité du bassin est augmentée.</li>
-     *   <li>Si la profondeur est > 80 mètres et <= 100 mètres, la salinité du bassin est augmentée.</li>
-     *   <li>Si la profondeur est > 100 mètres et <= 120 mètres, la salinité du bassin est augmentée.</li>
-     *   <li>Si la profondeur est > 120 mètres, la salinité du bassin est augmentée.</li>
-     * </ul>
-     * <p>Après chaque augmentation de la salinité, un message indiquant la nouvelle salinité du bassin est affiché.</p>
-     * <p>Si aucune des conditions de profondeur n'est remplie, un message indiquant la salinité actuelle du bassin est affiché.</p>
-     */
-    public void maintenance(double basinDepth) {
+    public void maintenance() {
         if (getListCreature().isEmpty()) {
             System.out.println(getClass().getSimpleName() + " : " + getName() + " est vide.");
             return;
         }
         System.out.println(getClass().getSimpleName() + " : " + getName() + " est en maintenance.");
-        // TODO : thread d'un temps aléatoire dans une intervalle donné plus la profondeur du bassin est grande, plus le temps est long
+        performMaintenanceBasedOnDepth();
+    }
+
+    // TODO plus la profondeur est grande plus le thread prend du temps
+    private void performMaintenanceBasedOnDepth() {
         if (basinDepth <= 80) {
-            // TODO
-            basinSalinity.inscreaseSalinity();
-            System.out.println(getClass().getSimpleName() + " : " + getName() + " est maintenant " + basinSalinity.getValue() + ".");
+            setBasinSalinity(basinSalinity.increment());
         } else if (basinDepth > 80 && basinDepth <= 100) {
-            // TODO
-            basinSalinity.inscreaseSalinity();
-            System.out.println(getClass().getSimpleName() + " : " + getName() + " est maintenant " + basinSalinity.getValue() + ".");
+            setBasinSalinity(basinSalinity.increment());
         } else if (basinDepth > 100 && basinDepth <= 120) {
-            // TODO
-            basinSalinity.inscreaseSalinity();
-            System.out.println(getClass().getSimpleName() + " : " + getName() + " est maintenant " + basinSalinity.getValue() + ".");
+            setBasinSalinity(basinSalinity.increment());
         } else if (basinDepth > 120) {
-            // TODO
-            basinSalinity.inscreaseSalinity();
-            System.out.println(getClass().getSimpleName() + " : " + getName() + " est maintenant " + basinSalinity.getValue() + ".");
-        } else {
-            System.out.println(getClass().getSimpleName() + " : " + getName() + " reste " + basinSalinity.getValue() + ".");
+            setBasinSalinity(basinSalinity.increment());
         }
+        System.out.println(getClass().getSimpleName() + " : " + getName() + " est maintenant " + getBasinSalinity().getValue() + ".");
+    }
+
+    // Getter et setter
+
+    public double getBasinDepth() {
+        return basinDepth;
+    }
+    public void setBasinDepth(double basinDepth) {
+        this.basinDepth = basinDepth;
+    }
+
+    public Salinity getBasinSalinity() {
+        return basinSalinity;
+    }
+    public void setBasinSalinity(Salinity basinSalinity) {
+        this.basinSalinity = basinSalinity;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder("<-/ " + getEnclosureType() + " \\->\n");
+        if (getListCreature().isEmpty()) {
+            sb.append("-------------------------")
+            .append("\nNom: ").append(getName())
+            .append("\nSuperficie: ").append(getSurface()).append("m²")
+            .append("\nMax creatures: ").append(getMax())
+            .append("\nNb creatures: ").append(getNbCreature())
+            .append(" / ").append(getMax())
+            .append("\nPropreté: ").append(getCleanness().getValue())
+            .append("\nProfondeur: ").append(getBasinDepth()).append("m")
+            .append("\nSalinité: ").append(getBasinSalinity().getValue()).append("\n");
+        } else {
+            sb.append("-------------------------")
+            .append("\nNom: ").append(getName())
+            .append("\nSuperficie: ").append(getSurface()).append("m²")
+            .append("\nMax creatures: ").append(getMax())
+            .append("\nNb creatures: ").append(getNbCreature())
+            .append(" / ").append(getMax())
+            .append("\nPropreté: ").append(getCleanness().getValue())
+            .append("\nProfondeur: ").append(getBasinDepth()).append("m")
+            .append("\nSalinité: ").append(getBasinSalinity().getValue())
+            .append("\n\nListes des créatures:\n\n")
+            .append(showCreatures());
+        }
+        return sb.toString();
     }
 }

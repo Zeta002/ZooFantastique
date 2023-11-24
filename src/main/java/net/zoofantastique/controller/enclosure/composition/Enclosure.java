@@ -88,10 +88,10 @@ public class Enclosure<T extends Creature> {
      * Si la créature est présente dans l'enclos et qu'elle n'est pas rassasiée, elle mange la nourriture fournie.
      * Si la créature n'est pas présente dans l'enclos, un message d'erreur est affiché.
      *
-     * @param food La nourriture à donner à la créature.
+     * @param food     La nourriture à donner à la créature.
      * @param creature La créature à nourrir.
      */
-    public void feedCreature(Food food, T creature){
+    public void feedCreature(Food food, T creature) {
         if (listCreature.contains(creature)) {
             if (!creature.getHungerState().equals(SATISFIED.getState())) {
                 creature.eat(food);
@@ -116,11 +116,20 @@ public class Enclosure<T extends Creature> {
         System.out.println(getClass().getSimpleName() + " : " + getName() + " est maintenant " + getCleanness().getValue() + ".");
     }
 
+    public String showCreatures() {
+        StringBuilder sb = new StringBuilder();
+        for (T creature : listCreature) {
+            sb.append(creature);
+        }
+        return sb.toString();
+    }
+
     // Getter et setter
 
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -128,6 +137,7 @@ public class Enclosure<T extends Creature> {
     public double getSurface() {
         return surface;
     }
+
     public void setSurface(double surface) {
         this.surface = surface;
     }
@@ -135,6 +145,7 @@ public class Enclosure<T extends Creature> {
     public int getMax() {
         return max;
     }
+
     public void setMax(int max) {
         this.max = max;
     }
@@ -142,6 +153,7 @@ public class Enclosure<T extends Creature> {
     public int getNbCreature() {
         return nbCreature;
     }
+
     public void setNbCreature(int nbCreature) {
         this.nbCreature = nbCreature;
     }
@@ -149,6 +161,7 @@ public class Enclosure<T extends Creature> {
     public List<T> getListCreature() {
         return listCreature;
     }
+
     public void setListCreature(ArrayList<T> listCreature) {
         this.listCreature = listCreature;
     }
@@ -156,28 +169,39 @@ public class Enclosure<T extends Creature> {
     public Cleanness getCleanness() {
         return cleanness;
     }
+
     public void setCleanness(Cleanness cleanness) {
         this.cleanness = cleanness;
     }
 
-    /**
-     * Méthode pour obtenir une représentation sous forme de chaîne de caractères de l'enclos.
-     * Construit une chaîne de caractères contenant le type d'enclos, le nom, la surface, le nombre maximum de créatures, le nombre actuel de créatures, le niveau de propreté et la liste des créatures.
-     *
-     * @return Une chaîne de caractères représentant l'enclos.
-     */
+    public String getEnclosureType() {
+        return enclosureType;
+    }
+
+    // TODO doc
+    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("<-/ " + enclosureType + " \\->\n");
-        sb.append("-------------------------")
-                .append("\nNom: ").append(name)
-                .append("\nSuperficie: ").append(getSurface()).append("m²")
-                .append("\nMax creatures: ").append(getMax())
-                .append("\nNb creatures: ").append(getNbCreature())
-                .append(" / ").append(getMax())
-                .append("\nPropreté: ").append(getCleanness().getValue()).append("\n");
-        for (T creature : listCreature) {
-            sb.append("\n").append(creature.toString());
+        if (listCreature.isEmpty()) {
+            sb.append("-------------------------")
+                    .append("\nNom: ").append(name)
+                    .append("\nSuperficie: ").append(getSurface()).append("m²")
+                    .append("\nMax creatures: ").append(getMax())
+                    .append("\nNb creatures: ").append(getNbCreature())
+                    .append(" / ").append(getMax())
+                    .append("\nPropreté: ").append(getCleanness().getValue()).append("\n");
+            return sb.toString();
+        } else {
+            sb.append("-------------------------")
+                    .append("\nNom: ").append(name)
+                    .append("\nSuperficie: ").append(getSurface()).append("m²")
+                    .append("\nMax creatures: ").append(getMax())
+                    .append("\nNb creatures: ").append(getNbCreature())
+                    .append(" / ").append(getMax())
+                    .append("\nPropreté: ").append(getCleanness().getValue())
+                    .append("\n\nListes des créatures:\n\n")
+                    .append(showCreatures());
+            return sb.toString();
         }
-        return sb.toString();
     }
 }

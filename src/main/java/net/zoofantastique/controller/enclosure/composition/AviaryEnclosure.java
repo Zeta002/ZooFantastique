@@ -1,6 +1,5 @@
 package net.zoofantastique.controller.enclosure.composition;
 
-import net.zoofantastique.controller.enclosure.composition.Enclosure;
 import net.zoofantastique.controller.entity.creature.behavior.Flying;
 import net.zoofantastique.controller.entity.creature.composition.Creature;
 
@@ -27,16 +26,6 @@ public class AviaryEnclosure<T extends Creature> extends Enclosure<T> {
      */
     public AviaryEnclosure(String name, double surface, double roofHeight, int max) {
         super(name, surface, max);
-        this.roofHeight = roofHeight;
-    }
-
-
-    // Getter et setter
-
-    public double getRoofHeight() {
-        return roofHeight;
-    }
-    public void setRoofHeight(double roofHeight) {
         this.roofHeight = roofHeight;
     }
 
@@ -73,48 +62,62 @@ public class AviaryEnclosure<T extends Creature> extends Enclosure<T> {
         }
     }
 
-     /**
-     * Effectue une maintenance sur la volière en fonction de la hauteur du toit.
-     *
-     * @param roofHeight la hauteur du toit de la volière en mètres
-     *
-     * <p>Si la volière est vide, un message est affiché et la méthode est terminée.</p>
-     * <p>Si la volière n'est pas vide, un message indiquant que la volière est en maintenance est affiché.</p>
-     * <p>Ensuite, en fonction de la hauteur du toit :</p>
-     * <ul>
-     *   <li>Si la hauteur est <= 20 mètres, la propreté de la volière est augmentée.</li>
-     *   <li>Si la hauteur est > 20 mètres et <= 40 mètres, la propreté de la volière est augmentée.</li>
-     *   <li>Si la hauteur est > 40 mètres et <= 60 mètres, la propreté de la volière est augmentée.</li>
-     *   <li>Si la hauteur est > 60 mètres, la propreté de la volière est augmentée.</li>
-     * </ul>
-     * <p>Après chaque augmentation de la propreté, un message indiquant la nouvelle propreté de la volière est affiché.</p>
-     * <p>Si aucune des conditions de hauteur n'est remplie, un message indiquant la propreté actuelle de la volière est affiché.</p>
-     */
-    public void maintenance(double roofHeight) {
+    public void maintenance() {
         if (getListCreature().isEmpty()) {
             System.out.println(getClass().getSimpleName() + " : " + getName() + " est vide.");
             return;
         }
         System.out.println(getClass().getSimpleName() + " : " + getName() + " est en maintenance.");
-        // TODO : thread d'un temps aléatoire dans une intervalle donné, plus la hauteur du toit est grande, plus le temps est long
-        if (roofHeight <= 20) {
-            // TODO
+        performMaintenanceBasedOnHeight();
+    }
+
+    // TODO plus la hauteur est grande plus le thread prend du temps
+    private void performMaintenanceBasedOnHeight() {
+        if (roofHeight <= 80) {
             getCleanness().clean();
-            System.out.println(getClass().getSimpleName() + " : " + getName() + " est maintenant " + getCleanness().getValue() + ".");
-        } else if (roofHeight > 20 && roofHeight <= 40) {
-            // TODO
+        } else if (roofHeight > 80 && roofHeight <= 100) {
             getCleanness().clean();
-            System.out.println(getClass().getSimpleName() + " : " + getName() + " est maintenant " + getCleanness().getValue() + ".");
-        } else if (roofHeight > 40 && roofHeight <= 60) {
-            // TODO
+        } else if (roofHeight > 100 && roofHeight <= 120) {
             getCleanness().clean();
-            System.out.println(getClass().getSimpleName() + " : " + getName() + " est maintenant " + getCleanness().getValue() + ".");
-        } else if (roofHeight > 60) {
-            // TODO
+        } else if (roofHeight > 120) {
             getCleanness().clean();
-            System.out.println(getClass().getSimpleName() + " : " + getName() + " est maintenant " + getCleanness().getValue() + ".");
-        } else {
-            System.out.println(getClass().getSimpleName() + " : " + getName() + " reste " + getCleanness().getValue() + ".");
         }
+        System.out.println(getClass().getSimpleName() + " : " + getName() + " est maintenant " + getCleanness().getValue() + ".");
+    }
+
+    // Getter et setter
+
+    public double getRoofHeight() {
+        return roofHeight;
+    }
+    public void setRoofHeight(double roofHeight) {
+        this.roofHeight = roofHeight;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder("<-/ " + getEnclosureType() + " \\->\n");
+        if (getListCreature().isEmpty()) {
+            sb.append("-------------------------")
+            .append("\nNom: ").append(getName())
+            .append("\nSuperficie: ").append(getSurface()).append("m²")
+            .append("\nMax creatures: ").append(getMax())
+            .append("\nNb creatures: ").append(getNbCreature())
+            .append(" / ").append(getMax())
+            .append("\nPropreté: ").append(getCleanness().getValue())
+            .append("\nHauteur: ").append(getRoofHeight()).append("m").append("\n");
+        } else {
+            sb.append("-------------------------")
+            .append("\nNom: ").append(getName())
+            .append("\nSuperficie: ").append(getSurface()).append("m²")
+            .append("\nMax creatures: ").append(getMax())
+            .append("\nNb creatures: ").append(getNbCreature())
+            .append(" / ").append(getMax())
+            .append("\nPropreté: ").append(getCleanness().getValue())
+            .append("\nHauteur: ").append(getRoofHeight()).append("m")
+            .append("\n\nListes des créatures:\n\n")
+            .append(showCreatures());
+        }
+        return sb.toString();
     }
 }
