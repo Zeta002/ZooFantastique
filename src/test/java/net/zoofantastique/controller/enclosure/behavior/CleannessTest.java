@@ -11,13 +11,23 @@ class CleannessTest {
     }
 
     @Test
-    void cleanReturnsSameCleannessIfAlreadyAtMax() {
-        assertEquals(Cleanness.GOOD, Cleanness.GOOD.clean());
+    void cleanIsChangingValueCorrectly() {
+        assertEquals(Cleanness.CORRECT.getValue(), Cleanness.BAD.clean().getValue());
     }
 
     @Test
     void deteriorateReturnsPreviousCleanness() {
         assertEquals(Cleanness.CORRECT, Cleanness.GOOD.deteriorate());
+    }
+
+    @Test
+    void deteriorateIsChangingValueCorrectly() {
+        assertEquals(Cleanness.CORRECT.getValue(), Cleanness.GOOD.deteriorate().getValue());
+    }
+
+    @Test
+    void cleanReturnsSameCleannessIfAlreadyAtMax() {
+        assertEquals(Cleanness.GOOD, Cleanness.GOOD.clean());
     }
 
     @Test

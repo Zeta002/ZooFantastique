@@ -6,7 +6,8 @@ import net.zoofantastique.controller.entity.creature.composition.oviparous.Drago
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 class AquariumEnclosureTest {
     private AquariumEnclosure<Dragon> aquariumEnclosure;

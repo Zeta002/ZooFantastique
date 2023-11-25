@@ -5,7 +5,7 @@ import net.zoofantastique.controller.entity.creature.composition.oviparous.Drago
 import net.zoofantastique.controller.entity.creature.composition.oviparous.Oviparous;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class OviparousTest {
 

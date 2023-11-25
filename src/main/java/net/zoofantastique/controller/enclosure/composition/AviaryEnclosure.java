@@ -74,13 +74,13 @@ public class AviaryEnclosure<T extends Creature> extends Enclosure<T> {
     // TODO plus la hauteur est grande plus le thread prend du temps
     private void performMaintenanceBasedOnHeight() {
         if (roofHeight <= 80) {
-            getCleanness().clean();
+            setCleanness(getCleanness().clean());
         } else if (roofHeight > 80 && roofHeight <= 100) {
-            getCleanness().clean();
+            setCleanness(getCleanness().clean());
         } else if (roofHeight > 100 && roofHeight <= 120) {
-            getCleanness().clean();
+            setCleanness(getCleanness().clean());
         } else if (roofHeight > 120) {
-            getCleanness().clean();
+            setCleanness(getCleanness().clean());
         }
         System.out.println(getClass().getSimpleName() + " : " + getName() + " est maintenant " + getCleanness().getValue() + ".");
     }

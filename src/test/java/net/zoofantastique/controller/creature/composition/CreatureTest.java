@@ -1,11 +1,11 @@
 package net.zoofantastique.controller.creature.composition;
 
+import net.zoofantastique.controller.consumable.food.Beefsteak;
 import net.zoofantastique.controller.entity.creature.behavior.Age;
 import net.zoofantastique.controller.entity.creature.behavior.Gender;
 import net.zoofantastique.controller.entity.creature.behavior.Hunger;
 import net.zoofantastique.controller.entity.creature.composition.Creature;
 import net.zoofantastique.controller.entity.creature.composition.viviparous.Unicorn;
-import net.zoofantastique.controller.consumable.food.Beefsteak;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

@@ -112,7 +112,7 @@ public class Enclosure<T extends Creature> {
             return;
         }
         System.out.println(getClass().getSimpleName() + " : " + getName() + " est en maintenance.");
-        getCleanness().clean();
+        setCleanness(getCleanness().clean());
         System.out.println(getClass().getSimpleName() + " : " + getName() + " est maintenant " + getCleanness().getValue() + ".");
     }
 

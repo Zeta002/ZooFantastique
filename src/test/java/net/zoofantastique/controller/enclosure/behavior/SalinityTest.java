@@ -1,9 +1,8 @@
-package net.zoofantastique.controller.enclosure;
+package net.zoofantastique.controller.enclosure.behavior;
 
-import net.zoofantastique.controller.enclosure.behavior.Salinity;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class SalinityTest {
     @Test
