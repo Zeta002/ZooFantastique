@@ -33,7 +33,7 @@ public class Kraken extends Oviparous implements Swimmer {
      * @return Un nouveau Kraken qui vient d'éclore.
      */
     @Override
-    public Oviparous eggsHatch(){
+    public Kraken eggsHatch(){
         Random random = new Random();
         Gender babySexe = Gender.MALE;
 

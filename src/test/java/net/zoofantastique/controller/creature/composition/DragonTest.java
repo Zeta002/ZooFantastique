@@ -3,52 +3,76 @@ package net.zoofantastique.controller.creature.composition;
 import net.zoofantastique.controller.entity.creature.behavior.Age;
 import net.zoofantastique.controller.entity.creature.behavior.Gender;
 import net.zoofantastique.controller.entity.creature.composition.oviparous.Dragon;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 class DragonTest {
-    private Dragon dragon;
+    private Dragon Dragon;
 
     @BeforeEach
     void setUp() {
-        dragon = new Dragon("Jhon", Gender.MALE, 10000, 20);
+        Dragon = new Dragon("Test Dragon", Gender.FEMALE, 10.0, 1.0);
+    }
+
+    @AfterEach
+    void restoreStreams() {
+        System.setOut(System.out);
     }
 
     @Test
-    void canTheDragonCanFly() {
-        dragon.fly();
+    void flyPrintsExpectedOutput() {
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        Dragon.fly();
+        assertEquals("Test Dragon *est entrain de voler*", outContent.toString().trim());
     }
 
     @Test
-    void canTheDragonCanRun() {
-        dragon.run();
+    void runPrintsExpectedOutput() {
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        Dragon.run();
+        assertEquals("Test Dragon *cours*", outContent.toString().trim());
     }
 
     @Test
-    void canTheDragonCanSwim() {
-        dragon.swim();
+    void swimPrintsExpectedOutput() {
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        Dragon.swim();
+        assertEquals("Test Dragon *nage*", outContent.toString().trim());
     }
 
     @Test
-    void didAgingRebirthWhenDead() {
-        dragon.aging();
-        dragon.aging();
-        dragon.aging();
-        dragon.aging();
-        assertEquals(Age.BABY, dragon.getAge());
+    void setAgeResetsAgeWhenDead() {
+        Dragon.setAge(Age.DEAD);
+        assertEquals(Age.BABY, Dragon.getAge());
     }
 
     @Test
-    void didSetAgeRebirthWhenDead() {
-        dragon.setAge(Age.DEAD);
-        assertEquals(Age.BABY, dragon.getAge());
+    void eggsHatchReturnsBabyDragon() {
+        Dragon baby = Dragon.eggsHatch();
+        assertNotNull(baby);
+        assertEquals(Age.BABY, baby.getAge());
     }
 
     @Test
-    void didRebirthChangeNothingWhenItSupposeTo() {
-        dragon.rebirth();
-        assertEquals(Age.BABY, dragon.getAge());
+    void rebirthResetsAgeWhenDead() {
+        Dragon.setAge(Age.DEAD);
+        Dragon.rebirth();
+        assertEquals(Age.BABY, Dragon.getAge());
+    }
+
+    @Test
+    void rebirthDoesNotResetAgeWhenAlive() {
+        Dragon.setAge(Age.ADULT);
+        Dragon.rebirth();
+        assertEquals(Age.ADULT, Dragon.getAge());
     }
 }

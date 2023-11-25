@@ -68,7 +68,7 @@ public class Phoenix extends Oviparous implements Flying, Rebirth {
      * @return Un nouveau Phoenix qui vient d'éclore.
      */
     @Override
-    public Oviparous eggsHatch(){
+    public Phoenix eggsHatch(){
         Random random = new Random();
         Gender babySexe = Gender.MALE;
 

@@ -33,7 +33,7 @@ public class Unicorn extends Viviparous implements Runner {
      * @return Une nouvelle Licorne qui vient de naître.
      */
     @Override
-    public Viviparous giveBirth(){
+    public Unicorn giveBirth(){
         Random random = new Random();
         Gender babySexe = Gender.MALE;
 

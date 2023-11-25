@@ -33,7 +33,7 @@ public class Megalodon extends Oviparous implements Swimmer {
      * @return Un nouveau Megalodon qui vient d'éclore.
      */
     @Override
-    public Oviparous eggsHatch(){
+    public Megalodon eggsHatch(){
         Random random = new Random();
         Gender babySexe = Gender.MALE;
 

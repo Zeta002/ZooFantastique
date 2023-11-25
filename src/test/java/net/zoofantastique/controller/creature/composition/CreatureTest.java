@@ -6,8 +6,12 @@ import net.zoofantastique.controller.entity.creature.behavior.Gender;
 import net.zoofantastique.controller.entity.creature.behavior.Hunger;
 import net.zoofantastique.controller.entity.creature.composition.Creature;
 import net.zoofantastique.controller.entity.creature.composition.viviparous.Unicorn;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -19,39 +23,47 @@ class CreatureTest {
         c = new Unicorn("Lucie", Gender.MALE, 1000.0, 2.0);
     }
 
+    @AfterEach
+    void restoreStreams() {
+        System.setOut(System.out);
+    }
+
     @Test
-    void isEatWorking() {
+    void eatingIncreasesHungerState() {
         c.setHunger(0);
         c.eat(new Beefsteak());
         assertEquals(Hunger.MEDIUM.getState(), c.getHungerState());
     }
 
     @Test
-    void isShoutWorking() {
+    void shoutDoesNotThrowException() {
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
         c.shout();
+        assertEquals("Lucie fait hihihiha", outContent.toString().trim());
     }
 
     @Test
-    void isHealedWorking() {
+    void healingRemovesSickness() {
         c.setSick(true);
         c.healed();
         assertFalse(c.isSick());
     }
 
     @Test
-    void isToggleSleepingWorking() {
+    void toggleSleepingChangesSleepingState() {
         c.toggleSleeping();
         assertTrue(c.isSleeping());
     }
 
     @Test
-    void isAgingWorking() {
+    void agingIncreasesAge() {
         c.aging();
         assertEquals(Age.CHILD, c.getAge());
     }
 
     @Test
-    void isAgingToDeathWorking() {
+    void agingFourTimesResultsInDeath() {
         c.aging();
         c.aging();
         c.aging();
@@ -60,114 +72,148 @@ class CreatureTest {
     }
 
     @Test
-    void getAge() {
+    void getAgeReturnsCorrectAgeState() {
         assertEquals("Bébé", c.getAgeState());
     }
 
     @Test
-    void getName() {
+    void getNameReturnsCorrectName() {
         assertEquals("Lucie", c.getName());
     }
 
     @Test
-    void setName() {
+    void setNameChangesName() {
         c.setName("Autre nom");
         assertEquals("Autre nom", c.getName());
     }
 
     @Test
-    void getSexe() {
+    void getSexeReturnsCorrectGender() {
         assertEquals(Gender.MALE, c.getSexe());
     }
 
     @Test
-    void getWeight() {
+    void getWeightReturnsCorrectWeight() {
         assertEquals(1000.0, c.getWeight());
     }
 
     @Test
-    void setWeight() {
+    void setWeightChangesWeight() {
         c.setWeight(200.0);
         assertEquals(200, c.getWeight());
     }
 
     @Test
-    void getHeight() {
+    void getHeightReturnsCorrectHeight() {
         assertEquals(2.0, c.getHeight());
     }
 
     @Test
-    void setHeight() {
+    void setHeightChangesHeight() {
         c.setHeight(3.0);
         assertEquals(3.0, c.getHeight());
     }
 
     @Test
-    void getHungerState() {
+    void getHungerStateReturnsCorrectHungerState() {
         assertEquals("Répu", c.getHungerState());
     }
 
     @Test
-    void getHunger() {
+    void getHungerReturnsCorrectHungerValue() {
         assertEquals(Hunger.MAX.getValue(), c.getHunger());
     }
 
     @Test
-    void setHunger() {
+    void setHungerChangesHungerState() {
         c.setHunger(Hunger.HUNGRY.getValue());
         assertEquals(Hunger.HUNGRY.getState(), c.getHungerState());
     }
 
     @Test
-    void isSleeping() {
+    void isSleepingReturnsCorrectSleepingState() {
         assertFalse(c.isSleeping());
     }
 
     @Test
-    void setSleeping() {
+    void setSleepingChangesSleepingState() {
         c.setSleeping(true);
         assertTrue(c.isSleeping());
     }
 
     @Test
-    void isSick() {
+    void isSickReturnsCorrectSicknessState() {
         assertFalse(c.isSick());
     }
 
     @Test
-    void setSick() {
+    void setSickChangesSicknessState() {
         c.setSick(true);
         assertTrue(c.isSick());
     }
 
     @Test
-    void checkSick() {
+    void checkSickTwiceResultsInDeath() {
         c.setSick(true);
         c.setSick(true);
         assertEquals(Age.DEAD, c.getAge());
     }
 
     @Test
-    void setAge() {
+    void setAgeChangesAge() {
         c.setAge(Age.DEAD);
         assertEquals(Age.DEAD, c.getAge());
     }
 
     @Test
-    void testToString() {
+    void toStringIndentationIsCorrect() {
         assertEquals("""
-                <-/ Unicorn \\->
-                --------------
-                Nom: Lucie
-                Sexe: Male
-                Age: Bébé
-                Cri: hihihiha
-                Poids: 1000.0kg
-                Taille: 2.0m
-                Dort: Non
-                Malade: Non
-                Faim: Répu
-                Durée d'incubation: 0s
-                """, c.toString());
+            <-/ Unicorn \\->
+            --------------
+            Nom: Lucie
+            Sexe: Male
+            Age: Bébé
+            Cri: hihihiha
+            Poids: 1000.0kg
+            Taille: 2.0m
+            Dort: Non
+            Malade: Non
+            Faim: Répu
+            Durée d'incubation: 0s
+            """, c.toString());
+    }
+
+    @Test
+    void fertilizableReturnsCorrectCreatureWhenConditionsAreMet() {
+        Creature other = new Unicorn("Other", Gender.FEMALE, 1000.0, 2.0);
+        assertEquals(other, c.fertilizable(other));
+    }
+
+    @Test
+    void fertilizableReturnsNullWhenOneCreatureIsPregnant() {
+        Creature other = new Unicorn("Other", Gender.FEMALE, 1000.0, 2.0);
+        c.setPregnant(true);
+        assertNull(c.fertilizable(other));
+    }
+
+    @Test
+    void toggleSleepingDoesNotChangeSleepingStateWhenSick() {
+        c.setSick(true);
+        c.toggleSleeping();
+        assertFalse(c.isSleeping());
+    }
+
+    @Test
+    void eatDoesNotIncreaseHungerWhenAlreadySatisfied() {
+        c.setHunger(Hunger.MAX.getValue());
+        c.eat(new Beefsteak());
+        assertEquals(Hunger.MAX.getState(), c.getHungerState());
+    }
+
+    @Test
+    void eatDoesNotIncreaseHungerWhenSleeping() {
+        c.setSleeping(true);
+        c.eat(new Beefsteak());
+        assertEquals(Hunger.MAX.getState(), c.getHungerState());
     }
 }

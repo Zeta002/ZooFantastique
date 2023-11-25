@@ -23,7 +23,7 @@ public class Nymph extends Viviparous {
      * @return Une nouvelle Nymphe qui vient de naître.
      */
     @Override
-    public Viviparous giveBirth(){
+    public Nymph giveBirth(){
         Random random = new Random();
         Gender babySexe = Gender.MALE;
 

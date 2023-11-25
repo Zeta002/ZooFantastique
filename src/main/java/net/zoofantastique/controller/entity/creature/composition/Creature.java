@@ -65,7 +65,7 @@ public abstract class Creature extends Alive {
      */
     public void eat(Food food) {
         if (isSleeping) {
-            System.out.println("Tu ne peux pas faire ça car la créature sélectionner dors actuellement.");
+            System.err.println("Tu ne peux pas faire ça car la créature sélectionner dors actuellement.");
             return;
         } else if (getHunger() == Hunger.MAX.getValue()) {
             System.err.println("La créature sélectionner n'a pas faim.");
@@ -97,6 +97,10 @@ public abstract class Creature extends Alive {
      * Si la créature dort, elle se réveille. Si elle est éveillée, elle s'endort.
      */
     public void toggleSleeping() {
+        if (isSick) {
+            System.err.println("La créature sélectionner est malade, elle ne peut pas dormir.");
+            return;
+        }
         isSleeping = !isSleeping;
     }
 

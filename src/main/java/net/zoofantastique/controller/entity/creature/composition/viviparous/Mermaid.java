@@ -33,7 +33,7 @@ public class Mermaid extends Viviparous implements Swimmer {
      * @return Une nouvelle Sirène qui vient de naître.
      */
     @Override
-    public Viviparous giveBirth(){
+    public Mermaid giveBirth(){
         Random random = new Random();
         Gender babySexe = Gender.MALE;
         double babyWeight = 2.5 + (4.3 - 2.5) * random.nextDouble();

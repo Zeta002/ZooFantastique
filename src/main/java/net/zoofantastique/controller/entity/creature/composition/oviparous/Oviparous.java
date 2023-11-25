@@ -31,10 +31,10 @@ public abstract class Oviparous extends Creature {
     public Oviparous layEggs(Creature partenaire) {
         Creature female = fertilizable(partenaire);
         if (female == null) {
-            System.out.println("La fécondation semble impossible");
+            System.err.println("La fécondation semble impossible.");
             return null;
         }
-        System.out.println("Un nouvel arrivant semble être prévu pour bientôt");
+        System.out.println("Un nouvel arrivant semble être prévu pour bientôt!");
         female.setPregnant(true);
         // TODO temps d'incubation thread
         return ((Oviparous) female).eggsHatch();

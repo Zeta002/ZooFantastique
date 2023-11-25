@@ -30,10 +30,10 @@ public abstract class Viviparous extends Creature {
     public Viviparous initiatePregnancy(Creature partenaire) {
         Creature female = fertilizable(partenaire);
         if (female == null) {
-            System.out.println("L'accouplement semble impossible");
+            System.err.println("L'accouplement semble impossible.");
             return null;
         }
-        System.out.println("Un nouvel arrivant semble être prévu pour bientôt");
+        System.out.println("Un nouvel arrivant semble être prévu pour bientôt!");
         female.setPregnant(true);
         // TODO temps d'incubation thread
         return ((Viviparous) female).giveBirth();
