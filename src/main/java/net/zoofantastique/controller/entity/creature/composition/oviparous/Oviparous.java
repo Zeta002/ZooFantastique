@@ -3,6 +3,8 @@ package net.zoofantastique.controller.entity.creature.composition.oviparous;
 import net.zoofantastique.controller.entity.creature.behavior.Gender;
 import net.zoofantastique.controller.entity.creature.composition.Creature;
 
+import java.util.Random;
+
 /**
  * Classe abstraite Oviparous qui représente une créature ovipare dans un zoo.
  * Une créature ovipare est une créature qui pond des œufs, qui a une durée d'incubation et qui peut faire éclore ses œufs.
@@ -46,6 +48,11 @@ public abstract class Oviparous extends Creature {
      * @return Un nouveau bébé ovipare.
      */
     public abstract Oviparous eggsHatch();
+
+    public double getRandomInRange(double min, double max) {
+        Random random = new Random();
+        return min + (max - min) * random.nextDouble();
+    }
 
     /**
      * Méthode pour obtenir une représentation sous forme de chaîne de caractères de la créature ovipare.

@@ -1,14 +1,15 @@
-package net.zoofantastique.controller.creature.composition;
+package net.zoofantastique.controller.entity.creature.composition.oviparous;
 
 import net.zoofantastique.controller.entity.creature.behavior.Age;
 import net.zoofantastique.controller.entity.creature.behavior.Gender;
-import net.zoofantastique.controller.entity.creature.composition.oviparous.Dragon;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.HashSet;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -74,5 +75,33 @@ class DragonTest {
         Dragon.setAge(Age.ADULT);
         Dragon.rebirth();
         assertEquals(Age.ADULT, Dragon.getAge());
+    }
+
+    @Test
+    void eggsHatchReturnsBabyWithRandomGender() {
+        Set<Gender> genders = new HashSet<>();
+        for (int i = 0; i < 100; i++) {
+            genders.add(Dragon.eggsHatch().getSexe());
+        }
+        assertTrue(genders.contains(Gender.MALE));
+        assertTrue(genders.contains(Gender.FEMALE));
+    }
+
+    @Test
+    void eggsHatchReturnsBabyWithRandomWeight() {
+        Set<Double> weights = new HashSet<>();
+        for (int i = 0; i < 100; i++) {
+            weights.add(Dragon.eggsHatch().getWeight());
+        }
+        assertTrue(weights.stream().anyMatch(weight -> weight > 30 && weight < 60));
+    }
+
+    @Test
+    void eggsHatchReturnsBabyWithRandomHeight() {
+        Set<Double> heights = new HashSet<>();
+        for (int i = 0; i < 100; i++) {
+            heights.add(Dragon.eggsHatch().getHeight());
+        }
+        assertTrue(heights.stream().anyMatch(height -> height > 1 && height < 2));
     }
 }

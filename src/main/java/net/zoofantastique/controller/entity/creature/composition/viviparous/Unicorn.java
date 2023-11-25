@@ -37,8 +37,8 @@ public class Unicorn extends Viviparous implements Runner {
         Random random = new Random();
         Gender babySexe = Gender.MALE;
 
-        double babyWeight = 0.5 + (0.75 - 0.5) * random.nextDouble();
-        double babyHeight = 0.9 + (1.15 - 0.9) * random.nextDouble();
+        double babyWeight = getRandomInRange(10, 20);
+        double babyHeight = getRandomInRange(0.2, 0.4);
 
         if (random.nextInt(2) == 1) {
             babySexe = Gender.FEMALE;

@@ -36,8 +36,9 @@ public class Mermaid extends Viviparous implements Swimmer {
     public Mermaid giveBirth(){
         Random random = new Random();
         Gender babySexe = Gender.MALE;
-        double babyWeight = 2.5 + (4.3 - 2.5) * random.nextDouble();
-        double babyHeight = 0.45 + (0.55 - 0.45) * random.nextDouble();
+
+        double babyWeight = getRandomInRange(0.9, 3);
+        double babyHeight = getRandomInRange(0.2, 0.4);
 
         if (random.nextInt(2) == 1) {
             babySexe = Gender.FEMALE;

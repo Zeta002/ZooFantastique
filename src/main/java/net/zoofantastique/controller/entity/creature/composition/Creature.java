@@ -1,10 +1,10 @@
 package net.zoofantastique.controller.entity.creature.composition;
 
+import net.zoofantastique.controller.consumable.composition.Food;
 import net.zoofantastique.controller.entity.Alive;
 import net.zoofantastique.controller.entity.creature.behavior.Age;
 import net.zoofantastique.controller.entity.creature.behavior.Gender;
 import net.zoofantastique.controller.entity.creature.behavior.Hunger;
-import net.zoofantastique.controller.consumable.composition.Food;
 
 /**
  * Classe abstraite Creature qui représente une créature dans un zoo.
@@ -138,16 +138,7 @@ public abstract class Creature extends Alive {
         return null;
     }
 
-    /**
-     * Méthode pour obtenir une représentation sous forme de chaîne de caractères de la créature.
-     * Construit une chaîne de caractères contenant l'espèce, le nom, le sexe, l'âge, le cri, le poids, la taille, l'état de sommeil, l'état de santé et l'état de faim de la créature.
-     *
-     * @return Une chaîne de caractères représentant la créature.
-     */
-
     // Getter et Setter
-
-
 
     public double getWeight() {
         return this.weight;
@@ -202,6 +193,12 @@ public abstract class Creature extends Alive {
         isPregnant = pregnant;
     }
 
+    /**
+     * Méthode pour obtenir une représentation sous forme de chaîne de caractères de la créature.
+     * Construit une chaîne de caractères contenant l'espèce, le nom, le sexe, l'âge, le cri, le poids, la taille, l'état de sommeil, l'état de santé et l'état de faim de la créature.
+     *
+     * @return Une chaîne de caractères représentant la créature.
+     */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder(super.toString());

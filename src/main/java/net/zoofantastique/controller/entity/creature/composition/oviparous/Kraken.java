@@ -37,11 +37,13 @@ public class Kraken extends Oviparous implements Swimmer {
         Random random = new Random();
         Gender babySexe = Gender.MALE;
 
-        double babyWeight = 7.20 + (8.700 - 7.20) * random.nextDouble();
-        double babyHeight = 85.0 + (105.0 - 85.0) * random.nextDouble();
+        double babyWeight = getRandomInRange(80, 120);
+        double babyHeight = getRandomInRange(4, 6);
+
         if (random.nextInt(2) == 1) {
             babySexe = Gender.FEMALE;
         }
+
         return new Kraken(getName(), babySexe, babyWeight, babyHeight);
     }
 }

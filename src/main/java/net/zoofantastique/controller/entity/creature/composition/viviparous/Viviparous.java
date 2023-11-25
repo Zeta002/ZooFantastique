@@ -3,6 +3,8 @@ package net.zoofantastique.controller.entity.creature.composition.viviparous;
 import net.zoofantastique.controller.entity.creature.behavior.Gender;
 import net.zoofantastique.controller.entity.creature.composition.Creature;
 
+import java.util.Random;
+
 /**
  * Classe abstraite Viviparous qui représente une créature vivipare dans un zoo.
  * Une créature vivipare est une créature qui donne naissance à des jeunes vivants, qui a une durée de gestation et qui peut initier une grossesse.
@@ -45,6 +47,11 @@ public abstract class Viviparous extends Creature {
      * @return Un nouveau bébé vivipare.
      */
     public abstract Viviparous giveBirth();
+
+    public double getRandomInRange(double min, double max) {
+        Random random = new Random();
+        return min + (max - min) * random.nextDouble();
+    }
 
     /**
      * Méthode pour obtenir une représentation sous forme de chaîne de caractères de la créature vivipare.

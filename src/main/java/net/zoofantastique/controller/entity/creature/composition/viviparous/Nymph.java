@@ -27,8 +27,8 @@ public class Nymph extends Viviparous {
         Random random = new Random();
         Gender babySexe = Gender.MALE;
 
-        double babyWeight = 2.5 + (4.3 - 2.5) * random.nextDouble();
-        double babyHeight = 0.45 + (0.55 - 0.45) * random.nextDouble();
+        double babyWeight = getRandomInRange(1, 4);
+        double babyHeight = getRandomInRange(0.7, 1.5);
 
         if (random.nextInt(2) == 1) {
             babySexe = Gender.FEMALE;
