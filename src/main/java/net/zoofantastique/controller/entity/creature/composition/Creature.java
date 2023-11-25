@@ -67,10 +67,11 @@ public abstract class Creature extends Alive {
         if (isSleeping) {
             System.out.println("Tu ne peux pas faire ça car la créature sélectionner dors actuellement.");
             return;
+        } else if (getHunger() == Hunger.MAX.getValue()) {
+            System.err.println("La créature sélectionner n'a pas faim.");
+            return;
         }
-
         int totalHungerValue = getHunger() + food.getValue();
-
         this.setHunger(totalHungerValue);
     }
 

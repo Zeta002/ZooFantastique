@@ -78,7 +78,7 @@ public class Enclosure<T extends Creature> {
                 listCreature.remove(creature);
                 nbCreature--;
             } else {
-                System.err.println("La créature:\n" + creature + "\nn'est pas dans l'enclos!");
+                System.err.println("La créature:\n\n" + creature + "\nn'est pas dans l'enclos!");
             }
         }
     }
@@ -95,6 +95,8 @@ public class Enclosure<T extends Creature> {
         if (listCreature.contains(creature)) {
             if (!creature.getHungerState().equals(SATISFIED.getState())) {
                 creature.eat(food);
+            } else {
+                System.err.println("La créature:\n" + creature + "\nn'a pas faim!");
             }
         } else {
             System.err.println("La créature:\n" + creature + "\nn'est pas dans l'enclos!");
