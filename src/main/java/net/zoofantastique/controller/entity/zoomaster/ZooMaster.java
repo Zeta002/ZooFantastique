@@ -39,8 +39,5 @@ public class ZooMaster extends Alive {
             System.err.println("La créature n'est pas dans l'enclos!");
         }
     }
-
-
-
 }
 
