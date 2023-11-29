@@ -49,12 +49,12 @@ public class Dragon extends Oviparous implements Flying, Runner, Swimmer, Rebirt
     }
 
     @Override
-    public Oviparous eggsHatch(){
+    public Dragon eggsHatch(){
         Random random = new Random();
         Gender babySexe = Gender.MALE;
 
-        double babyWeight = Math.round(7.0 + (12.0 - 7.0) * random.nextDouble());
-        double babyHeight = Math.round(0.9 + (1.20 - 0.9) * random.nextDouble());
+        double babyWeight = getRandomInRange(30, 60);
+        double babyHeight = getRandomInRange(1, 2);
 
         if (random.nextInt(2) == 1) {
             babySexe = Gender.FEMALE;

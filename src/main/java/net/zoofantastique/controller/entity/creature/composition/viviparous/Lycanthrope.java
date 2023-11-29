@@ -33,12 +33,12 @@ public class Lycanthrope extends Viviparous implements Runner {
      * @return Un nouveau Lycanthrope qui vient de naître.
      */
     @Override
-    public Viviparous giveBirth(){
+    public Lycanthrope giveBirth(){
         Random random = new Random();
         Gender babySexe = Gender.MALE;
 
-        double babyWeight = 2.5 + (4.3 - 2.5) * random.nextDouble();
-        double babyHeight = 0.45 + (0.55 - 0.45) * random.nextDouble();
+        double babyWeight = getRandomInRange(1, 4);
+        double babyHeight = getRandomInRange(0.2, 0.5);
 
         if (random.nextInt(2) == 1) {
             babySexe = Gender.FEMALE;
