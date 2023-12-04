@@ -41,7 +41,7 @@ public class Enclosure<T extends Creature> {
         this.name = name;
         this.surface = surface;
         this.max = max;
-        this.listCreature = new ArrayList<T>();
+        this.listCreature = new ArrayList<>();
         this.nbCreature = 0;
         this.cleanness = Cleanness.CORRECT;
     }
@@ -49,8 +49,8 @@ public class Enclosure<T extends Creature> {
     /**
      * Cette méthode est utilisée pour ajouter des créatures à l'enclos.
      * Elle accepte un tableau de créatures et vérifie si l'enclos a la capacité d'accueillir toutes les créatures.
-     * Si l'enclos a la capacité, toutes les créatures sont ajoutées à l'enclos et le nombre actuel de créatures est mis à jour.
-     * Si l'enclos n'a pas la capacité, un message d'erreur est affiché.
+     * Si l'enclos a la place, toutes les créatures sont ajoutées à l'enclos et le nombre actuel de créatures est mis à jour.
+     * Si l'enclos n'a pas la place, un message d'erreur est affiché.
      *
      * @param creatures Un tableau de créatures à ajouter à l'enclos.
      */
@@ -72,7 +72,8 @@ public class Enclosure<T extends Creature> {
      *
      * @param creaturesToRemove Un tableau de créatures à retirer de l'enclos.
      */
-    public void removeCreature(T... creaturesToRemove) {
+    @SafeVarargs
+    public final void removeCreature(T... creaturesToRemove) {
         for (T creature : creaturesToRemove) {
             if (listCreature.contains(creature)) {
                 listCreature.remove(creature);
@@ -118,6 +119,7 @@ public class Enclosure<T extends Creature> {
         System.out.println(getClass().getSimpleName() + " : " + getName() + " est maintenant " + getCleanness().getValue() + ".");
     }
 
+    // TODO doc
     public String showCreatures() {
         StringBuilder sb = new StringBuilder();
         for (T creature : listCreature) {
@@ -192,7 +194,6 @@ public class Enclosure<T extends Creature> {
                     .append("\nNb creatures: ").append(getNbCreature())
                     .append(" / ").append(getMax())
                     .append("\nPropreté: ").append(getCleanness().getValue()).append("\n");
-            return sb.toString();
         } else {
             sb.append("-------------------------")
                     .append("\nNom: ").append(name)
@@ -203,7 +204,7 @@ public class Enclosure<T extends Creature> {
                     .append("\nPropreté: ").append(getCleanness().getValue())
                     .append("\n\nListes des créatures:\n\n")
                     .append(showCreatures());
-            return sb.toString();
         }
+        return sb.toString();
     }
 }
