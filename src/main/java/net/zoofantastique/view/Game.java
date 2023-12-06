@@ -14,6 +14,14 @@ public class Game implements ConsoleTricks {
         tuto.step2ZooFantastiqueCreation(this);
         tuto.step3EnclosureCreation(this);
         tuto.step4AddCreature(this);
+
+        loop();
+    }
+
+    public void loop() {
+        while (true) {
+            // TODO
+        }
     }
 
     // Getter et setter

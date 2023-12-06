@@ -76,5 +76,7 @@ public class Tuto {
         }
 
         game.getZoo().getEnclosures().get(0).addCreature(new Dragon(creatureName, sexe, 2,2));
+
+        System.out.println("Votre créature est maintenant créée, voici un résumé de ses informations:\n" + game.getZoo().getEnclosures().get(0).getListCreature().get(0));
     }
 }
