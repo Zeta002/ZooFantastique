@@ -68,10 +68,19 @@ public class Zoo {
      * @param enclosures Un tableau d'enclos à ajouter au zoo.
      */
     @SafeVarargs
-    public final void addEnclosure(Enclosure<? super Creature>... enclosures) {
+    public final void addEnclosures(Enclosure<? super Creature>... enclosures) {
         int totalEnclosure = this.zooEnclosures.size() + enclosures.length;
         if (totalEnclosure <= this.nbMaxEnclosure) {
             this.zooEnclosures.addAll(List.of(enclosures));
+        } else {
+            System.err.println("Pas assez de places disponibles!");
+        }
+    }
+
+    public void addEnclosure(Enclosure<? super Creature> enclosure) {
+        int totalEnclosure = this.zooEnclosures.size() + 1;
+        if (totalEnclosure <= this.nbMaxEnclosure) {
+            this.zooEnclosures.add(enclosure);
         } else {
             System.err.println("Pas assez de places disponibles!");
         }

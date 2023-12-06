@@ -10,17 +10,14 @@ public class Game implements ConsoleTricks {
     public void start() {
         Tuto tuto = new Tuto();
 
-        tuto.step1ZooMasterCreation(this);
-        tuto.step2ZooFantastiqueCreation(this);
-        tuto.step3EnclosureCreation(this);
-        tuto.step4AddCreature(this);
+        tuto.start(this);
 
         loop();
     }
 
     public void loop() {
         while (true) {
-            // TODO
+            MenuZooMaster.displayMainMenu(this);
         }
     }
 
