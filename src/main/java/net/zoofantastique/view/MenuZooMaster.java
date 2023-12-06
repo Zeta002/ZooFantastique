@@ -19,22 +19,28 @@ public class MenuZooMaster implements ConsoleTricks {
     public void menuOptions() {
         Scanner scanner = new Scanner(System.in);
         int option = scanner.nextInt();
-
-        if (option == 1) {
-            // TODO : afficher un enclos
-        } else if (option == 2) {
-            // TODO : faire la maintenance d'un enclos
-        } else if (option == 3) {
-            // TODO : nourrir une créature
-        } else if (option == 4) {
-            // TODO : transférer une créature
-        } else if (option == 5) {
-            clearConsole();
-            // TODO : afficher le menu précédent (MenuZooFantastique)
-        } else {
-            System.out.println("L'option que vous avez choisi n'existe pas, rentrer un chiffre entre 1 et 5.");
-            clearConsole();
-            menuOptions();
+        switch (option) {
+            case 1:
+                // TODO : afficher un enclos
+                break;
+            case 2:
+                // TODO : faire la maintenance d'un enclos
+                break;
+            case 3:
+                // TODO : nourrir une créature
+                break;
+            case 4:
+                // TODO : transférer une créature
+                break;
+            case 5:
+                clearConsole();
+                // TODO : afficher le menu précédent (MenuZooFantastique)
+                break;
+            default:
+                System.out.println("L'option que vous avez choisi n'existe pas, rentrer un chiffre entre 1 et 5.");
+                clearConsole();
+                menuOptions();
+                break;
         }
     }
 }
