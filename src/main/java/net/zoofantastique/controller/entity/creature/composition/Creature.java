@@ -232,7 +232,7 @@ public abstract class Creature extends Alive {
                 .append("\nMalade: ").append(isSick ? "Oui" : "Non")
                 .append("\nFaim: ").append(this.getHungerState());
         if (this instanceof Viviparous) {
-            sb.append("\nDurée de gestation: ").append(Oviparous.incubationDuration).append(" jours");
+            sb.append("\nDurée de gestation: ").append(Viviparous.gestationDuration).append(" jours");
         } else {
             sb.append("\nDurée d'incubation: ").append(Oviparous.incubationDuration).append(" jours");
         }

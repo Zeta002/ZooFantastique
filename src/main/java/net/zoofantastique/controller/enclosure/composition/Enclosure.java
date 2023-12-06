@@ -1,8 +1,8 @@
 package net.zoofantastique.controller.enclosure.composition;
 
+import net.zoofantastique.controller.consumable.composition.Food;
 import net.zoofantastique.controller.enclosure.behavior.Cleanness;
 import net.zoofantastique.controller.entity.creature.composition.Creature;
-import net.zoofantastique.controller.consumable.composition.Food;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -173,10 +173,6 @@ public class Enclosure<T extends Creature> {
 
     public List<T> getListCreature() {
         return listCreature;
-    }
-
-    public void setListCreature(ArrayList<T> listCreature) {
-        this.listCreature = listCreature;
     }
 
     public Cleanness getCleanness() {

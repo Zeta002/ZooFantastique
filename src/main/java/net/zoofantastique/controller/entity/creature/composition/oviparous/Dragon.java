@@ -2,7 +2,6 @@ package net.zoofantastique.controller.entity.creature.composition.oviparous;
 
 import net.zoofantastique.controller.entity.creature.behavior.*;
 import net.zoofantastique.controller.entity.creature.composition.Creature;
-import net.zoofantastique.controller.entity.creature.composition.viviparous.Viviparous;
 import net.zoofantastique.controller.utils.Utils;
 
 import java.util.Random;
