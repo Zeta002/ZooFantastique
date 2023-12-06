@@ -1,8 +1,12 @@
 package net.zoofantastique.controller.entity.creature.composition.viviparous;
 
 import net.zoofantastique.controller.entity.creature.behavior.Gender;
+import net.zoofantastique.controller.entity.creature.behavior.Rank;
 import net.zoofantastique.controller.entity.creature.behavior.Runner;
+import net.zoofantastique.controller.entity.creature.behavior.Pack;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -10,9 +14,88 @@ import java.util.Random;
  * Un lycanthrope est une créature vivipare qui peut courir.
  * Cette classe étend la classe Viviparous et implémente l'interface Runner.
  */
-public class Lycanthrope extends Viviparous implements Runner {
+public class Lycanthrope extends Viviparous implements Runner, Rank {
+
+    private double strength;
+
+    private double dominanceFactor;
+    private double impetuosityFactor;
+    private int rank;
+    private Pack pack;
+    private double level;
+
     public Lycanthrope(String name, Gender sexe, double weight, double height) {
         super(name, sexe, weight, height, "ahouuuuuu");
+
+        this.strength = Math.round((getRandomInRange(1.0, 10.0)));
+        this.impetuosityFactor = Math.round((getRandomInRange(0.5, 1.5)));
+        this.dominanceFactor = 0;
+        this.rank = 1;
+        this.pack = null;
+    }
+
+
+    public void setLevel(){
+        double rankFactor = (1 + (1 - (double) this.rank / (double) greekAlphabet.size()));
+        double ageFactor = getAge().getAgePowerFactor();
+        this.level = Math.round(((this.strength + this.dominanceFactor) * ageFactor * rankFactor) * 100) / 100.0 ;
+    }
+
+    public double getLevel() {
+        return level;
+    }
+
+    public String getRankString() {
+
+        if (rank < greekAlphabet.size()) {
+            return getName() + " est au rang de " + greekAlphabet.get(rank);
+        } else {
+            return "Le rang semble incorrect";
+        }
+    }
+
+    public void setRank(int rank) {
+        if (rank > greekAlphabet.size()) {
+            this.rank = greekAlphabet.size() - 1;
+        } else {
+            this.rank = rank;
+        }
+    }
+
+    public double getStrength() {
+        return strength;
+    }
+
+    public void setStrength(double strength) {
+        this.strength = strength;
+    }
+
+    public double getDominanceFactor() {
+        return dominanceFactor;
+    }
+
+    public void setDominanceFactor(double dominanceFactor) {
+        this.dominanceFactor = dominanceFactor;
+    }
+
+    public double getImpetuosityFactor() {
+        return impetuosityFactor;
+    }
+
+    public void setImpetuosityFactor(double impetuosityFactor) {
+        this.impetuosityFactor = impetuosityFactor;
+    }
+
+    public Pack getPack() {
+        return pack;
+    }
+
+    public void setPack(Pack pack) {
+        this.pack = pack;
+    }
+
+    public void setLevel(double level) {
+        this.level = level;
     }
 
     /**

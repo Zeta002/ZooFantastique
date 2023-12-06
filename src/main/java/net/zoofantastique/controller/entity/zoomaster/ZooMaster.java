@@ -19,28 +19,23 @@ public class ZooMaster extends Alive {
         super(name, sexe, age);
     }
 
+
     public <T extends Creature> void displayEnclosure(Enclosure<T> enclosure){
         System.out.println(enclosure);
     }
-
     public <T extends Creature> void maintenanceEnclosure(Enclosure<T> enclosure){
         enclosure.maintenance();
     }
-
     public <T extends Creature> void feeding(Enclosure<T> enclosure, Food food, T creature){
         enclosure.feedCreature(food, creature);
     }
-
     public <T extends Creature> void tranferTo(Enclosure<T> oldEnclosure, Enclosure<T> newEnclosure, T creature){
         if (oldEnclosure.getListCreature().contains(creature)){
-            newEnclosure.addCreature(creature);
+            newEnclosure.addCreatures(creature);
             oldEnclosure.removeCreature(creature);
         } else {
             System.err.println("La créature n'est pas dans l'enclos!");
         }
     }
-
-
-
 }
 

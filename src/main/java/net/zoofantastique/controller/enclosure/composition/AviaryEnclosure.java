@@ -41,7 +41,7 @@ public class AviaryEnclosure<T extends Creature> extends Enclosure<T> {
      * @param creatures Un tableau de créatures à ajouter à la volière.
      */
     @Override
-    public void addCreature(T... creatures) {
+    public void addCreatures(T... creatures) {
         for (T creature : creatures) {
             // Vérifie si la créature est un Flying
             if (creature instanceof Flying) {

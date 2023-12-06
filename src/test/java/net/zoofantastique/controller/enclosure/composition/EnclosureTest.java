@@ -22,27 +22,27 @@ class EnclosureTest {
 
     @Test
     void whenAddCreatureThenAddsSuccessfully() {
-        enclosure.addCreature(Dragon);
+        enclosure.addCreatures(Dragon);
         assertEquals(enclosure.getListCreature().get(0), Dragon);
     }
 
     @Test
     void whenAddCreatureThenIncrementeNbCreature() {
-        enclosure.addCreature(Dragon);
+        enclosure.addCreatures(Dragon);
         assertEquals(1, enclosure.getNbCreature());
     }
 
     @Test
     void whenAddCreatureExceedsMaxCapacityThenDoesNotAdd() {
         for (int i = 0; i < 11; i++) {
-            enclosure.addCreature(Dragon);
+            enclosure.addCreatures(Dragon);
         }
         assertEquals(10, enclosure.getNbCreature());
     }
 
     @Test
     void whenRemoveCreatureThenDecrementsNbCreature() {
-        enclosure.addCreature(Dragon);
+        enclosure.addCreatures(Dragon);
         enclosure.removeCreature(Dragon);
         assertEquals(0, enclosure.getNbCreature());
     }
@@ -55,7 +55,7 @@ class EnclosureTest {
 
     @Test
     void whenFeedCreatureThenCreatureEats() {
-        enclosure.addCreature(Dragon);
+        enclosure.addCreatures(Dragon);
         Dragon.setHunger(5);
         enclosure.feedCreature(new Beefsteak(), Dragon);
         assertEquals(Hunger.SATISFIED.getState(), Dragon.getHungerState());
@@ -69,7 +69,7 @@ class EnclosureTest {
 
     @Test
     void whenMaintenanceOnNonEmptyEnclosureThenPerformsMaintenance() {
-        enclosure.addCreature(Dragon);
+        enclosure.addCreatures(Dragon);
         enclosure.maintenance();
         assertNotEquals(Cleanness.CORRECT, enclosure.getCleanness());
     }
@@ -136,7 +136,7 @@ class EnclosureTest {
             Faim: Répu
             Durée d'incubation: 0s
             """;
-        enclosure.addCreature(Dragon);
+        enclosure.addCreatures(Dragon);
         assertEquals(expectedString, enclosure.toString());
     }
 }
