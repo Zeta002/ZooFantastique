@@ -102,7 +102,7 @@ class AviaryEnclosureTest {
                 Dort: Non
                 Malade: Non
                 Faim: Répu
-                Durée d'incubation: 0s
+                Durée d'incubation: 30 jours
                 """;
         aviaryEnclosure.addCreatures(phoenix);
         assertEquals(s, aviaryEnclosure.toString());

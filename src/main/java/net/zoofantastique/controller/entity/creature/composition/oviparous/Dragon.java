@@ -1,6 +1,9 @@
 package net.zoofantastique.controller.entity.creature.composition.oviparous;
 
 import net.zoofantastique.controller.entity.creature.behavior.*;
+import net.zoofantastique.controller.entity.creature.composition.Creature;
+import net.zoofantastique.controller.entity.creature.composition.viviparous.Viviparous;
+import net.zoofantastique.controller.utils.Utils;
 
 import java.util.Random;
 
@@ -9,7 +12,7 @@ import java.util.Random;
  * Un dragon est une créature ovipare qui peut voler, courir, nager et renaître.
  * Cette classe étend la classe Oviparous et implémente les interfaces Flying, Runner, Swimmer et Rebirth.
  */
-public class Dragon extends Oviparous implements Flying, Runner, Swimmer, Rebirth {
+public class Dragon extends Creature implements Oviparous, Flying, Runner, Swimmer, Rebirth {
     public Dragon(String name, Gender sexe, double weight, double height) {
         super(name, sexe, weight, height, "graou");
     }
@@ -53,8 +56,8 @@ public class Dragon extends Oviparous implements Flying, Runner, Swimmer, Rebirt
         Random random = new Random();
         Gender babySexe = Gender.MALE;
 
-        double babyWeight = getRandomInRange(30, 60);
-        double babyHeight = getRandomInRange(1, 2);
+        double babyWeight = Utils.getRandomInRange(30, 60);
+        double babyHeight = Utils.getRandomInRange(1, 2);
 
         if (random.nextInt(2) == 1) {
             babySexe = Gender.FEMALE;

@@ -178,7 +178,7 @@ class CreatureTest {
             Dort: Non
             Malade: Non
             Faim: Répu
-            Durée d'incubation: 0s
+            Durée de gestation: 30 jours
             """, c.toString());
     }
 

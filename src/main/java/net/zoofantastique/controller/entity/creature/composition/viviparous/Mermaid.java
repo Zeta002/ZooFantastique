@@ -2,6 +2,8 @@ package net.zoofantastique.controller.entity.creature.composition.viviparous;
 
 import net.zoofantastique.controller.entity.creature.behavior.Gender;
 import net.zoofantastique.controller.entity.creature.behavior.Swimmer;
+import net.zoofantastique.controller.entity.creature.composition.Creature;
+import net.zoofantastique.controller.utils.Utils;
 
 import java.util.Random;
 
@@ -10,7 +12,7 @@ import java.util.Random;
  * Une sirène est une créature vivipare qui peut nager.
  * Cette classe étend la classe Viviparous et implémente l'interface Swimmer.
  */
-public class Mermaid extends Viviparous implements Swimmer {
+public class Mermaid extends Creature implements Viviparous, Swimmer {
     public Mermaid(String name, Gender sexe, double weight, double height) {
         super(name, sexe, weight, height, "*chant mélodieux*");
     }
@@ -33,12 +35,12 @@ public class Mermaid extends Viviparous implements Swimmer {
      * @return Une nouvelle Sirène qui vient de naître.
      */
     @Override
-    public Mermaid giveBirth(){
+    public Mermaid giveBirth() {
         Random random = new Random();
         Gender babySexe = Gender.MALE;
 
-        double babyWeight = getRandomInRange(0.9, 3);
-        double babyHeight = getRandomInRange(0.2, 0.4);
+        double babyWeight = Utils.getRandomInRange(0.9, 3);
+        double babyHeight = Utils.getRandomInRange(0.2, 0.4);
 
         if (random.nextInt(2) == 1) {
             babySexe = Gender.FEMALE;

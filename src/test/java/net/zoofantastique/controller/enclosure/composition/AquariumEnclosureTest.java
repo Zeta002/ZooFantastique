@@ -116,7 +116,7 @@ class AquariumEnclosureTest {
                 Dort: Non
                 Malade: Non
                 Faim: Répu
-                Durée d'incubation: 0s
+                Durée d'incubation: 30 jours
                 """;
         aquariumEnclosure.addCreatures(dragon);
         assertEquals(expectedString, aquariumEnclosure.toString());

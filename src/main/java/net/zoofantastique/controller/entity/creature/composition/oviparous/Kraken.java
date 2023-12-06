@@ -2,6 +2,8 @@ package net.zoofantastique.controller.entity.creature.composition.oviparous;
 
 import net.zoofantastique.controller.entity.creature.behavior.Gender;
 import net.zoofantastique.controller.entity.creature.behavior.Swimmer;
+import net.zoofantastique.controller.entity.creature.composition.Creature;
+import net.zoofantastique.controller.utils.Utils;
 
 import java.util.Random;
 
@@ -10,7 +12,7 @@ import java.util.Random;
  * Un kraken est une créature ovipare qui peut nager.
  * Cette classe étend la classe Oviparous et implémente l'interface Swimmer.
  */
-public class Kraken extends Oviparous implements Swimmer {
+public class Kraken extends Creature implements Oviparous, Swimmer {
     public Kraken(String name, Gender sexe, double weight, double height) {
         super(name, sexe, weight, height, "bulou bulou bulou");
     }
@@ -33,12 +35,12 @@ public class Kraken extends Oviparous implements Swimmer {
      * @return Un nouveau Kraken qui vient d'éclore.
      */
     @Override
-    public Kraken eggsHatch(){
+    public Kraken eggsHatch() {
         Random random = new Random();
         Gender babySexe = Gender.MALE;
 
-        double babyWeight = getRandomInRange(80, 120);
-        double babyHeight = getRandomInRange(4, 6);
+        double babyWeight = Utils.getRandomInRange(80, 120);
+        double babyHeight = Utils.getRandomInRange(4, 6);
 
         if (random.nextInt(2) == 1) {
             babySexe = Gender.FEMALE;

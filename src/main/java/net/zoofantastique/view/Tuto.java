@@ -10,7 +10,7 @@ import net.zoofantastique.controller.zoo.Zoo;
 
 import java.util.Scanner;
 
-public class Tuto <T extends Creature> {
+public class Tuto {
     public void step1ZooMasterCreation(Game game) {
         System.out.println("Bienvenue! Ceci est un tutoriel pour vous aider à démarrer votre premier zoo, suivez les instructions à l'écran pour continuer.");
 
@@ -51,7 +51,7 @@ public class Tuto <T extends Creature> {
         Scanner scanner = new Scanner(System.in);
         String enclosureName = scanner.nextLine();
 
-        Enclosure<T> enclosure = new Enclosure<T>(enclosureName, 20, 5);
+        Enclosure<? super Creature> enclosure = new Enclosure<>(enclosureName, 20, 5);
 
         System.out.println("Votre enclos est maintenant créé, voici un résumé de ses informations:\n" + enclosure);
         game.getZoo().addEnclosure(enclosure);
@@ -75,6 +75,6 @@ public class Tuto <T extends Creature> {
             sexe = Gender.MALE;
         }
 
-        ((Enclosure<Dragon>)game.getZoo().getEnclosures().get(0)).addCreature(new Dragon(creatureName, sexe, 2, 2));
+        game.getZoo().getEnclosures().get(0).addCreature(new Dragon(creatureName, sexe, 2,2));
     }
 }

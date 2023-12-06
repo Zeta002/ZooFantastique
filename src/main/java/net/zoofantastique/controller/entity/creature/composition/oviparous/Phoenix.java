@@ -4,6 +4,8 @@ import net.zoofantastique.controller.entity.creature.behavior.Age;
 import net.zoofantastique.controller.entity.creature.behavior.Flying;
 import net.zoofantastique.controller.entity.creature.behavior.Gender;
 import net.zoofantastique.controller.entity.creature.behavior.Rebirth;
+import net.zoofantastique.controller.entity.creature.composition.Creature;
+import net.zoofantastique.controller.utils.Utils;
 
 import java.util.Random;
 
@@ -12,7 +14,7 @@ import java.util.Random;
  * Un phoenix est une créature ovipare qui peut voler et renaître.
  * Cette classe étend la classe Oviparous et implémente les interfaces Flying et Rebirth.
  */
-public class Phoenix extends Oviparous implements Flying, Rebirth {
+public class Phoenix extends Creature implements Oviparous, Flying, Rebirth {
     public Phoenix(String name, Gender sexe, double weight, double height) {
         super(name, sexe, weight, height, "coua coua");
     }
@@ -68,12 +70,12 @@ public class Phoenix extends Oviparous implements Flying, Rebirth {
      * @return Un nouveau Phoenix qui vient d'éclore.
      */
     @Override
-    public Phoenix eggsHatch(){
+    public Phoenix eggsHatch() {
         Random random = new Random();
         Gender babySexe = Gender.MALE;
 
-        double babyWeight = getRandomInRange(50, 80);
-        double babyHeight = getRandomInRange(2, 5);
+        double babyWeight = Utils.getRandomInRange(50, 80);
+        double babyHeight = Utils.getRandomInRange(2, 5);
 
         if (random.nextInt(2) == 1) {
             babySexe = Gender.FEMALE;

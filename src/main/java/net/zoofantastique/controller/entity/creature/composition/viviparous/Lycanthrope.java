@@ -4,6 +4,8 @@ import net.zoofantastique.controller.entity.creature.behavior.Gender;
 import net.zoofantastique.controller.entity.creature.behavior.Rank;
 import net.zoofantastique.controller.entity.creature.behavior.Runner;
 import net.zoofantastique.controller.entity.creature.behavior.Pack;
+import net.zoofantastique.controller.entity.creature.composition.Creature;
+import net.zoofantastique.controller.utils.Utils;
 
 import java.util.Arrays;
 import java.util.List;
@@ -14,7 +16,7 @@ import java.util.Random;
  * Un lycanthrope est une créature vivipare qui peut courir.
  * Cette classe étend la classe Viviparous et implémente l'interface Runner.
  */
-public class Lycanthrope extends Viviparous implements Runner, Rank {
+public class Lycanthrope extends Creature implements Viviparous, Runner, Rank {
 
     private double strength;
 
@@ -27,8 +29,8 @@ public class Lycanthrope extends Viviparous implements Runner, Rank {
     public Lycanthrope(String name, Gender sexe, double weight, double height) {
         super(name, sexe, weight, height, "ahouuuuuu");
 
-        this.strength = Math.round((getRandomInRange(1.0, 10.0)));
-        this.impetuosityFactor = Math.round((getRandomInRange(0.5, 1.5)));
+        this.strength = Math.round((Utils.getRandomInRange(1.0, 10.0)));
+        this.impetuosityFactor = Math.round((Utils.getRandomInRange(0.5, 1.5)));
         this.dominanceFactor = 0;
         this.rank = 1;
         this.pack = null;
@@ -120,8 +122,8 @@ public class Lycanthrope extends Viviparous implements Runner, Rank {
         Random random = new Random();
         Gender babySexe = Gender.MALE;
 
-        double babyWeight = getRandomInRange(1, 4);
-        double babyHeight = getRandomInRange(0.2, 0.5);
+        double babyWeight = Utils.getRandomInRange(1, 4);
+        double babyHeight = Utils.getRandomInRange(0.2, 0.5);
 
         if (random.nextInt(2) == 1) {
             babySexe = Gender.FEMALE;

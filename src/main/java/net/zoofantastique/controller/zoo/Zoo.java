@@ -7,7 +7,7 @@ import net.zoofantastique.controller.entity.zoomaster.ZooMaster;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Zoo <T extends Creature> {
+public class Zoo {
 
     // Attributs
     // Nom du zoo
@@ -17,7 +17,7 @@ public class Zoo <T extends Creature> {
     // Nb maximum d'enclos du zoo
     private int nbMaxEnclosure;
     // ArrayList d'enclos du zoo
-    private ArrayList<Enclosure<T>> zooEnclosures;
+    private List<Enclosure<? super Creature>> zooEnclosures;
 
 
     public Zoo(String zooName, ZooMaster zooMaster){
@@ -37,7 +37,7 @@ public class Zoo <T extends Creature> {
      */
     public int giveNbCreatures(){
         int total = 0;
-        for (Enclosure<T> enclosure : zooEnclosures){
+        for (Enclosure<? super Creature> enclosure : zooEnclosures){
             total += enclosure.getNbCreature();
         }
         return total;
@@ -50,7 +50,7 @@ public class Zoo <T extends Creature> {
      */
     public void displayCreatures() {
         if (!zooEnclosures.isEmpty()){
-            for(Enclosure<T> enclosure : zooEnclosures) {
+            for(Enclosure<? super Creature> enclosure : zooEnclosures) {
                 System.out.println(enclosure.showCreatures());
             }
         }
@@ -68,7 +68,7 @@ public class Zoo <T extends Creature> {
      * @param enclosures Un tableau d'enclos à ajouter au zoo.
      */
     @SafeVarargs
-    public final void addEnclosure(Enclosure<T>... enclosures) {
+    public final void addEnclosure(Enclosure<? super Creature>... enclosures) {
         int totalEnclosure = this.zooEnclosures.size() + enclosures.length;
         if (totalEnclosure <= this.nbMaxEnclosure) {
             this.zooEnclosures.addAll(List.of(enclosures));
@@ -86,5 +86,5 @@ public class Zoo <T extends Creature> {
     public int getNbMaxEnclosure(){ return this.nbMaxEnclosure; }
     public void setNbMaxEnclosure(int nbMaxEnclosure){ this.nbMaxEnclosure = nbMaxEnclosure; }
 
-    public ArrayList<Enclosure<T>> getEnclosures(){ return this.zooEnclosures; }
+    public List<Enclosure<? super Creature>> getEnclosures(){ return this.zooEnclosures; }
 }

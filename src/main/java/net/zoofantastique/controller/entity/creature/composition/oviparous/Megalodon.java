@@ -2,6 +2,8 @@ package net.zoofantastique.controller.entity.creature.composition.oviparous;
 
 import net.zoofantastique.controller.entity.creature.behavior.Gender;
 import net.zoofantastique.controller.entity.creature.behavior.Swimmer;
+import net.zoofantastique.controller.entity.creature.composition.Creature;
+import net.zoofantastique.controller.utils.Utils;
 
 import java.util.Random;
 
@@ -10,7 +12,7 @@ import java.util.Random;
  * Un megalodon est une créature ovipare qui peut nager.
  * Cette classe étend la classe Oviparous et implémente l'interface Swimmer.
  */
-public class Megalodon extends Oviparous implements Swimmer {
+public class Megalodon extends Creature implements Oviparous, Swimmer {
     public Megalodon(String name, Gender sexe, double weight, double height) {
         super(name, sexe, weight, height, "crounch crounch");
     }
@@ -33,12 +35,12 @@ public class Megalodon extends Oviparous implements Swimmer {
      * @return Un nouveau Megalodon qui vient d'éclore.
      */
     @Override
-    public Megalodon eggsHatch(){
+    public Megalodon eggsHatch() {
         Random random = new Random();
         Gender babySexe = Gender.MALE;
 
-        double babyWeight = getRandomInRange(90, 130);
-        double babyHeight = getRandomInRange(5, 7);
+        double babyWeight = Utils.getRandomInRange(90, 130);
+        double babyHeight = Utils.getRandomInRange(5, 7);
 
         if (random.nextInt(2) == 1) {
             babySexe = Gender.FEMALE;

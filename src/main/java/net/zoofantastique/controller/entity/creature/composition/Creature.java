@@ -5,6 +5,8 @@ import net.zoofantastique.controller.entity.Alive;
 import net.zoofantastique.controller.entity.creature.behavior.Age;
 import net.zoofantastique.controller.entity.creature.behavior.Gender;
 import net.zoofantastique.controller.entity.creature.behavior.Hunger;
+import net.zoofantastique.controller.entity.creature.composition.oviparous.Oviparous;
+import net.zoofantastique.controller.entity.creature.composition.viviparous.Viviparous;
 
 /**
  * Classe abstraite Creature qui représente une créature dans un zoo.
@@ -138,6 +140,27 @@ public abstract class Creature extends Alive {
         return null;
     }
 
+    /**
+     * Méthode pour initier une grossesse chez une créature vivipare.
+     * Cette méthode vérifie d'abord si la fécondation est possible avec le partenaire fourni.
+     * Si la fécondation est possible, la créature femelle est mise en état de grossesse et la méthode giveBirth est appelée pour faire naître le bébé.
+     * Si la fécondation n'est pas possible, un message est affiché et la méthode renvoie null.
+     *
+     * @param partenaire La créature avec laquelle vérifier la possibilité de fécondation.
+     */
+    public void initiatePregnancy(Creature partenaire) {
+        Creature female = fertilizable(partenaire);
+        if (female == null) {
+            // TODO changé le mot en fonction de vivipare ovipare
+            System.err.println("L'accouplement semble impossible.");
+        } else {
+            System.out.println("Un nouvel arrivant semble être prévu pour bientôt!");
+            female.setPregnant(true);
+            // TODO appelle de la méthode giveBirtg ou eggsHatch
+        }
+        // TODO temps d'incubation thread
+    }
+
     // Getter et Setter
 
     public double getWeight() {
@@ -208,6 +231,12 @@ public abstract class Creature extends Alive {
                 .append("\nDort: ").append(isSleeping ? "Oui" : "Non")
                 .append("\nMalade: ").append(isSick ? "Oui" : "Non")
                 .append("\nFaim: ").append(this.getHungerState());
+        if (this instanceof Viviparous) {
+            sb.append("\nDurée de gestation: ").append(Oviparous.incubationDuration).append(" jours");
+        } else {
+            sb.append("\nDurée d'incubation: ").append(Oviparous.incubationDuration).append(" jours");
+        }
+        sb.append("\n");
         return sb.toString();
     }
 }
