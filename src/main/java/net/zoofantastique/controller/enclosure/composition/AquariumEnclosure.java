@@ -46,7 +46,7 @@ public class AquariumEnclosure<T extends Creature> extends Enclosure<T> {
      * @param creatures Un tableau de créatures à ajouter à l'aquarium.
      */
     @Override
-    public void addCreature(T... creatures) {
+    public void addCreatures(T... creatures) {
         for (T creature : creatures) {
             // Vérifie si la créature est un Swimmer
             if (creature instanceof Swimmer) {

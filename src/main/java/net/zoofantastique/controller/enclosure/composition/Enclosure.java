@@ -46,6 +46,15 @@ public class Enclosure<T extends Creature> {
         this.cleanness = Cleanness.CORRECT;
     }
 
+    public void addCreature(T creature) {
+        if (nbCreature < max) {
+            this.listCreature.add(creature);
+            nbCreature += 1;
+        } else {
+            System.err.println("Pas assez de places disponibles!");
+        }
+    }
+
     /**
      * Cette méthode est utilisée pour ajouter des créatures à l'enclos.
      * Elle accepte un tableau de créatures et vérifie si l'enclos a la capacité d'accueillir toutes les créatures.
@@ -54,7 +63,7 @@ public class Enclosure<T extends Creature> {
      *
      * @param creatures Un tableau de créatures à ajouter à l'enclos.
      */
-    public void addCreature(T... creatures) {
+    public void addCreatures(T... creatures) {
         int totalCreatures = nbCreature + creatures.length;
         if (totalCreatures <= max) {
             this.listCreature.addAll(List.of(creatures));

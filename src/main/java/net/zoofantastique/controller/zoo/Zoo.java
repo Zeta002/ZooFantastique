@@ -15,15 +15,15 @@ public class Zoo <T extends Creature> {
     // Maître du zoo
     private final ZooMaster zooMaster;
     // Nb maximum d'enclos du zoo
-    private final int nbMaxEnclosure;
+    private int nbMaxEnclosure;
     // ArrayList d'enclos du zoo
     private ArrayList<Enclosure<T>> zooEnclosures;
 
 
-    public Zoo(String zooName, ZooMaster zooMaster, int nbMaxEnclosure){
+    public Zoo(String zooName, ZooMaster zooMaster){
         this.zooName = zooName;
         this.zooMaster = zooMaster;
-        this.nbMaxEnclosure = nbMaxEnclosure;
+        this.nbMaxEnclosure = 5;
 
         this.zooEnclosures = new ArrayList<>();
     }
@@ -49,7 +49,7 @@ public class Zoo <T extends Creature> {
      * sinon elle affiche un message disant que le zoo est vide
      */
     public void displayCreatures() {
-        if (zooEnclosures.size() != 0){
+        if (!zooEnclosures.isEmpty()){
             for(Enclosure<T> enclosure : zooEnclosures) {
                 System.out.println(enclosure.showCreatures());
             }
@@ -84,6 +84,7 @@ public class Zoo <T extends Creature> {
     public ZooMaster getZooMaster(){ return this.zooMaster; }
 
     public int getNbMaxEnclosure(){ return this.nbMaxEnclosure; }
+    public void setNbMaxEnclosure(int nbMaxEnclosure){ this.nbMaxEnclosure = nbMaxEnclosure; }
 
     public ArrayList<Enclosure<T>> getEnclosures(){ return this.zooEnclosures; }
 }

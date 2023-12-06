@@ -20,20 +20,20 @@ class AviaryEnclosureTest {
 
     @Test
     void whenAddCreatureThenAddsSuccessfully() {
-        aviaryEnclosure.addCreature(phoenix);
+        aviaryEnclosure.addCreatures(phoenix);
         assertEquals(aviaryEnclosure.getListCreature().get(0), phoenix);
     }
 
     @Test
     void whenAddCreatureThenIncrementeNbCreature() {
-        aviaryEnclosure.addCreature(phoenix);
+        aviaryEnclosure.addCreatures(phoenix);
         assertEquals(1, aviaryEnclosure.getNbCreature());
     }
 
     @Test
     void whenAddCreatureExceedsMaxCapacityThenDoesNotAdd() {
         for (int i = 0; i < 11; i++) {
-            aviaryEnclosure.addCreature(phoenix);
+            aviaryEnclosure.addCreatures(phoenix);
         }
         assertEquals(10, aviaryEnclosure.getNbCreature());
     }
@@ -46,7 +46,7 @@ class AviaryEnclosureTest {
 
     @Test
     void whenMaintenanceOnNonEmptyAviaryThenPerformsMaintenance() {
-        aviaryEnclosure.addCreature(phoenix);
+        aviaryEnclosure.addCreatures(phoenix);
         aviaryEnclosure.maintenance();
         assertEquals(Cleanness.GOOD, aviaryEnclosure.getCleanness());
     }
@@ -104,7 +104,7 @@ class AviaryEnclosureTest {
                 Faim: Répu
                 Durée d'incubation: 0s
                 """;
-        aviaryEnclosure.addCreature(phoenix);
+        aviaryEnclosure.addCreatures(phoenix);
         assertEquals(s, aviaryEnclosure.toString());
     }
 }

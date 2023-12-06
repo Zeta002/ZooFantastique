@@ -31,7 +31,7 @@ public class ZooMaster extends Alive {
     }
     public <T extends Creature> void tranferTo(Enclosure<T> oldEnclosure, Enclosure<T> newEnclosure, T creature){
         if (oldEnclosure.getListCreature().contains(creature)){
-            newEnclosure.addCreature(creature);
+            newEnclosure.addCreatures(creature);
             oldEnclosure.removeCreature(creature);
         } else {
             System.err.println("La créature n'est pas dans l'enclos!");

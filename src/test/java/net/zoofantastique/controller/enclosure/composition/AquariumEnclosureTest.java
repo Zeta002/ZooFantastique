@@ -21,20 +21,20 @@ class AquariumEnclosureTest {
 
     @Test
     void whenAddSwimmerCreatureThenAddsSuccessfully() {
-        aquariumEnclosure.addCreature(dragon);
+        aquariumEnclosure.addCreatures(dragon);
         assertEquals(aquariumEnclosure.getListCreature().get(0), dragon);
     }
 
     @Test
     void whenAddSwimmerCreatureThenIncrementeNbCreature() {
-        aquariumEnclosure.addCreature(dragon);
+        aquariumEnclosure.addCreatures(dragon);
         assertEquals(1, aquariumEnclosure.getNbCreature());
     }
 
     @Test
     void whenAddCreatureExceedsMaxCapacityThenDoesNotAdd() {
         for (int i = 0; i < 11; i++) {
-            aquariumEnclosure.addCreature(dragon);
+            aquariumEnclosure.addCreatures(dragon);
         }
         assertEquals(10, aquariumEnclosure.getNbCreature());
     }
@@ -47,7 +47,7 @@ class AquariumEnclosureTest {
 
     @Test
     void whenMaintenanceOnNonEmptyAquariumThenPerformsMaintenance() {
-        aquariumEnclosure.addCreature(dragon);
+        aquariumEnclosure.addCreatures(dragon);
         aquariumEnclosure.maintenance();
         assertNotEquals(Salinity.BRACKISHWATER, aquariumEnclosure.getBasinSalinity());
     }
@@ -118,7 +118,7 @@ class AquariumEnclosureTest {
                 Faim: Répu
                 Durée d'incubation: 0s
                 """;
-        aquariumEnclosure.addCreature(dragon);
+        aquariumEnclosure.addCreatures(dragon);
         assertEquals(expectedString, aquariumEnclosure.toString());
     }
 }
