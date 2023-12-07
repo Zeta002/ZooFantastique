@@ -8,11 +8,29 @@ import net.zoofantastique.controller.entity.creature.composition.oviparous.Drago
 import net.zoofantastique.controller.entity.zoomaster.ZooMaster;
 import net.zoofantastique.controller.zoo.Zoo;
 import net.zoofantastique.view.Game;
+import net.zoofantastique.view.Terminal;
 
 public class ScratchMain {
     public static void main(String[] args) {
-        Game game = new Game();
-        game.start();
+        System.out.println("start");
+        Terminal terminal = new Terminal();
+        Terminal terminal2 = new Terminal();
+
+        terminal.send("Hello");
+        terminal2.send("Hello 2");
+
+        System.out.println("end");
+
+        try {
+            // Pause pour 5 secondes
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+
+//        Game game = new Game();
+//        game.start();
 //        Tuto tuto = new Tuto();
 
 //        tuto.step1ZooMasterCreation();

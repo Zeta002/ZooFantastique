@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public interface ConsoleTricks {
 
-    public static Scanner scanner = new Scanner(System.in);
+    Scanner scanner = new Scanner(System.in);
 
     static void clearConsole() {
         System.out.println("\n".repeat(20));

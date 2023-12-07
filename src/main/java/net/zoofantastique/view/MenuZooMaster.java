@@ -21,11 +21,10 @@ public class MenuZooMaster {
         String option = scanner.nextLine();
         switch (option) {
             case "1":
-                // TODO : afficher un enclos
                 showEnclosure(game);
                 break;
             case "2":
-                // TODO : faire la maintenance d'un enclos
+                doMaintenance(game);
                 break;
             case "3":
                 // TODO : nourrir une créature
@@ -62,7 +61,8 @@ public class MenuZooMaster {
         Scanner scanner = new Scanner(System.in);
         int choice = scanner.nextInt();
         if (choice < game.getZoo().getEnclosures().size()) {
-            System.out.println(game.getZoo().getEnclosures().get(choice).showCreatures());
+            System.out.println("Enclos " + boldText(game.getZoo().getEnclosures().get(choice).getName()) + ":");
+            System.out.println(game.getZoo().getEnclosures().get(choice));
             ConsoleTricks.waitEnter("retourner au menu",true);
         } else {
             System.out.println("L'enclos que vous avez choisi n'existe pas, veuillez choisir un enclos existant.");
@@ -70,4 +70,23 @@ public class MenuZooMaster {
             showEnclosure(game);
         }
     }
+
+    public static void doMaintenance(Game game) {
+        System.out.println("Voici la liste des enclos de " + boldText(game.getZoo().getZooName()) + ":");
+        for (int i = 0; i < game.getZoo().getEnclosures().size(); i++) {
+            System.out.println(i + " - " + boldText(game.getZoo().getEnclosures().get(i).getName()));
+        }
+        System.out.println("Quel enclos voulez-vous maintenir?");
+        Scanner scanner = new Scanner(System.in);
+        int choice = scanner.nextInt();
+        if (choice < game.getZoo().getEnclosures().size()) {
+            game.getZoo().getEnclosures().get(choice).maintenance();
+            ConsoleTricks.waitEnter("retourner au menu",true);
+        } else {
+            System.out.println("L'enclos que vous avez choisi n'existe pas, veuillez choisir un enclos existant.");
+            ConsoleTricks.waitEnter(true);
+            doMaintenance(game);
+        }
+    }
+
 }

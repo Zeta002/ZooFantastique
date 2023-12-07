@@ -1,5 +1,6 @@
 package net.zoofantastique.view;
 
+import net.zoofantastique.controller.enclosure.behavior.Cleanness;
 import net.zoofantastique.controller.enclosure.composition.Enclosure;
 import net.zoofantastique.controller.entity.creature.behavior.Age;
 import net.zoofantastique.controller.entity.creature.behavior.Gender;
@@ -57,6 +58,8 @@ public class Tuto {
         String enclosureName = scan();
 
         Enclosure<? super Creature> enclosure = new Enclosure<>(enclosureName, 20, 5);
+
+        enclosure.setCleanness(Cleanness.BAD);
 
         System.out.println("Votre enclos est maintenant créé, voici un résumé de ses informations:\n" + enclosure);
         game.getZoo().addEnclosures(enclosure);
