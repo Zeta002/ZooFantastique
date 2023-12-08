@@ -12,12 +12,14 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 class EnclosureTest {
     private Enclosure<Dragon> enclosure;
-    private Dragon Dragon;
+    private Dragon dragon;
 
     @BeforeEach
     void setUp() {
         enclosure = new Enclosure<>("Test Enclosure", 100.0, 10);
-        Dragon = new Dragon("Test Dragon", Gender.FEMALE, 100.0, 2.0);
+        dragon = new Dragon("Test Dragon", Gender.FEMALE);
+        dragon.setHeight(2.0);
+        dragon.setWeight(100.0);
     }
 
     @Test
@@ -27,43 +29,43 @@ class EnclosureTest {
 
     @Test
     void whenAddCreatureThenAddsSuccessfully() {
-        enclosure.addCreature(Dragon);
-        assertEquals(enclosure.getListCreature().get(0), Dragon);
+        enclosure.addCreature(dragon);
+        assertEquals(enclosure.getListCreature().get(0), dragon);
     }
 
     @Test
     void whenAddCreatureThenIncrementeNbCreature() {
-        enclosure.addCreature(Dragon);
+        enclosure.addCreature(dragon);
         assertEquals(1, enclosure.getNbCreature());
     }
 
     @Test
     void whenAddCreatureExceedsMaxCapacityThenDoesNotAdd() {
         for (int i = 0; i < 11; i++) {
-            enclosure.addCreature(Dragon);
+            enclosure.addCreature(dragon);
         }
         assertEquals(10, enclosure.getNbCreature());
     }
 
     @Test
     void whenRemoveCreatureThenDecrementsNbCreature() {
-        enclosure.addCreature(Dragon);
-        enclosure.removeCreature(Dragon);
+        enclosure.addCreature(dragon);
+        enclosure.removeCreature(dragon);
         assertEquals(0, enclosure.getNbCreature());
     }
 
     @Test
     void whenRemoveCreatureNotInEnclosureThenDoesNotDecrementNbCreature() {
-        enclosure.removeCreature(Dragon);
+        enclosure.removeCreature(dragon);
         assertEquals(0, enclosure.getNbCreature());
     }
 
     @Test
     void whenFeedCreatureThenCreatureEats() {
-        enclosure.addCreature(Dragon);
-        Dragon.setHunger(5);
-        enclosure.feedCreature(new Beefsteak(), Dragon);
-        assertEquals(Hunger.SATISFIED.getState(), Dragon.getHungerState());
+        enclosure.addCreature(dragon);
+        dragon.setHunger(5);
+        enclosure.feedCreature(new Beefsteak(), dragon);
+        assertEquals(Hunger.SATISFIED.getState(), dragon.getHungerState());
     }
 
     @Test
@@ -74,7 +76,7 @@ class EnclosureTest {
 
     @Test
     void whenMaintenanceOnNonEmptyEnclosureThenPerformsMaintenance() {
-        enclosure.addCreature(Dragon);
+        enclosure.addCreature(dragon);
         enclosure.maintenance();
         assertNotEquals(Cleanness.CORRECT, enclosure.getCleanness());
     }
@@ -141,7 +143,7 @@ class EnclosureTest {
             Faim: Répu
             Durée d'incubation: 30 jours
             """;
-        enclosure.addCreature(Dragon);
+        enclosure.addCreature(dragon);
         assertEquals(expectedString, enclosure.toString());
     }
 }

@@ -14,11 +14,13 @@ import java.util.Set;
 import static org.junit.jupiter.api.Assertions.*;
 
 class UnicornTest {
-    private Unicorn Unicorn;
+    private Unicorn unicorn;
 
     @BeforeEach
     void setUp() {
-        Unicorn = new Unicorn("Test Unicorn", Gender.FEMALE, 10.0, 1.0);
+        unicorn = new Unicorn("Test Unicorn", Gender.FEMALE);
+        unicorn.setHeight(1.0);
+        unicorn.setWeight(10.0);
     }
 
     @AfterEach
@@ -30,13 +32,13 @@ class UnicornTest {
     void runPrintsExpectedOutput() {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
-        Unicorn.run();
+        unicorn.running();
         assertEquals("Test Unicorn *cours*", outContent.toString().trim());
     }
 
     @Test
     void eggsHatchReturnsBabyKraken() {
-        Unicorn baby = Unicorn.giveBirth();
+        Unicorn baby = unicorn.giveBirth();
         assertNotNull(baby);
         assertEquals(Age.BABY, baby.getAge());
     }
@@ -45,27 +47,9 @@ class UnicornTest {
     void eggsHatchReturnsBabyWithRandomGender() {
         Set<Gender> genders = new HashSet<>();
         for (int i = 0; i < 100; i++) {
-            genders.add(Unicorn.giveBirth().getSexe());
+            genders.add(unicorn.giveBirth().getSexe());
         }
         assertTrue(genders.contains(Gender.MALE));
         assertTrue(genders.contains(Gender.FEMALE));
-    }
-
-    @Test
-    void eggsHatchReturnsBabyWithRandomWeight() {
-        Set<Double> weights = new HashSet<>();
-        for (int i = 0; i < 100; i++) {
-            weights.add(Unicorn.giveBirth().getWeight());
-        }
-        assertTrue(weights.stream().anyMatch(weight -> weight > 10 && weight < 20));
-    }
-
-    @Test
-    void eggsHatchReturnsBabyWithRandomHeight() {
-        Set<Double> heights = new HashSet<>();
-        for (int i = 0; i < 100; i++) {
-            heights.add(Unicorn.giveBirth().getHeight());
-        }
-        assertTrue(heights.stream().anyMatch(height -> height > 0.2 && height < 0.4));
     }
 }

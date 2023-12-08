@@ -2,7 +2,7 @@ package net.zoofantastique.controller.entity.creature.composition.viviparous;
 
 import net.zoofantastique.controller.entity.creature.behavior.Gender;
 import net.zoofantastique.controller.entity.creature.composition.Creature;
-import net.zoofantastique.controller.utils.Utils;
+import net.zoofantastique.utils.Utils;
 
 import java.util.Random;
 
@@ -12,8 +12,10 @@ import java.util.Random;
  * Cette classe étend la classe Viviparous.
  */
 public class Nymph extends Creature implements Viviparous {
-    public Nymph(String name, Gender sexe, double weight, double height) {
-        super(name, sexe, weight, height, "ahahah");
+    public Nymph(String name, Gender sexe) {
+        super(name, sexe, "ahahah");
+        setAgeScale(60);
+        setDimHunger(55);
     }
 
     /**
@@ -29,13 +31,13 @@ public class Nymph extends Creature implements Viviparous {
         Random random = new Random();
         Gender babySexe = Gender.MALE;
 
-        double babyWeight = Utils.getRandomInRange(1, 4);
-        double babyHeight = Utils.getRandomInRange(0.7, 1.5);
+        double babyWeight = Utils.getRandomDoubleInRange(1, 4);
+        double babyHeight = Utils.getRandomDoubleInRange(0.7, 1.5);
 
         if (random.nextInt(2) == 1) {
             babySexe = Gender.FEMALE;
         }
 
-        return new Nymph(getName(), babySexe, babyWeight, babyHeight);
+        return new Nymph(getName(), babySexe);
     }
 }

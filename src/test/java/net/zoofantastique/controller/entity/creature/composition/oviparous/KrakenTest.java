@@ -14,11 +14,13 @@ import java.util.Set;
 import static org.junit.jupiter.api.Assertions.*;
 
 class KrakenTest {
-    private Kraken Kraken;
+    private Kraken kraken;
 
     @BeforeEach
     void setUp() {
-        Kraken = new Kraken("Test Kraken", Gender.FEMALE, 10.0, 1.0);
+        kraken = new Kraken("Test Kraken", Gender.FEMALE);
+        kraken.setHeight(1.0);
+        kraken.setWeight(10.0);
     }
 
     @AfterEach
@@ -30,13 +32,13 @@ class KrakenTest {
     void swimPrintsExpectedOutput() {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
-        Kraken.swim();
+        kraken.swim();
         assertEquals("Test Kraken *nage*", outContent.toString().trim());
     }
 
     @Test
     void eggsHatchReturnsBabyKraken() {
-        Kraken baby = Kraken.eggsHatch();
+        Kraken baby = kraken.eggsHatch();
         assertNotNull(baby);
         assertEquals(Age.BABY, baby.getAge());
     }
@@ -45,27 +47,9 @@ class KrakenTest {
     void eggsHatchReturnsBabyWithRandomGender() {
         Set<Gender> genders = new HashSet<>();
         for (int i = 0; i < 100; i++) {
-            genders.add(Kraken.eggsHatch().getSexe());
+            genders.add(kraken.eggsHatch().getSexe());
         }
         assertTrue(genders.contains(Gender.MALE));
         assertTrue(genders.contains(Gender.FEMALE));
-    }
-
-    @Test
-    void eggsHatchReturnsBabyWithRandomWeight() {
-        Set<Double> weights = new HashSet<>();
-        for (int i = 0; i < 100; i++) {
-            weights.add(Kraken.eggsHatch().getWeight());
-        }
-        assertTrue(weights.stream().anyMatch(weight -> weight > 80 && weight < 120));
-    }
-
-    @Test
-    void eggsHatchReturnsBabyWithRandomHeight() {
-        Set<Double> heights = new HashSet<>();
-        for (int i = 0; i < 100; i++) {
-            heights.add(Kraken.eggsHatch().getHeight());
-        }
-        assertTrue(heights.stream().anyMatch(height -> height > 4 && height < 6));
     }
 }

@@ -17,7 +17,9 @@ class AquariumEnclosureTest {
     @BeforeEach
     void setUp() {
         aquariumEnclosure = new AquariumEnclosure<>("Test Aquarium", 100.0, 50.0, 10);
-        dragon = new Dragon("Test Dragon", Gender.MALE, 100.0, 2.0);
+        dragon = new Dragon("Test Dragon", Gender.MALE);
+        dragon.setHeight(2.0);
+        dragon.setWeight(100.0);
     }
 
     @Test

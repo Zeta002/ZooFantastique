@@ -41,13 +41,6 @@ public abstract class Alive {
     public void setAge(Age age) {
         this.age = age;
     }
-    /**
-     * Méthode pour faire vieillir une créature.
-     * Cette méthode met à jour l'âge de la créature à l'âge suivant dans l'énumération Age.
-     */
-    public void aging() {
-        age = age.nextAge();
-    }
 
     public String getName() {
         return this.name;
