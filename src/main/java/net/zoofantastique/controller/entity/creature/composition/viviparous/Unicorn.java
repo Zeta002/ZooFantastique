@@ -15,8 +15,9 @@ import java.util.Random;
 public class Unicorn extends Creature implements Viviparous, Runner {
     public Unicorn(String name, Gender sexe) {
         super(name, sexe, "hihihiha");
-        setAgeScale(64);
-        setDimHunger(24);
+
+        updateAndRestart(64, 24);
+
     }
 
     /**

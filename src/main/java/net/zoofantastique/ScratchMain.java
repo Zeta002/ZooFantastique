@@ -1,13 +1,5 @@
 package net.zoofantastique;
 
-import net.zoofantastique.controller.entity.creature.behavior.CoupleAlpha;
-import net.zoofantastique.controller.entity.creature.behavior.Gender;
-import net.zoofantastique.controller.entity.creature.behavior.Pack;
-import net.zoofantastique.controller.entity.creature.behavior.Pair;
-import net.zoofantastique.controller.entity.creature.composition.Creature;
-import net.zoofantastique.controller.entity.creature.composition.oviparous.Dragon;
-import net.zoofantastique.controller.entity.creature.composition.viviparous.Lycanthrope;
-import net.zoofantastique.simulation.Simulation;
 import net.zoofantastique.view.Game;
 
 public class ScratchMain {

@@ -30,14 +30,14 @@ public class Lycanthrope extends Creature implements Viviparous, Runner, Rank {
     public Lycanthrope(String name, Gender sexe) {
         super(name, sexe, "ahouuuuuu");
 
-        this.strength = Math.round((Utils.getRandomInRange(1.0, 10.0)));
-        this.impetuosityFactor = Math.round((Utils.getRandomInRange(0.5, 1.5)));
+        this.strength = Math.round((Utils.getRandomDoubleInRange(1.0, 10.0)));
+        this.impetuosityFactor = Math.round((Utils.getRandomDoubleInRange(0.5, 1.5)));
         this.dominanceFactor = 0;
         this.rank = 0;
         this.pack = null;
 
-        setAgeScale(70);
-        setDimHunger(34);
+        updateAndRestart(70, 34);
+
     }
 
     // Getter et setter

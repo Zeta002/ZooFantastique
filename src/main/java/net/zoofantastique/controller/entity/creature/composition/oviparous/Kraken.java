@@ -22,8 +22,7 @@ public class Kraken extends Creature implements Oviparous, Swimmer {
         setMinWeight(new ArrayList<>(List.of(50.0, 800.0, 2500., 5000., 5500.)));
         setMaxWeight(new ArrayList<>(List.of(120.0, 2000.0, 4000., 8500., 9500.)));
 
-        setAgeScale(60);
-        setDimHunger(30);
+        updateAndRestart(60, 30);
 
         calcSizeAndWeight();
     }

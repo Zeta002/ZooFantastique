@@ -32,7 +32,6 @@ public class MenuZooMaster {
         System.out.println("6 - Ajouter un enclos");
         System.out.println("7 - Ajouter une créature");
         System.out.println("8 - Quitter le jeu");
-        System.out.println("9 - setTimeSpeed");
 
         String option = scan();
         switch (option) {
@@ -49,15 +48,6 @@ public class MenuZooMaster {
                 System.out.println("D'ailleurs, vos données ont bien " + boldText("pas") + " été sauvegardées.");
                 ConsoleTricks.waitEnter(true);
                 System.exit(0);
-            }
-            case "9" -> {
-                System.out.println("Par combien voulez vous multiplier le temps?");
-                try {
-                    Utils.timeControle = Integer.parseInt(scanner.nextLine());
-                } catch (NumberFormatException e) {
-                    System.out.println("Veuillez entrer un nombre valide.");
-                }
-                displayMainMenu(game);
             }
             default -> {
                 System.out.println("L'option que vous avez choisi n'existe pas, rentrer un chiffre entre 1 et .");

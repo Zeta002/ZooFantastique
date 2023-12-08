@@ -4,8 +4,6 @@ import java.util.Random;
 
 public class Utils {
 
-    public static int timeControle = 1;
-
     public static double getRandomDoubleInRange(double min, double max) {
         Random random = new Random();
         return min + (max - min) * random.nextDouble();

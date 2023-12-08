@@ -16,8 +16,8 @@ public class Mermaid extends Creature implements Viviparous, Swimmer {
     public Mermaid(String name, Gender sexe) {
         super(name, sexe, "*chant mélodieux*");
 
-        setAgeScale(40);
-        setDimHunger(28);
+        updateAndRestart(40, 28);
+
     }
 
     /**
