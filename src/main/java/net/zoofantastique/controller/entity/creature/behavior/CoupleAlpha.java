@@ -4,7 +4,10 @@ import net.zoofantastique.controller.entity.creature.composition.viviparous.Lyca
 
 import static net.zoofantastique.view.ConsoleTricks.boldText;
 
-// TODO : doc
+/**
+ * Classe CoupleAlpha qui représente un couple alpha dans une meute.
+ * Un couple alpha est composé d'un lycanthrope mâle alpha et d'un lycanthrope femelle alpha.
+ */
 public class CoupleAlpha {
     // Attributs
     private Lycanthrope first;
@@ -38,6 +41,13 @@ public class CoupleAlpha {
         this.second = second;
     }
 
+    /**
+     * Cette méthode est utilisée pour obtenir une représentation sous forme de chaîne du couple alpha.
+     * Elle renvoie une chaîne qui contient le nom du premier lycanthrope (mâle alpha), son rang, le mot "et",
+     * le nom du second lycanthrope (femelle alpha) et son rang. Les noms des lycanthropes sont affichés en gras.
+     *
+     * @return Une représentation sous forme de chaîne du couple alpha.
+     */
     @Override
     public String toString() {
         return boldText(first.getName()) + "(" + first.getRankString() + ")" + " et "

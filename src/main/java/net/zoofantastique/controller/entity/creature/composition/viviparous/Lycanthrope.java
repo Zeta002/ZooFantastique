@@ -48,6 +48,14 @@ public class Lycanthrope extends Creature implements Viviparous, Runner, Rank {
     public void setLevel(double level) {
         this.level = level;
     }
+    /**
+     * Cette méthode est utilisée pour calculer le niveau du lycanthrope.
+     * Le niveau est calculé en fonction du rang, de la force et du facteur de dominance du lycanthrope, ainsi que de son âge.
+     * Le facteur de rang est calculé en prenant 1 plus (1 moins le rang du lycanthrope divisé par la taille de l'alphabet grec).
+     * Le facteur d'âge est obtenu en appelant la méthode getAgePowerFactor de l'objet Age du lycanthrope.
+     * Le niveau est ensuite calculé en multipliant la somme de la force et du facteur de dominance par le facteur d'âge et le facteur de rang.
+     * Le résultat est arrondi à deux décimales.
+     */
     public void calcLevel() {
         double rankFactor = (1 + (1 - (double) this.rank / (double) greekAlphabet.size()));
         double ageFactor = getAge().getAgePowerFactor();
@@ -109,7 +117,13 @@ public class Lycanthrope extends Creature implements Viviparous, Runner, Rank {
         System.out.println(super.getName() + " *cours*");
     }
 
-    // TODO : doc
+    /**
+     * Cette méthode est utilisée pour obtenir une représentation sous forme de chaîne des statistiques du lycanthrope.
+     * Elle renvoie une chaîne qui contient le nom du lycanthrope, sa force, son facteur d'impétuosité, son facteur de dominance, son rang et son niveau.
+     * Chaque statistique est affichée sur une nouvelle ligne.
+     *
+     * @return Une représentation sous forme de chaîne des statistiques du lycanthrope.
+     */
     public String showStats() {
         return "<-/ " + boldText(getName()) + " \\->\n" +
                 "\nForce : " + this.strength +
