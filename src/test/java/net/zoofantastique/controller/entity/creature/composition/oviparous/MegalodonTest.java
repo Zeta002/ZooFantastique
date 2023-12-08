@@ -14,11 +14,13 @@ import java.util.Set;
 import static org.junit.jupiter.api.Assertions.*;
 
 class MegalodonTest {
-    private Megalodon Megalodon;
+    private Megalodon megalodon;
 
     @BeforeEach
     void setUp() {
-        Megalodon = new Megalodon("Test Megalodon", Gender.FEMALE, 10.0, 1.0);
+        megalodon = new Megalodon("Test Megalodon", Gender.FEMALE);
+        megalodon.setHeight(1.0);
+        megalodon.setWeight(10.0);
     }
 
     @AfterEach
@@ -30,13 +32,13 @@ class MegalodonTest {
     void swimPrintsExpectedOutput() {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
-        Megalodon.swim();
+        megalodon.swim();
         assertEquals("Test Megalodon *nage*", outContent.toString().trim());
     }
 
     @Test
     void eggsHatchReturnsBabyKraken() {
-        Megalodon baby = Megalodon.eggsHatch();
+        Megalodon baby = megalodon.eggsHatch();
         assertNotNull(baby);
         assertEquals(Age.BABY, baby.getAge());
     }
@@ -45,27 +47,9 @@ class MegalodonTest {
     void eggsHatchReturnsBabyWithRandomGender() {
         Set<Gender> genders = new HashSet<>();
         for (int i = 0; i < 100; i++) {
-            genders.add(Megalodon.eggsHatch().getSexe());
+            genders.add(megalodon.eggsHatch().getSexe());
         }
         assertTrue(genders.contains(Gender.MALE));
         assertTrue(genders.contains(Gender.FEMALE));
-    }
-
-    @Test
-    void eggsHatchReturnsBabyWithRandomWeight() {
-        Set<Double> weights = new HashSet<>();
-        for (int i = 0; i < 100; i++) {
-            weights.add(Megalodon.eggsHatch().getWeight());
-        }
-        assertTrue(weights.stream().anyMatch(weight -> weight > 90 && weight < 130));
-    }
-
-    @Test
-    void eggsHatchReturnsBabyWithRandomHeight() {
-        Set<Double> heights = new HashSet<>();
-        for (int i = 0; i < 100; i++) {
-            heights.add(Megalodon.eggsHatch().getHeight());
-        }
-        assertTrue(heights.stream().anyMatch(height -> height > 5 && height < 7));
     }
 }

@@ -2,9 +2,12 @@ package net.zoofantastique.controller.entity.creature.composition.oviparous;
 
 import net.zoofantastique.controller.entity.creature.behavior.*;
 import net.zoofantastique.controller.entity.creature.composition.Creature;
-import net.zoofantastique.controller.utils.Utils;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
+
+import static net.zoofantastique.utils.Utils.getRandomDoubleInRange;
 
 /**
  * Classe Dragon qui représente un dragon dans un zoo.
@@ -12,9 +15,18 @@ import java.util.Random;
  * Cette classe étend la classe Creature et implémente les interfaces Oviparous, Flying, Runner, Swimmer et Rebirth.
  */
 public class Dragon extends Creature implements Oviparous, Flying, Runner, Swimmer, Rebirth {
-    // Constructeur
-    public Dragon(String name, Gender sexe, double weight, double height) {
-        super(name, sexe, weight, height, "graou");
+
+    public Dragon(String name, Gender sexe) {
+        super(name, sexe, "graou");
+        setMinHeight(new ArrayList<>(List.of(0.3, 1.2, 4.5, 5.5, 5.8)));
+        setMaxHeight(new ArrayList<>(List.of(1.2, 4.5, 5.5, 5.8, 6.5)));
+        setMinWeight(new ArrayList<>(List.of(60.0, 500.0, 1500.0, 2500.0, 3500.0)));
+        setMaxWeight(new ArrayList<>(List.of(120.0, 1000.0, 2200.0, 3000.0, 4000.0)));
+
+        setAgeScale(120);
+        setDimHunger(50);
+
+        calcSizeAndWeight();
     }
 
     @Override
@@ -23,7 +35,7 @@ public class Dragon extends Creature implements Oviparous, Flying, Runner, Swimm
     }
 
     @Override
-    public void run() {
+    public void running() {
         System.out.println(super.getName() + " *cours*");
     }
 
@@ -45,9 +57,17 @@ public class Dragon extends Creature implements Oviparous, Flying, Runner, Swimm
     }
 
     @Override
+    public void haveToGoToTheHell() {
+        setHeight(getRandomDoubleInRange(0.3, 1.2));
+        setWeight(getRandomDoubleInRange(30, 120));
+        rebirth();
+    }
+
+    @Override
     public void rebirth() {
         if (getAge() == Age.DEAD) {
             setAge(Age.BABY);
+            calcSizeAndWeight();
         }
     }
 
@@ -57,13 +77,10 @@ public class Dragon extends Creature implements Oviparous, Flying, Runner, Swimm
         Random random = new Random();
         Gender babySexe = Gender.MALE;
 
-        double babyWeight = Utils.getRandomInRange(30, 60);
-        double babyHeight = Utils.getRandomInRange(1, 2);
-
         if (random.nextInt(2) == 1) {
             babySexe = Gender.FEMALE;
         }
 
-        return new Dragon(getName(), babySexe, babyWeight, babyHeight);
+        return new Dragon(getName(), babySexe);
     }
 }

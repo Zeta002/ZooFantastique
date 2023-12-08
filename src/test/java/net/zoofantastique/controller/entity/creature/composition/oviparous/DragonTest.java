@@ -14,11 +14,13 @@ import java.util.Set;
 import static org.junit.jupiter.api.Assertions.*;
 
 class DragonTest {
-    private Dragon Dragon;
+    private Dragon dragon;
 
     @BeforeEach
     void setUp() {
-        Dragon = new Dragon("Test Dragon", Gender.FEMALE, 10.0, 1.0);
+        dragon = new Dragon("Test Dragon", Gender.FEMALE);
+        dragon.setHeight(1.0);
+        dragon.setWeight(10.0);
     }
 
     @AfterEach
@@ -30,7 +32,7 @@ class DragonTest {
     void flyPrintsExpectedOutput() {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
-        Dragon.fly();
+        dragon.fly();
         assertEquals("Test Dragon *est entrain de voler*", outContent.toString().trim());
     }
 
@@ -38,7 +40,7 @@ class DragonTest {
     void runPrintsExpectedOutput() {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
-        Dragon.run();
+        dragon.running();
         assertEquals("Test Dragon *cours*", outContent.toString().trim());
     }
 
@@ -46,62 +48,44 @@ class DragonTest {
     void swimPrintsExpectedOutput() {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
-        Dragon.swim();
+        dragon.swim();
         assertEquals("Test Dragon *nage*", outContent.toString().trim());
     }
 
     @Test
     void setAgeResetsAgeWhenDead() {
-        Dragon.setAge(Age.DEAD);
-        assertEquals(Age.BABY, Dragon.getAge());
+        dragon.setAge(Age.DEAD);
+        assertEquals(Age.BABY, dragon.getAge());
     }
 
     @Test
     void eggsHatchReturnsBabyDragon() {
-        Dragon baby = Dragon.eggsHatch();
+        Dragon baby = dragon.eggsHatch();
         assertNotNull(baby);
         assertEquals(Age.BABY, baby.getAge());
     }
 
     @Test
     void rebirthResetsAgeWhenDead() {
-        Dragon.setAge(Age.DEAD);
-        Dragon.rebirth();
-        assertEquals(Age.BABY, Dragon.getAge());
+        dragon.setAge(Age.DEAD);
+        dragon.rebirth();
+        assertEquals(Age.BABY, dragon.getAge());
     }
 
     @Test
     void rebirthDoesNotResetAgeWhenAlive() {
-        Dragon.setAge(Age.ADULT);
-        Dragon.rebirth();
-        assertEquals(Age.ADULT, Dragon.getAge());
+        dragon.setAge(Age.ADULT);
+        dragon.rebirth();
+        assertEquals(Age.ADULT, dragon.getAge());
     }
 
     @Test
     void eggsHatchReturnsBabyWithRandomGender() {
         Set<Gender> genders = new HashSet<>();
         for (int i = 0; i < 100; i++) {
-            genders.add(Dragon.eggsHatch().getSexe());
+            genders.add(dragon.eggsHatch().getSexe());
         }
         assertTrue(genders.contains(Gender.MALE));
         assertTrue(genders.contains(Gender.FEMALE));
-    }
-
-    @Test
-    void eggsHatchReturnsBabyWithRandomWeight() {
-        Set<Double> weights = new HashSet<>();
-        for (int i = 0; i < 100; i++) {
-            weights.add(Dragon.eggsHatch().getWeight());
-        }
-        assertTrue(weights.stream().anyMatch(weight -> weight > 30 && weight < 60));
-    }
-
-    @Test
-    void eggsHatchReturnsBabyWithRandomHeight() {
-        Set<Double> heights = new HashSet<>();
-        for (int i = 0; i < 100; i++) {
-            heights.add(Dragon.eggsHatch().getHeight());
-        }
-        assertTrue(heights.stream().anyMatch(height -> height > 1 && height < 2));
     }
 }

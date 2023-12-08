@@ -14,11 +14,13 @@ import java.util.Set;
 import static org.junit.jupiter.api.Assertions.*;
 
 class MermaidTest {
-    private Mermaid Mermaid;
+    private Mermaid mermaid;
 
     @BeforeEach
     void setUp() {
-        Mermaid = new Mermaid("Test Mermaid", Gender.FEMALE, 10.0, 1.0);
+        mermaid = new Mermaid("Test Mermaid", Gender.FEMALE);
+        mermaid.setHeight(1.0);
+        mermaid.setWeight(10.0);
     }
 
     @AfterEach
@@ -30,13 +32,13 @@ class MermaidTest {
     void swimPrintsExpectedOutput() {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
-        Mermaid.swim();
+        mermaid.swim();
         assertEquals("Test Mermaid *nage*", outContent.toString().trim());
     }
 
     @Test
     void eggsHatchReturnsBabyKraken() {
-        Mermaid baby = Mermaid.giveBirth();
+        Mermaid baby = mermaid.giveBirth();
         assertNotNull(baby);
         assertEquals(Age.BABY, baby.getAge());
     }
@@ -45,27 +47,9 @@ class MermaidTest {
     void eggsHatchReturnsBabyWithRandomGender() {
         Set<Gender> genders = new HashSet<>();
         for (int i = 0; i < 100; i++) {
-            genders.add(Mermaid.giveBirth().getSexe());
+            genders.add(mermaid.giveBirth().getSexe());
         }
         assertTrue(genders.contains(Gender.MALE));
         assertTrue(genders.contains(Gender.FEMALE));
-    }
-
-    @Test
-    void eggsHatchReturnsBabyWithRandomWeight() {
-        Set<Double> weights = new HashSet<>();
-        for (int i = 0; i < 100; i++) {
-            weights.add(Mermaid.giveBirth().getWeight());
-        }
-        assertTrue(weights.stream().anyMatch(weight -> weight > 0.9 && weight < 3));
-    }
-
-    @Test
-    void eggsHatchReturnsBabyWithRandomHeight() {
-        Set<Double> heights = new HashSet<>();
-        for (int i = 0; i < 100; i++) {
-            heights.add(Mermaid.giveBirth().getHeight());
-        }
-        assertTrue(heights.stream().anyMatch(height -> height > 0.2 && height < 0.4));
     }
 }

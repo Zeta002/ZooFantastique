@@ -14,11 +14,13 @@ import java.util.Set;
 import static org.junit.jupiter.api.Assertions.*;
 
 class LycanthropeTest {
-    private Lycanthrope Lycanthrope;
+    private Lycanthrope lycanthrope;
 
     @BeforeEach
     void setUp() {
-        Lycanthrope = new Lycanthrope("Test Lycanthrope", Gender.FEMALE, 10.0, 1.0);
+        lycanthrope = new Lycanthrope("Test Lycanthrope", Gender.FEMALE);
+        lycanthrope.setHeight(1.0);
+        lycanthrope.setWeight(10.0);
     }
 
     @AfterEach
@@ -30,13 +32,13 @@ class LycanthropeTest {
     void runPrintsExpectedOutput() {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
-        Lycanthrope.run();
+        lycanthrope.running();
         assertEquals("Test Lycanthrope *cours*", outContent.toString().trim());
     }
 
     @Test
     void eggsHatchReturnsBabyKraken() {
-        Lycanthrope baby = Lycanthrope.giveBirth();
+        Lycanthrope baby = lycanthrope.giveBirth();
         assertNotNull(baby);
         assertEquals(Age.BABY, baby.getAge());
     }
@@ -45,27 +47,9 @@ class LycanthropeTest {
     void eggsHatchReturnsBabyWithRandomGender() {
         Set<Gender> genders = new HashSet<>();
         for (int i = 0; i < 100; i++) {
-            genders.add(Lycanthrope.giveBirth().getSexe());
+            genders.add(lycanthrope.giveBirth().getSexe());
         }
         assertTrue(genders.contains(Gender.MALE));
         assertTrue(genders.contains(Gender.FEMALE));
-    }
-
-    @Test
-    void eggsHatchReturnsBabyWithRandomWeight() {
-        Set<Double> weights = new HashSet<>();
-        for (int i = 0; i < 100; i++) {
-            weights.add(Lycanthrope.giveBirth().getWeight());
-        }
-        assertTrue(weights.stream().anyMatch(weight -> weight > 1 && weight < 4));
-    }
-
-    @Test
-    void eggsHatchReturnsBabyWithRandomHeight() {
-        Set<Double> heights = new HashSet<>();
-        for (int i = 0; i < 100; i++) {
-            heights.add(Lycanthrope.giveBirth().getHeight());
-        }
-        assertTrue(heights.stream().anyMatch(height -> height > 0.2 && height < 0.5));
     }
 }

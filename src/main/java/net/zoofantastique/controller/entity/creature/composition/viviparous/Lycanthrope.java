@@ -5,7 +5,7 @@ import net.zoofantastique.controller.entity.creature.behavior.Rank;
 import net.zoofantastique.controller.entity.creature.behavior.Runner;
 import net.zoofantastique.controller.entity.creature.behavior.Pack;
 import net.zoofantastique.controller.entity.creature.composition.Creature;
-import net.zoofantastique.controller.utils.Utils;
+import net.zoofantastique.utils.Utils;
 
 import java.util.Random;
 
@@ -25,14 +25,19 @@ public class Lycanthrope extends Creature implements Viviparous, Runner, Rank {
     private Pack pack; // Meute
     private double level; // Niveau
 
-    // Constructeur
-    public Lycanthrope(String name, Gender sexe, double weight, double height) {
-        super(name, sexe, weight, height, "ahouuuuuu");
+
+
+    public Lycanthrope(String name, Gender sexe) {
+        super(name, sexe, "ahouuuuuu");
+
         this.strength = Math.round((Utils.getRandomInRange(1.0, 10.0)));
         this.impetuosityFactor = Math.round((Utils.getRandomInRange(0.5, 1.5)));
         this.dominanceFactor = 0;
         this.rank = 0;
         this.pack = null;
+
+        setAgeScale(70);
+        setDimHunger(34);
     }
 
     // Getter et setter
@@ -100,7 +105,7 @@ public class Lycanthrope extends Creature implements Viviparous, Runner, Rank {
      * Affiche un message indiquant que le Lycanthrope court, en précisant le nom du Lycanthrope.
      */
     @Override
-    public void run() {
+    public void running() {
         System.out.println(super.getName() + " *cours*");
     }
 
@@ -127,13 +132,10 @@ public class Lycanthrope extends Creature implements Viviparous, Runner, Rank {
         Random random = new Random();
         Gender babySexe = Gender.MALE;
 
-        double babyWeight = Utils.getRandomInRange(1, 4);
-        double babyHeight = Utils.getRandomInRange(0.2, 0.5);
-
         if (random.nextInt(2) == 1) {
             babySexe = Gender.FEMALE;
         }
 
-        return new Lycanthrope(getName(), babySexe, babyWeight, babyHeight);
+        return new Lycanthrope(getName(), babySexe);
     }
 }

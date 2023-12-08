@@ -8,6 +8,7 @@ import net.zoofantastique.controller.entity.creature.behavior.Gender;
 import net.zoofantastique.controller.entity.creature.composition.Creature;
 import net.zoofantastique.controller.entity.creature.composition.oviparous.*;
 import net.zoofantastique.controller.entity.creature.composition.viviparous.*;
+import net.zoofantastique.utils.Utils;
 
 import java.util.Scanner;
 
@@ -26,30 +27,42 @@ public class MenuZooMaster {
         System.out.println("1 - Afficher un enclos");
         System.out.println("2 - Faire la maintenance d'un enclos");
         System.out.println("3 - Nourrir une créature");
-        System.out.println("4 - Transférer une créature");
-        System.out.println("5 - Ajouter un enclos");
-        System.out.println("6 - Ajouter une créature");
-        System.out.println("7 - Quitter le jeu");
+        System.out.println("4 - soigner une créature");
+        System.out.println("5 - Transférer une créature");
+        System.out.println("6 - Ajouter un enclos");
+        System.out.println("7 - Ajouter une créature");
+        System.out.println("8 - Quitter le jeu");
+        System.out.println("9 - setTimeSpeed");
 
-        Scanner scanner = new Scanner(System.in);
-        String option = scanner.nextLine();
+        String option = scan();
         switch (option) {
             case "1" -> showEnclosure(game);
             case "2" -> doMaintenance(game);
             case "3" -> feedCreature(game);
-            case "4" -> transferCreature(game);
-            case "5" -> addEnclosure(game);
-            case "6" -> addCreature(game);
-            case "7" -> {
+            case "4" -> healCreature(game);
+            case "5" -> transferCreature(game);
+            case "6" -> addEnclosure(game);
+            case "7" -> addCreature(game);
+            case "8" -> {
                 System.out.println("Merci d'avoir joué à Idle Zoo Fantastique Tycoon!");
                 System.out.println("À bientôt!");
                 System.out.println("D'ailleurs, vos données ont bien " + boldText("pas") + " été sauvegardées.");
                 ConsoleTricks.waitEnter(true);
                 System.exit(0);
             }
+            case "9" -> {
+                System.out.println("Par combien voulez vous multiplier le temps?");
+                try {
+                    Utils.timeControle = Integer.parseInt(scanner.nextLine());
+                } catch (NumberFormatException e) {
+                    System.out.println("Veuillez entrer un nombre valide.");
+                }
+                displayMainMenu(game);
+            }
             default -> {
                 System.out.println("L'option que vous avez choisi n'existe pas, rentrer un chiffre entre 1 et .");
                 ConsoleTricks.waitEnter(true);
+                displayMainMenu(game);
             }
         }
     }
@@ -71,7 +84,9 @@ public class MenuZooMaster {
         } while (choice < 0 || choice >= game.getZoo().getEnclosures().size());
         System.out.println("Enclos " + boldText(game.getZoo().getEnclosures().get(choice).getName()) + ":");
         System.out.println(game.getZoo().getEnclosures().get(choice));
-        ConsoleTricks.waitEnter("retourner au menu", true);
+
+        waitEnter("retourner au menu", true);
+        displayMainMenu(game);
     }
 
     // TODO : doc
@@ -90,7 +105,9 @@ public class MenuZooMaster {
             }
         } while (choice < 0 || choice >= game.getZoo().getEnclosures().size());
         game.getZoo().getEnclosures().get(choice).maintenance();
-        ConsoleTricks.waitEnter("retourner au menu", true);
+
+        waitEnter("retourner au menu", true);
+        displayMainMenu(game);
     }
 
     // TODO : doc
@@ -110,10 +127,7 @@ public class MenuZooMaster {
         } while (choice < 0 || choice >= game.getZoo().getEnclosures().size());
         int choice2 = -1;
         do {
-            System.out.println("Voici la liste des créatures de l'enclos " + boldText(game.getZoo().getEnclosures().get(choice).getName()) + ":");
-            for (int i = 0; i < game.getZoo().getEnclosures().get(choice).getListCreature().size(); i++) {
-                System.out.println(i + " - " + boldText(game.getZoo().getEnclosures().get(choice).getListCreature().get(i).getName()));
-            }
+            displayEnclosureCreature(game, choice);
             System.out.println("Quelle créature voulez-vous nourrir?");
             try {
                 choice2 = Integer.parseInt(scanner.nextLine());
@@ -121,8 +135,44 @@ public class MenuZooMaster {
                 System.out.println("Veuillez entrer un nombre valide.");
             }
         } while (choice2 < 0 || choice2 >= game.getZoo().getEnclosures().get(choice).getListCreature().size());
-        game.getZoo().getEnclosures().get(choice).getListCreature().get(choice2).eat(new Beefsteak());
-        ConsoleTricks.waitEnter("retourner au menu", true);
+        game.getZoo().getEnclosures().get(choice).getListCreature().get(choice2).feed(new Beefsteak());
+
+        waitEnter("retourner au menu", true);
+        displayMainMenu(game);
+    }
+
+    public static void healCreature(Game game) {
+        int choice = -1;
+        do {
+            System.out.println("Voici la liste des enclos de " + boldText(game.getZoo().getZooName()) + ":");
+            for (int i = 0; i < game.getZoo().getEnclosures().size(); i++) {
+                System.out.println(i + " - " + boldText(game.getZoo().getEnclosures().get(i).getName()));
+            }
+            System.out.println("Dans quel enclos voulez-vous soigner une créature?");
+            try {
+                choice = Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Veuillez entrer un nombre valide.");
+            }
+        } while (choice < 0 || choice >= game.getZoo().getEnclosures().size());
+        int choice2 = -1;
+        do {
+            displayEnclosureCreature(game, choice);
+            System.out.println("Quelle créature voulez-vous soigner?");
+            try {
+                choice2 = Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Veuillez entrer un nombre valide.");
+            }
+        } while (choice2 < 0 || choice2 >= game.getZoo().getEnclosures().get(choice).getListCreature().size());
+
+        if (game.getZoo().getEnclosures().get(choice).getListCreature().get(choice2).isSick())
+            game.getZoo().getEnclosures().get(choice).getListCreature().get(choice2).heal();
+        else
+            System.out.println("La créature n'est pas malade.");
+
+        waitEnter("retourner au menu", true);
+        displayMainMenu(game);
     }
 
     // TODO : doc
@@ -134,8 +184,8 @@ public class MenuZooMaster {
 
         if (game.getZoo().getEnclosures().size() < 2) {
             System.out.println("Vous n'avez pas assez d'enclos pour transférer une créature, veuillez en créer un autre.");
-            ConsoleTricks.waitEnter(true);
-            return;
+            waitEnter(true);
+            displayMainMenu(game);
         }
         // Select the source enclosure
         do {
@@ -176,6 +226,9 @@ public class MenuZooMaster {
         game.getZoo().getEnclosures().get(destinationEnclosureIndex).getListCreature().add(creature);
 
         System.out.println("La créature " + creature.getName() + " a été transférée de l'enclos " + game.getZoo().getEnclosures().get(sourceEnclosureIndex).getName() + " à l'enclos " + game.getZoo().getEnclosures().get(destinationEnclosureIndex).getName() + ".");
+
+        waitEnter(true);
+        displayMainMenu(game);
     }
 
     // TODO : doc
@@ -204,6 +257,7 @@ public class MenuZooMaster {
         }
 
         waitEnter(true);
+        displayMainMenu(game);
     }
 
     // TODO : doc
@@ -242,18 +296,15 @@ public class MenuZooMaster {
 
         Creature creature;
         switch (creatureType) {
-            case 1 -> creature = new Lycanthrope(creatureName, sexe, 2, 2);
-            case 2 -> creature = new Mermaid(creatureName, sexe, 2, 2);
-            case 3 -> creature = new Nymph(creatureName, sexe, 2, 2);
-            case 4 -> creature = new Unicorn(creatureName, sexe, 2, 2);
-            case 5 -> creature = new Dragon(creatureName, sexe, 2, 2);
-            case 6 -> creature = new Kraken(creatureName, sexe, 2, 2);
-            case 7 -> creature = new Megalodon(creatureName, sexe, 2, 2);
-            case 8 -> creature = new Phoenix(creatureName, sexe, 2, 2);
-            default -> {
-                System.out.println("Le type de créature que vous avez choisi n'existe pas, veuillez choisir un type de créature existant.");
-                return;
-            }
+            case 1 -> creature = new Lycanthrope(creatureName, sexe);
+            case 2 -> creature = new Mermaid(creatureName, sexe);
+            case 3 -> creature = new Nymph(creatureName, sexe);
+            case 4 -> creature = new Unicorn(creatureName, sexe);
+            case 5 -> creature = new Dragon(creatureName, sexe);
+            case 6 -> creature = new Kraken(creatureName, sexe);
+            case 7 -> creature = new Megalodon(creatureName, sexe);
+            case 8 -> creature = new Phoenix(creatureName, sexe);
+            default -> creature = null;
         }
 
         int enclosureIndex = -1;
@@ -263,6 +314,16 @@ public class MenuZooMaster {
         } while (enclosureIndex < 0 || enclosureIndex >= game.getZoo().getEnclosures().size());
 
         game.getZoo().getEnclosures().get(enclosureIndex).addCreature(creature);
+
+        waitEnter(true);
+        displayMainMenu(game);
+    }
+
+    private static void displayEnclosureCreature(Game game, int choice) {
+        System.out.println("Voici la liste des créatures de l'enclos " + boldText(game.getZoo().getEnclosures().get(choice).getName()) + ":");
+        for (int i = 0; i < game.getZoo().getEnclosures().get(choice).getListCreature().size(); i++) {
+            System.out.println(i + " - " + boldText(game.getZoo().getEnclosures().get(choice).getListCreature().get(i).getName()));
+        }
     }
 
     // TODO : doc

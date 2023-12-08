@@ -3,8 +3,10 @@ package net.zoofantastique.controller.entity.creature.composition.oviparous;
 import net.zoofantastique.controller.entity.creature.behavior.Gender;
 import net.zoofantastique.controller.entity.creature.behavior.Swimmer;
 import net.zoofantastique.controller.entity.creature.composition.Creature;
-import net.zoofantastique.controller.utils.Utils;
+import net.zoofantastique.utils.Utils;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -13,9 +15,17 @@ import java.util.Random;
  * Cette classe étend la classe Creature et implémente l'interface Oviparous, Swimmer.
  */
 public class Megalodon extends Creature implements Oviparous, Swimmer {
-    // Constructeur
-    public Megalodon(String name, Gender sexe, double weight, double height) {
-        super(name, sexe, weight, height, "crounch crounch");
+    public Megalodon(String name, Gender sexe) {
+        super(name, sexe, "crounch crounch");
+        setMinHeight(new ArrayList<>(List.of(0.5, 4.5, 8.5, 15.0, 17.0)));
+        setMaxHeight(new ArrayList<>(List.of(1.0, 7.5, 13.0, 21.0, 22.0)));
+        setMinWeight(new ArrayList<>(List.of(50.0, 800.0, 2500., 5000., 5500.)));
+        setMaxWeight(new ArrayList<>(List.of(120.0, 2000.0, 4000., 8500., 9500.)));
+
+        setAgeScale(60);
+        setDimHunger(40);
+
+        calcSizeAndWeight();
     }
 
     /**
@@ -40,13 +50,10 @@ public class Megalodon extends Creature implements Oviparous, Swimmer {
         Random random = new Random();
         Gender babySexe = Gender.MALE;
 
-        double babyWeight = Utils.getRandomInRange(90, 130);
-        double babyHeight = Utils.getRandomInRange(5, 7);
-
         if (random.nextInt(2) == 1) {
             babySexe = Gender.FEMALE;
         }
 
-        return new Megalodon(getName(), babySexe, babyWeight, babyHeight);
+        return new Megalodon(getName(), babySexe);
     }
 }

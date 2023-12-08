@@ -5,8 +5,10 @@ import net.zoofantastique.controller.entity.creature.behavior.Flying;
 import net.zoofantastique.controller.entity.creature.behavior.Gender;
 import net.zoofantastique.controller.entity.creature.behavior.Rebirth;
 import net.zoofantastique.controller.entity.creature.composition.Creature;
-import net.zoofantastique.controller.utils.Utils;
+import net.zoofantastique.utils.Utils;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -15,9 +17,17 @@ import java.util.Random;
  * Cette classe étend la classe Creature et implémente les interfaces Oviparous, Flying et Rebirth.
  */
 public class Phoenix extends Creature implements Oviparous, Flying, Rebirth {
-    // Constructeur
-    public Phoenix(String name, Gender sexe, double weight, double height) {
-        super(name, sexe, weight, height, "coua coua");
+    public Phoenix(String name, Gender sexe) {
+        super(name, sexe, "coua coua");
+        setMinHeight(new ArrayList<>(List.of(0.1, 0.3, 0.7, 1.2, 1.4)));
+        setMaxHeight(new ArrayList<>(List.of(0.2, 0.5, 1.0, 1.5, 1.7)));
+        setMinWeight(new ArrayList<>(List.of(2.0, 5.0, 9.0, 11.0, 13.0)));
+        setMaxWeight(new ArrayList<>(List.of(3.5, 8.0, 13.0, 15.0, 16.0)));
+
+        setAgeScale(200);
+        setDimHunger(90);
+
+        calcSizeAndWeight();
     }
 
     /**
@@ -75,13 +85,10 @@ public class Phoenix extends Creature implements Oviparous, Flying, Rebirth {
         Random random = new Random();
         Gender babySexe = Gender.MALE;
 
-        double babyWeight = Utils.getRandomInRange(50, 80);
-        double babyHeight = Utils.getRandomInRange(2, 5);
-
         if (random.nextInt(2) == 1) {
             babySexe = Gender.FEMALE;
         }
 
-        return new Phoenix(getName(), babySexe, babyWeight, babyHeight);
+        return new Phoenix(getName(), babySexe);
     }
 }

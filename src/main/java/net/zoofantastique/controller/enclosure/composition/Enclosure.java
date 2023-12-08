@@ -78,7 +78,7 @@ public class Enclosure<T extends Creature> {
     public void feedCreature(Food food, T creature) {
         if (listCreature.contains(creature)) {
             if (!creature.getHungerState().equals(SATISFIED.getState())) {
-                creature.eat(food);
+                creature.feed(food);
             } else {
                 System.err.println("La créature:\n" + creature + "\nn'a pas faim!");
             }

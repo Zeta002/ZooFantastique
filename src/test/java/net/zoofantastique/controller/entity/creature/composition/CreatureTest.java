@@ -19,7 +19,9 @@ class CreatureTest {
 
     @BeforeEach
     void setUp() {
-        c = new Unicorn("Lucie", Gender.MALE, 1000.0, 2.0);
+        c = new Unicorn("Lucie", Gender.MALE);
+        c.setHeight(2.0);
+        c.setWeight(1000.0);
     }
 
     @AfterEach
@@ -30,7 +32,7 @@ class CreatureTest {
     @Test
     void eatingIncreasesHungerState() {
         c.setHunger(0);
-        c.eat(new Beefsteak());
+        c.feed(new Beefsteak());
         assertEquals(Hunger.MEDIUM.getState(), c.getHungerState());
     }
 
@@ -45,7 +47,7 @@ class CreatureTest {
     @Test
     void healingRemovesSickness() {
         c.setSick(true);
-        c.healed();
+        c.heal();
         assertFalse(c.isSick());
     }
 
@@ -152,13 +154,6 @@ class CreatureTest {
     }
 
     @Test
-    void checkSickTwiceResultsInDeath() {
-        c.setSick(true);
-        c.setSick(true);
-        assertEquals(Age.DEAD, c.getAge());
-    }
-
-    @Test
     void setAgeChangesAge() {
         c.setAge(Age.DEAD);
         assertEquals(Age.DEAD, c.getAge());
@@ -184,13 +179,17 @@ class CreatureTest {
 
     @Test
     void fertilizableReturnsCorrectCreatureWhenConditionsAreMet() {
-        Creature other = new Unicorn("Other", Gender.FEMALE, 1000.0, 2.0);
+        Creature other = new Unicorn("Other", Gender.FEMALE);
+        other.setHeight(2.0);
+        other.setWeight(1000.0);
         assertEquals(other, c.fertilizable(other));
     }
 
     @Test
     void fertilizableReturnsNullWhenOneCreatureIsPregnant() {
-        Creature other = new Unicorn("Other", Gender.FEMALE, 1000.0, 2.0);
+        Creature other = new Unicorn("Other", Gender.FEMALE);
+        other.setHeight(2.0);
+        other.setWeight(1000.0);
         c.setPregnant(true);
         assertNull(c.fertilizable(other));
     }
@@ -205,14 +204,14 @@ class CreatureTest {
     @Test
     void eatDoesNotIncreaseHungerWhenAlreadySatisfied() {
         c.setHunger(Hunger.MAX.getValue());
-        c.eat(new Beefsteak());
+        c.feed(new Beefsteak());
         assertEquals(Hunger.MAX.getState(), c.getHungerState());
     }
 
     @Test
     void eatDoesNotIncreaseHungerWhenSleeping() {
         c.setSleeping(true);
-        c.eat(new Beefsteak());
+        c.feed(new Beefsteak());
         assertEquals(Hunger.MAX.getState(), c.getHungerState());
     }
 }

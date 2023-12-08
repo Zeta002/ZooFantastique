@@ -15,7 +15,9 @@ class AviaryEnclosureTest {
     @BeforeEach
     void setUp() {
         aviaryEnclosure = new AviaryEnclosure<>("Test Aviary", 100.0, 50.0, 10);
-        phoenix = new Phoenix("Test Phoenix", Gender.MALE, 100.0, 2.0);
+        phoenix = new Phoenix("Test Phoenix", Gender.MALE);
+        phoenix.setHeight(2.0);
+        phoenix.setWeight(100.0);
     }
 
     @Test

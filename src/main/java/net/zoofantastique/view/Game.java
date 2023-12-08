@@ -2,6 +2,7 @@ package net.zoofantastique.view;
 
 import net.zoofantastique.controller.entity.zoomaster.ZooMaster;
 import net.zoofantastique.controller.zoo.Zoo;
+import net.zoofantastique.simulation.Simulation;
 
 /**
  * Classe Game qui représente le jeu.
@@ -18,6 +19,8 @@ public class Game implements ConsoleTricks {
         Tuto tuto = new Tuto();
 
         tuto.start(this);
+
+        Simulation simulation = new Simulation(this);
 
         MenuZooMaster.displayMainMenu(this);
     }

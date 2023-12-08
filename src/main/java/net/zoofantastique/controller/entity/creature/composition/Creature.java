@@ -8,6 +8,14 @@ import net.zoofantastique.controller.entity.creature.behavior.Hunger;
 import net.zoofantastique.controller.entity.creature.composition.oviparous.Oviparous;
 import net.zoofantastique.controller.entity.creature.composition.viviparous.Viviparous;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+
+import static net.zoofantastique.utils.Utils.*;
+
 /**
  * Classe abstraite Creature qui représente une créature dans un zoo.
  * Une créature a une espèce, un nom, un sexe, un âge, un cri, un poids, une taille, un état de sommeil, un état de santé, un état de grossesse et un état de faim.
@@ -15,28 +23,104 @@ import net.zoofantastique.controller.entity.creature.composition.viviparous.Vivi
  */
 public abstract class Creature extends Alive {
     // Attributs
-    private final String shout; // Le cri de la créature.
-    private double weight; // Le poids de la créature en kilogrammes.
-    private double height; // La taille de la créature en mètres.
-    private boolean isSleeping; // L'état de sommeil de la créature.
-    private boolean isSick; // L'état de santé de la créature.
-    private boolean isPregnant; // L'état de grossesse de la créature.
+    private ArrayList<Double> minHeight = new ArrayList<>(List.of(0.1, 0.8, 1.5, 1.6, 1.6));
+    private ArrayList<Double> maxHeight = new ArrayList<>(List.of(0.2, 1.1, 1.8, 2.1, 2.0));
+    private ArrayList<Double> minWeight = new ArrayList<>(List.of(2.0, 20.0, 35.0, 50.0, 55.0));
+    private ArrayList<Double> maxWeight = new ArrayList<>(List.of(3.5, 35.0, 50.0, 90.0, 95.0));
+    // Le cri de la créature.
+    private final String shout;
+    // Le poids de la créature en kilogrammes.
+    private double weight;
+    // La taille de la créature en mètres.
+    private double height;
+    // L'état de sommeil de la créature, true si la créature dort, false sinon.
+    private boolean isSleeping;
+    // L'état de santé de la créature, true si la créature est malade, false sinon.
+    private boolean isSick;
+    // L'état de grossesse de la créature, true si la créature est en ceinte, false sinon.
+    private boolean isPregnant;
 
-    // Attributs speciaux utilisé dans une énumération
+    // Attributs speciaux type enumeration
     private int hunger;
 
-   // Constructeur
-    public Creature(String name, Gender sexe, double weight, double height, String shout) {
+    // Pour la simulation
+    private ScheduledExecutorService executor;
+    private int ageScale;
+    private int dimHunger;
+
+
+    @Override
+    public void run() {
+        // Diminution de la faim
+        executor.scheduleAtFixedRate(() -> {
+            setHunger(getHunger() - 1);
+            if (getHunger() == 0) {
+                haveToGoToTheHell();
+            }
+        }, (long) (getDimHunger() - 1) *timeControle, (long) getDimHunger() *timeControle, TimeUnit.SECONDS);
+        // Devient malade ?
+        executor.scheduleAtFixedRate(() -> {
+            boolean haveToBeSick = getRandomIntInRange(0, 100) < 3;
+            if (haveToBeSick || isSick) {
+                haveToGoToTheHell();
+            }
+            setSick(haveToBeSick);
+
+        }, 99L *timeControle, 100L *timeControle, TimeUnit.SECONDS);
+        // Dors ?
+        executor.scheduleAtFixedRate(() -> {
+            boolean goToSleep = getRandomIntInRange(0, 100) < 5;
+            if (goToSleep) {
+                toggleSleeping();
+            }
+
+        }, 99L *timeControle, 100L *timeControle, TimeUnit.SECONDS);
+        // Vieillisement
+        executor.scheduleAtFixedRate(this::aging, (long) (getAgeScale() - 1) *timeControle, (long) getAgeScale() *timeControle, TimeUnit.SECONDS);
+    }
+
+    /*
+     * Il est malheureusement temps de dire au revoir à notre chère créature.
+     *
+     * Quelle tristesse...
+     */
+    public void haveToGoToTheHell() {
+        setAge(Age.DEAD);
+        executor.shutdown();
+    }
+
+    /**
+     * Constructeur de la classe Creature avec nom, sexe, poids, taille et cri.
+     * Initialise également l'état de sommeil à false (éveillé), l'état de santé à false (non malade) et la faim à SATISFIED (rassasié).
+     *
+     * @param name   le nom de la créature.
+     * @param sexe   le sexe de la créature, peut être Male ou Femelle.
+     * @param shout  le cri de la créature.
+     */
+    public Creature(String name, Gender sexe, String shout) {
         super(name, sexe, Age.BABY);
-        this.weight = weight;
-        this.height = height;
+
+        calcSizeAndWeight();
+
         this.shout = shout;
         this.isSleeping = false;
         this.isSick = false;
         this.hunger = Hunger.MAX.getValue();
+
+        // Simulation
+        this.executor = Executors.newSingleThreadScheduledExecutor();
+        this.ageScale = 10;
+        this.dimHunger = 30;
+
+        this.run();
     }
 
     // Methodes
+    public void calcSizeAndWeight() {
+        int age = getAge().index();
+        setHeight(getRandomDoubleInRange(this.minHeight.get(age), this.maxHeight.get(age)));
+        setWeight(getRandomDoubleInRange(this.minWeight.get(age), this.maxWeight.get(age)));
+    }
 
     /**
      * Méthode pour nourrir une créature avec de la nourriture.
@@ -46,7 +130,7 @@ public abstract class Creature extends Alive {
      *
      * @param food La nourriture à donner à la créature.
      */
-    public void eat(Food food) {
+    public void feed(Food food) {
         if (isSleeping) {
             System.err.println("Tu ne peux pas faire ça car la créature sélectionner dors actuellement.");
             return;
@@ -71,7 +155,7 @@ public abstract class Creature extends Alive {
      * Méthode pour guérir une créature.
      * Cette méthode met à jour l'état de santé de la créature à false, indiquant qu'elle n'est plus malade.
      */
-    public void healed() {
+    public void heal() {
         isSick = false;
     }
 
@@ -88,13 +172,12 @@ public abstract class Creature extends Alive {
     }
 
     /**
-     * Méthode pour vérifier si une créature est malade.
-     * Si la créature est malade, son âge est défini sur DEAD, ce qui signifie qu'elle est morte.
+     * Méthode pour faire vieillir une créature.
+     * Cette méthode met à jour l'âge de la créature à l'âge suivant dans l'énumération Age.
      */
-    public void checkSick() {
-        if (isSick) {
-            setAge(Age.DEAD);
-        }
+    public void aging() {
+        setAge(getAge().nextAge());
+        calcSizeAndWeight();
     }
 
     /**
@@ -183,8 +266,8 @@ public abstract class Creature extends Alive {
     public boolean isSick() {
         return this.isSick;
     }
+
     public void setSick(boolean sick) {
-        checkSick();
         this.isSick = sick;
     }
 
@@ -193,6 +276,54 @@ public abstract class Creature extends Alive {
     }
     public void setPregnant(boolean pregnant) {
         isPregnant = pregnant;
+    }
+
+    public ArrayList<Double> getMinHeight() {
+        return minHeight;
+    }
+
+    public void setMinHeight(ArrayList<Double> minHeight) {
+        this.minHeight = minHeight;
+    }
+
+    public ArrayList<Double> getMaxHeight() {
+        return maxHeight;
+    }
+
+    public void setMaxHeight(ArrayList<Double> maxHeight) {
+        this.maxHeight = maxHeight;
+    }
+
+    public ArrayList<Double> getMinWeight() {
+        return minWeight;
+    }
+
+    public void setMinWeight(ArrayList<Double> minWeight) {
+        this.minWeight = minWeight;
+    }
+
+    public ArrayList<Double> getMaxWeight() {
+        return maxWeight;
+    }
+
+    public void setMaxWeight(ArrayList<Double> maxWeight) {
+        this.maxWeight = maxWeight;
+    }
+
+    public int getAgeScale() {
+        return ageScale;
+    }
+
+    public void setAgeScale(int ageScale) {
+        this.ageScale = ageScale;
+    }
+
+    public int getDimHunger() {
+        return dimHunger;
+    }
+
+    public void setDimHunger(int dimHunger) {
+        this.dimHunger = dimHunger;
     }
 
     /**
