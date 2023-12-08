@@ -13,27 +13,33 @@ public class Pack {
     // Attributs
     private String packName; // nom de la meute
     private int packSize; // nombre de lycanthropes dans la meute
-    private Pair<Lycanthrope, Lycanthrope> couple; // couple dominant (alpha) de la meute
+    private CoupleAlpha couple; // couple dominant (alpha) de la meute
     private final List<Lycanthrope> lycanthropes; // liste des lycanthropes de la meute
 
     // Constructeur
-    // TODO : doc, constructeur en précisant le mal et la femelle en utilisant la classe Pair
-    public Pack(String packName, Pair<Lycanthrope, Lycanthrope> couple) {
+    public Pack(String packName, CoupleAlpha couple) {
         this.packName = packName;
         this.packSize = 2;
         this.couple = couple;
         this.lycanthropes = new ArrayList<>();
+        initPack();
     }
 
-    // TODO : doc, constructeur en précisant le male et la femelle san utilisé la classe Pair
     public Pack(String packName, Lycanthrope male, Lycanthrope female) {
         this.packName = packName;
         this.packSize = 2;
-        this.couple = new Pair<>(male, female);
+        this.couple = new CoupleAlpha(male, female);
         this.lycanthropes = new ArrayList<>();
+        initPack();
     }
 
     // Méthodes
+
+    // TODO : doc
+    public void initPack() {
+        this.lycanthropes.add(couple.getFirst());
+        this.lycanthropes.add(couple.getSecond());
+    }
 
     // TODO : doc
     // Inutile ? On peut utiliser la méthode add de la liste en appellant le getter getLycanthropes()
@@ -90,10 +96,10 @@ public class Pack {
         return packSize;
     }
 
-    public Pair<Lycanthrope, Lycanthrope> getCouple() {
+    public CoupleAlpha getCouple() {
         return couple;
     }
-    public void setCouple(Pair<Lycanthrope, Lycanthrope> couple) {
+    public void setCouple(CoupleAlpha couple) {
         this.couple = couple;
     }
 
@@ -107,7 +113,7 @@ public class Pack {
         return "<-/ " + this.packName + " \\->\n" +
                 "Couple dominant: " + this.couple +
                 "\nNombre de lycanthropes: " + this.packSize +
-                "\nListe des lycanthropes: " +
+                "\nListe des lycanthropes: \n" +
                 getLycanthropesToString();
     }
 }

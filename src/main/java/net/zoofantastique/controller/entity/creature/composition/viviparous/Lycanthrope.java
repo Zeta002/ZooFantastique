@@ -31,7 +31,7 @@ public class Lycanthrope extends Creature implements Viviparous, Runner, Rank {
         this.strength = Math.round((Utils.getRandomInRange(1.0, 10.0)));
         this.impetuosityFactor = Math.round((Utils.getRandomInRange(0.5, 1.5)));
         this.dominanceFactor = 0;
-        this.rank = 1;
+        this.rank = 0;
         this.pack = null;
     }
 
@@ -53,9 +53,8 @@ public class Lycanthrope extends Creature implements Viviparous, Runner, Rank {
         return rank;
     }
     public String getRankString() {
-
         if (rank < greekAlphabet.size()) {
-            return getName() + " est au rang de " + greekAlphabet.get(rank);
+            return greekAlphabet.get(rank);
         } else {
             return "Le rang semble incorrect";
         }
