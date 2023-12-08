@@ -21,20 +21,20 @@ class AquariumEnclosureTest {
 
     @Test
     void whenAddSwimmerCreatureThenAddsSuccessfully() {
-        aquariumEnclosure.addCreatures(dragon);
+        aquariumEnclosure.addCreature(dragon);
         assertEquals(aquariumEnclosure.getListCreature().get(0), dragon);
     }
 
     @Test
     void whenAddSwimmerCreatureThenIncrementeNbCreature() {
-        aquariumEnclosure.addCreatures(dragon);
+        aquariumEnclosure.addCreature(dragon);
         assertEquals(1, aquariumEnclosure.getNbCreature());
     }
 
     @Test
     void whenAddCreatureExceedsMaxCapacityThenDoesNotAdd() {
         for (int i = 0; i < 11; i++) {
-            aquariumEnclosure.addCreatures(dragon);
+            aquariumEnclosure.addCreature(dragon);
         }
         assertEquals(10, aquariumEnclosure.getNbCreature());
     }
@@ -47,7 +47,7 @@ class AquariumEnclosureTest {
 
     @Test
     void whenMaintenanceOnNonEmptyAquariumThenPerformsMaintenance() {
-        aquariumEnclosure.addCreatures(dragon);
+        aquariumEnclosure.addCreature(dragon);
         aquariumEnclosure.maintenance();
         assertNotEquals(Salinity.BRACKISHWATER, aquariumEnclosure.getBasinSalinity());
     }
@@ -118,7 +118,7 @@ class AquariumEnclosureTest {
                 Faim: Répu
                 Durée d'incubation: 30 jours
                 """;
-        aquariumEnclosure.addCreatures(dragon);
+        aquariumEnclosure.addCreature(dragon);
         assertEquals(expectedString, aquariumEnclosure.toString());
     }
 }

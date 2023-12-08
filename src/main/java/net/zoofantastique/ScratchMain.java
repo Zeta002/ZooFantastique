@@ -27,7 +27,7 @@ public class ScratchMain {
 //        z1.addEnclosure(d2,d3);
 //
 //        Dragon d = new Dragon("Gérard leDragon", Gender.FEMALE, 2, 2);
-//        d1.addCreatures(d);
+//        d1.addCreature(d);
 //
 //        z1.displayCreatures();
     }
