@@ -12,9 +12,10 @@ import java.util.Random;
 /**
  * Classe Phoenix qui représente un phoenix dans un zoo.
  * Un phoenix est une créature ovipare qui peut voler et renaître.
- * Cette classe étend la classe Oviparous et implémente les interfaces Flying et Rebirth.
+ * Cette classe étend la classe Creature et implémente les interfaces Oviparous, Flying et Rebirth.
  */
 public class Phoenix extends Creature implements Oviparous, Flying, Rebirth {
+    // Constructeur
     public Phoenix(String name, Gender sexe, double weight, double height) {
         super(name, sexe, weight, height, "coua coua");
     }

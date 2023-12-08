@@ -13,6 +13,7 @@ import java.util.Random;
  * Cette classe étend la classe Viviparous et implémente l'interface Swimmer.
  */
 public class Mermaid extends Creature implements Viviparous, Swimmer {
+    // Constructeur
     public Mermaid(String name, Gender sexe, double weight, double height) {
         super(name, sexe, weight, height, "*chant mélodieux*");
     }

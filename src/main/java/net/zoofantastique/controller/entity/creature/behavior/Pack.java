@@ -6,12 +6,15 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
+/**
+ * Classe Pack représentant une meute de lycanthropes.
+ */
 public class Pack {
     // Attributs
     private String packName; // nom de la meute
     private int packSize; // nombre de lycanthropes dans la meute
     private Pair<Lycanthrope, Lycanthrope> couple; // couple dominant (alpha) de la meute
-    private List<Lycanthrope> lycanthropes; // liste des lycanthropes de la meute
+    private final List<Lycanthrope> lycanthropes; // liste des lycanthropes de la meute
 
     // Constructeur
     // TODO : doc, constructeur en précisant le mal et la femelle en utilisant la classe Pair
@@ -73,6 +76,7 @@ public class Pack {
             System.out.println(i + "." + lycanthropes.get(i).getName() + " est un " + lycanthropes.get(i).getRankString() + ".");
         }
     }
+
     // Getter et setter
 
     public String getPackName() {

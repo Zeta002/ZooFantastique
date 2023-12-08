@@ -12,6 +12,7 @@ import java.util.Random;
  * Cette classe étend la classe Viviparous.
  */
 public class Nymph extends Creature implements Viviparous {
+    // Constructeur
     public Nymph(String name, Gender sexe, double weight, double height) {
         super(name, sexe, weight, height, "ahahah");
     }

@@ -7,8 +7,6 @@ import net.zoofantastique.controller.entity.creature.behavior.Pack;
 import net.zoofantastique.controller.entity.creature.composition.Creature;
 import net.zoofantastique.controller.utils.Utils;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.Random;
 
 import static net.zoofantastique.view.ConsoleTricks.boldText;
@@ -16,20 +14,20 @@ import static net.zoofantastique.view.ConsoleTricks.boldText;
 /**
  * Classe Lycanthrope qui représente un lycanthrope dans un zoo.
  * Un lycanthrope est une créature vivipare qui peut courir et possède un rang.
- * Cette classe étend la classe Viviparous et implémente l'interface Runner et Rank.
+ * Cette classe étend la classe Creature et implémente l'interface Viviparous, Runner et Rank.
  */
 public class Lycanthrope extends Creature implements Viviparous, Runner, Rank {
+    // Attributs
+    private double strength; // Force
+    private double dominanceFactor; // Facteur de dominance
+    private double impetuosityFactor; // Facteur d'impétuosité
+    private int rank; // Rang
+    private Pack pack; // Meute
+    private double level; // Niveau
 
-    private double strength;
-    private double dominanceFactor;
-    private double impetuosityFactor;
-    private int rank;
-    private Pack pack;
-    private double level;
-
+    // Constructeur
     public Lycanthrope(String name, Gender sexe, double weight, double height) {
         super(name, sexe, weight, height, "ahouuuuuu");
-
         this.strength = Math.round((Utils.getRandomInRange(1.0, 10.0)));
         this.impetuosityFactor = Math.round((Utils.getRandomInRange(0.5, 1.5)));
         this.dominanceFactor = 0;
@@ -37,15 +35,18 @@ public class Lycanthrope extends Creature implements Viviparous, Runner, Rank {
         this.pack = null;
     }
 
-
-    public void setLevel() {
-        double rankFactor = (1 + (1 - (double) this.rank / (double) greekAlphabet.size()));
-        double ageFactor = getAge().getAgePowerFactor();
-        this.level = Math.round(((this.strength + this.dominanceFactor) * ageFactor * rankFactor) * 100) / 100.0 ;
-    }
+    // Getter et setter
 
     public double getLevel() {
         return level;
+    }
+    public void setLevel(double level) {
+        this.level = level;
+    }
+    public void calcLevel() {
+        double rankFactor = (1 + (1 - (double) this.rank / (double) greekAlphabet.size()));
+        double ageFactor = getAge().getAgePowerFactor();
+        this.level = Math.round(((this.strength + this.dominanceFactor) * ageFactor * rankFactor) * 100) / 100.0 ;
     }
 
     public int getRank() {
@@ -95,10 +96,6 @@ public class Lycanthrope extends Creature implements Viviparous, Runner, Rank {
         this.pack = pack;
     }
 
-    public void setLevel(double level) {
-        this.level = level;
-    }
-
     /**
      * Méthode pour faire courir un Lycanthrope.
      * Affiche un message indiquant que le Lycanthrope court, en précisant le nom du Lycanthrope.
@@ -108,14 +105,14 @@ public class Lycanthrope extends Creature implements Viviparous, Runner, Rank {
         System.out.println(super.getName() + " *cours*");
     }
 
-    public void showStats() {
-        StringBuilder sb = new StringBuilder("<-/ " + boldText(getName()) + " \\->\n");
-        sb.append("\nForce : ").append(this.strength)
-                .append("\nFacteur d'impétuosité: ").append(this.impetuosityFactor)
-                .append("\nFacteur de dominance: ").append(this.dominanceFactor)
-                .append("\nRang: ").append(this.rank)
-                .append("\nNiveau: ").append(this.level);
-        System.out.println(sb);
+    // TODO : doc
+    public String showStats() {
+        return "<-/ " + boldText(getName()) + " \\->\n" +
+                "\nForce : " + this.strength +
+                "\nFacteur d'impétuosité: " + this.impetuosityFactor +
+                "\nFacteur de dominance: " + this.dominanceFactor +
+                "\nRang: " + this.rank +
+                "\nNiveau: " + this.level;
     }
 
     /**

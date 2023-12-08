@@ -1,13 +1,15 @@
 package net.zoofantastique.controller.consumable.behavior;
 
+/**
+ * Enum FoodType, représente le type de nourriture.
+ */
 public enum FoodType {
     TERRESTRIAL("Terrestre"),
     MARINE("Marin"),
     AERIAL("Aérien");
 
     // Attributs
-    // La valeur de l'énumération FoodType, qui représente le type de nourriture.
-    private final String value;
+    private final String value; // valeur de l'enum
 
     // Constructeur
     FoodType(String value) {
@@ -15,6 +17,7 @@ public enum FoodType {
     }
 
     // Getter et setter
+
     public String getValue() {
         return value;
     }

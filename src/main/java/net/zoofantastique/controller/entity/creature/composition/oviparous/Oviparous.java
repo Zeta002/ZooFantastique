@@ -1,9 +1,8 @@
 package net.zoofantastique.controller.entity.creature.composition.oviparous;
 
 /**
- * Classe abstraite Oviparous qui représente une créature ovipare dans un zoo.
+ * Interface Oviparous qui représente une créature ovipare dans un zoo.
  * Une créature ovipare est une créature qui pond des œufs, qui a une durée d'incubation et qui peut faire éclore ses œufs.
- * Cette classe étend la classe Creature.
  */
 public interface Oviparous {
     // Attributs

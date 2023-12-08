@@ -1,5 +1,8 @@
 package net.zoofantastique.controller.entity.creature.behavior;
 
+/**
+ * Enumération Age représentant l'âge d'une créature.
+ */
 public enum Gender {
     MALE("Male"),
     FEMALE("Femelle");
@@ -13,6 +16,7 @@ public enum Gender {
     }
 
     // Getter et setter
+
     public Gender getSexe() {
         return this;
     }

@@ -13,6 +13,7 @@ import java.util.Random;
  * Cette classe étend la classe Viviparous et implémente l'interface Runner.
  */
 public class Unicorn extends Creature implements Viviparous, Runner {
+    // Constructeur
     public Unicorn(String name, Gender sexe, double weight, double height) {
         super(name, sexe, weight, height, "hihihiha");
     }

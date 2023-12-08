@@ -7,19 +7,18 @@ import net.zoofantastique.controller.entity.zoomaster.ZooMaster;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Classe Zoo qui représente un zoo.
+ * Un zoo est composé d'enclos et d'un maître de zoo.
+ */
 public class Zoo {
-
     // Attributs
-    // Nom du zoo
-    private final String zooName;
-    // Maître du zoo
-    private final ZooMaster zooMaster;
-    // Nb maximum d'enclos du zoo
-    private int nbMaxEnclosure;
-    // ArrayList d'enclos du zoo
-    private List<Enclosure<? super Creature>> zooEnclosures;
+    private final String zooName; // Nom du zoo
+    private final ZooMaster zooMaster; // Maître du zoo
+    private int nbMaxEnclosure; // Nombre maximum d'enclos que peut contenir le zoo
+    private final List<Enclosure<? super Creature>> zooEnclosures; // Liste des enclos du zoo
 
-
+    // Constructeur
     public Zoo(String zooName, ZooMaster zooMaster){
         this.zooName = zooName;
         this.zooMaster = zooMaster;

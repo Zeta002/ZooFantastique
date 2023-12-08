@@ -13,8 +13,14 @@ import java.util.Scanner;
 
 import static net.zoofantastique.view.ConsoleTricks.*;
 
+/**
+ * Classe MenuZooMaster qui représente le menu du jeu.
+ * Cette classe contient des méthodes pour afficher le menu du jeu.
+ */
 public class MenuZooMaster {
+    // Méthodes
 
+    // TODO : doc
     public static void displayMainMenu(Game game) {
         System.out.println("Bienvenue dans le " + boldText(game.getZoo().getZooName()) + ", que voulez-vous faire?");
         System.out.println("1 - Afficher un enclos");
@@ -48,6 +54,7 @@ public class MenuZooMaster {
         }
     }
 
+    // TODO : doc
     public static void showEnclosure(Game game) {
         int choice = -1;
         do {
@@ -67,6 +74,7 @@ public class MenuZooMaster {
         ConsoleTricks.waitEnter("retourner au menu", true);
     }
 
+    // TODO : doc
     public static void doMaintenance(Game game) {
         int choice = -1;
         do {
@@ -85,6 +93,7 @@ public class MenuZooMaster {
         ConsoleTricks.waitEnter("retourner au menu", true);
     }
 
+    // TODO : doc
     public static void feedCreature(Game game) {
         int choice = -1;
         do {
@@ -116,6 +125,7 @@ public class MenuZooMaster {
         ConsoleTricks.waitEnter("retourner au menu", true);
     }
 
+    // TODO : doc
     public static void transferCreature(Game game) {
         Scanner scanner = new Scanner(System.in);
         int sourceEnclosureIndex = -1;
@@ -168,6 +178,7 @@ public class MenuZooMaster {
         System.out.println("La créature " + creature.getName() + " a été transférée de l'enclos " + game.getZoo().getEnclosures().get(sourceEnclosureIndex).getName() + " à l'enclos " + game.getZoo().getEnclosures().get(destinationEnclosureIndex).getName() + ".");
     }
 
+    // TODO : doc
     public static void addEnclosure(Game game) {
         String enclosureType;
         String enclosureName;
@@ -195,6 +206,7 @@ public class MenuZooMaster {
         waitEnter(true);
     }
 
+    // TODO : doc
     public static void addCreature(Game game) {
         Scanner scanner = new Scanner(System.in);
 
@@ -253,6 +265,7 @@ public class MenuZooMaster {
         game.getZoo().getEnclosures().get(enclosureIndex).addCreature(creature);
     }
 
+    // TODO : doc
     private static int getEnclosureIndex(Game game, Scanner scanner, int enclosureIndex) {
         for (int i = 0; i < game.getZoo().getEnclosures().size(); i++) {
             System.out.println(i + " - " + game.getZoo().getEnclosures().get(i).getName());

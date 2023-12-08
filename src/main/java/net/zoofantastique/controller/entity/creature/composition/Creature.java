@@ -15,43 +15,24 @@ import net.zoofantastique.controller.entity.creature.composition.viviparous.Vivi
  */
 public abstract class Creature extends Alive {
     // Attributs
+    private final String shout; // Le cri de la créature.
+    private double weight; // Le poids de la créature en kilogrammes.
+    private double height; // La taille de la créature en mètres.
+    private boolean isSleeping; // L'état de sommeil de la créature.
+    private boolean isSick; // L'état de santé de la créature.
+    private boolean isPregnant; // L'état de grossesse de la créature.
 
-    // Le cri de la créature.
-    private final String shout;
-    // Le poids de la créature en kilogrammes.
-    private double weight;
-    // La taille de la créature en mètres.
-    private double height;
-    // L'état de sommeil de la créature, true si la créature dort, false sinon.
-    private boolean isSleeping;
-    // L'état de santé de la créature, true si la créature est malade, false sinon.
-    private boolean isSick;
-    // L'état de grossesse de la créature, true si la créature est en ceinte, false sinon.
-    private boolean isPregnant;
-
-    // Attributs speciaux type enumeration
+    // Attributs speciaux utilisé dans une énumération
     private int hunger;
 
-    /**
-     * Constructeur de la classe Creature avec nom, sexe, poids, taille et cri.
-     * Initialise également l'état de sommeil à false (éveillé), l'état de santé à false (non malade) et la faim à SATISFIED (rassasié).
-     *
-     * @param name   le nom de la créature.
-     * @param sexe   le sexe de la créature, peut être Male ou Femelle.
-     * @param weight le poids de la créature en kilogrammes.
-     * @param height la taille de la créature en mètres.
-     * @param shout  le cri de la créature.
-     */
+   // Constructeur
     public Creature(String name, Gender sexe, double weight, double height, String shout) {
         super(name, sexe, Age.BABY);
-
         this.weight = weight;
         this.height = height;
         this.shout = shout;
-
         this.isSleeping = false;
         this.isSick = false;
-
         this.hunger = Hunger.MAX.getValue();
     }
 
@@ -151,12 +132,10 @@ public abstract class Creature extends Alive {
     public void initiatePregnancy(Creature partenaire) {
         Creature female = fertilizable(partenaire);
         if (female == null) {
-            // TODO changé le mot en fonction de vivipare ovipare
             System.err.println("L'accouplement semble impossible.");
         } else {
             System.out.println("Un nouvel arrivant semble être prévu pour bientôt!");
             female.setPregnant(true);
-            // TODO appelle de la méthode giveBirtg ou eggsHatch
         }
         // TODO temps d'incubation thread
     }

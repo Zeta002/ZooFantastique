@@ -1,5 +1,8 @@
 package net.zoofantastique.controller.entity.creature.behavior;
 
+/**
+ * Interface Rebirth représentant le comportement de renaissance d'une créature.
+ */
 public interface Rebirth {
     /**
      * Méthode par défaut pour faire renaitre une créature.

@@ -7,6 +7,10 @@ import net.zoofantastique.controller.entity.creature.behavior.Age;
 import net.zoofantastique.controller.entity.creature.behavior.Gender;
 import net.zoofantastique.controller.entity.creature.composition.Creature;
 
+/**
+ * Classe ZooMaster, hérite de la classe Alive.
+ * Cette classe représente le personnage principal du jeu, le joueur.
+ */
 public class ZooMaster extends Alive {
     /**
      * Constructeur de la classe Alive avec nom, sexe et âge.
@@ -19,27 +23,33 @@ public class ZooMaster extends Alive {
         super(name, sexe, age);
     }
 
+    // Méthodes
 
+    // TODO : se mettre d'accord sur où mettre les méthodes de MenuZooMaster, actuellement on les utilises à la place de celle-ci
     public <T extends Creature> void displayEnclosure(Enclosure<T> enclosure){
         System.out.println(enclosure);
     }
+
     public <T extends Creature> void maintenanceEnclosure(Enclosure<T> enclosure){
         enclosure.maintenance();
     }
+
     public <T extends Creature> void feeding(Enclosure<T> enclosure, Food food, T creature){
         enclosure.feedCreature(food, creature);
     }
-    public <T extends Creature> void tranferTo(Enclosure<T> oldEnclosure, Enclosure<T> newEnclosure, T creature){
-        if (oldEnclosure.getCreatureType().equals(newEnclosure.getCreatureType())){
-            if (oldEnclosure.getListCreature().contains(creature)){
-                newEnclosure.addCreature(creature);
-                oldEnclosure.removeCreature(creature);
-            } else {
-                System.err.println("La créature n'est pas dans l'enclos!");
-            }
-        } else {
+
+    // TODO : doc
+    public <T extends Creature> void transferTo(Enclosure<T> oldEnclosure, Enclosure<T> newEnclosure, T creature){
+        if (!oldEnclosure.getCreatureType().equals(newEnclosure.getCreatureType())){
             System.err.println("Les enclos ne sont pas du même type!");
+            return;
         }
+        if (!oldEnclosure.getListCreature().contains(creature)){
+            System.err.println("La créature n'est pas dans l'enclos!");
+            return;
+        }
+        newEnclosure.addCreature(creature);
+        oldEnclosure.removeCreature(creature);
     }
 }
 
