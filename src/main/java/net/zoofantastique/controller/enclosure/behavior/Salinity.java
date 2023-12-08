@@ -1,31 +1,22 @@
 package net.zoofantastique.controller.enclosure.behavior;
 
 /**
- * Enumération Salinity représentant les différents niveaux de salinité de l'eau.
- * Les niveaux de salinité sont : SALTWATER ("eau salée"), BRACKISHWATER ("eau saumâtre"), FRESHWATER ("eau douce").
+ * Enumération Salinity représentant le niveau de salinité de l'eau.
  */
 public enum Salinity {
-    SALTWATER("eau salée"), // Niveau de salinité : eau salée
-    BRACKISHWATER("eau saumâtre"), // Niveau de salinité : eau saumâtre
-    FRESHWATER("eau douce"); // Niveau de salinité : eau douce
+    SALTWATER("eau salée"),
+    BRACKISHWATER("eau saumâtre"),
+    FRESHWATER("eau douce");
 
+    // Attributs
     private final String value; // Valeur de la salinité
 
-    /**
-     * Constructeur de l'énumération Salinity.
-     * @param salinity la valeur de la salinité.
-     */
+    // Constructeur
     Salinity(String salinity) {
         this.value = salinity;
     }
 
-    /**
-     * Getter pour la valeur de la salinité.
-     * @return la valeur de la salinité.
-     */
-    public String getValue() {
-        return value;
-    }
+    // Méthodes
 
     public Salinity increment() {
         Salinity[] salinities = Salinity.values();
@@ -44,5 +35,11 @@ public enum Salinity {
         } else {
             return this;
         }
+    }
+
+    // Getter et setter
+
+    public String getValue() {
+        return value;
     }
 }

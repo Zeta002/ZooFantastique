@@ -12,7 +12,7 @@ import static net.zoofantastique.utils.Utils.getRandomDoubleInRange;
 /**
  * Classe Dragon qui représente un dragon dans un zoo.
  * Un dragon est une créature ovipare qui peut voler, courir, nager et renaître.
- * Cette classe étend la classe Oviparous et implémente les interfaces Flying, Runner, Swimmer et Rebirth.
+ * Cette classe étend la classe Creature et implémente les interfaces Oviparous, Flying, Runner, Swimmer et Rebirth.
  */
 public class Dragon extends Creature implements Oviparous, Flying, Runner, Swimmer, Rebirth {
 
@@ -71,6 +71,7 @@ public class Dragon extends Creature implements Oviparous, Flying, Runner, Swimm
         }
     }
 
+    // TODO : doc
     @Override
     public Dragon eggsHatch(){
         Random random = new Random();

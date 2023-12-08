@@ -1,7 +1,6 @@
 package net.zoofantastique.controller.enclosure.composition;
 
 import net.zoofantastique.controller.enclosure.behavior.Salinity;
-import net.zoofantastique.controller.entity.creature.behavior.Flying;
 import net.zoofantastique.controller.entity.creature.behavior.Swimmer;
 import net.zoofantastique.controller.entity.creature.composition.Creature;
 
@@ -11,41 +10,15 @@ import net.zoofantastique.controller.entity.creature.composition.Creature;
  * Cette classe étend la classe Enclosure.
  */
 public class AquariumEnclosure<T extends Creature> extends Enclosure<T> {
-    /**
-     * La profondeur du bassin dans l'aquarium en mètres.
-     */
-    private double basinDepth;
+    private double basinDepth; // Profondeur du bassin en mètres
+    private Salinity basinSalinity; // Salinité du bassin
 
-    /**
-     * La salinité du bassin dans l'aquarium.
-     */
-    private Salinity basinSalinity;
-
-    /**
-     * Construit un nouvel AquariumEnclosure avec les paramètres spécifiés.
-     *
-     * @param name       le nom de l'aquarium
-     * @param surface    la surface de l'aquarium en mètres carrés
-     * @param basinDepth la profondeur du bassin dans l'aquarium en mètres
-     * @param max        le nombre maximum de créatures qui peuvent être logées dans l'aquarium
-     *
-     * <p>La salinité du bassin est initialisée à BRACKISHWATER.</p>
-     */
+    // Constructeur
     public AquariumEnclosure(String name, double surface, double basinDepth, int max) {
         super(name, surface, max);
         this.basinSalinity = Salinity.BRACKISHWATER;
         this.basinDepth = basinDepth;
     }
-
-    /**
-     * Cette méthode est utilisée pour ajouter des créatures à l'enclos de l'aquarium.
-     * Elle accepte un tableau de créatures et vérifie si chaque créature est une instance de Swimmer.
-     * Si la créature est un Swimmer et qu'il y a assez de place dans l'aquarium, la créature est ajoutée.
-     * Si l'aquarium est plein, un message d'erreur est affiché.
-     * Si la créature n'est pas un Swimmer, un message d'erreur est affiché.
-     *
-     * @param creatures Un tableau de créatures à ajouter à l'aquarium.
-     */
 
     /**
      * Ajoute une créature à l'enclos si elle est capable de nager et s'il y a suffisamment de place dans l'enclos.
@@ -60,9 +33,7 @@ public class AquariumEnclosure<T extends Creature> extends Enclosure<T> {
             setCreatureType(creature.getClass());
         }
         if (getCreatureType().equals(creature.getClass())) {
-            // Vérifie si la créature est un Flying
             if (creature instanceof Swimmer) {
-                // Vérifie s'il y a assez de place dans la volière
                 if (getNbCreature() < getMax()) {
                     this.getListCreature().add(creature);
                     setNbCreature(getNbCreature() + 1);
@@ -70,14 +41,14 @@ public class AquariumEnclosure<T extends Creature> extends Enclosure<T> {
                     System.err.println("Pas assez de places disponibles!");
                 }
             } else {
-                // Affiche un message d'erreur si la créature n'est pas un Flying
-                System.err.println("La créature:\n" + creature + "\nne peut pas voler et ne peut donc pas être ajoutée à la volière!");
+                System.err.println("La créature:\n" + creature + "\nne peut pas nager et ne peut donc pas être ajoutée à l'aquarium!");
             }
         } else {
             System.err.println("L'enclos ne peux pas accueillir plusieurs types de créatures!");
         }
     }
 
+    // TODO : doc
     public void maintenance() {
         if (getListCreature().isEmpty()) {
             System.out.println(getClass().getSimpleName() + " : " + getName() + " est vide.");
@@ -88,6 +59,7 @@ public class AquariumEnclosure<T extends Creature> extends Enclosure<T> {
     }
 
     // TODO plus la profondeur est grande plus le thread prend du temps
+    // TODO : doc
     private void performMaintenanceBasedOnDepth() {
         if (basinDepth <= 80) {
             setBasinSalinity(basinSalinity.increment());

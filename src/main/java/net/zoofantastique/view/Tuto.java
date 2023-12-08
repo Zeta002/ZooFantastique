@@ -8,11 +8,19 @@ import net.zoofantastique.controller.entity.creature.composition.Creature;
 import net.zoofantastique.controller.entity.creature.composition.oviparous.Dragon;
 import net.zoofantastique.controller.entity.zoomaster.ZooMaster;
 import net.zoofantastique.controller.zoo.Zoo;
-import java.util.Scanner;
-import static net.zoofantastique.view.ConsoleTricks.*;
 
+import static net.zoofantastique.view.ConsoleTricks.scan;
+import static net.zoofantastique.view.ConsoleTricks.waitEnter;
+
+/**
+ * Classe Tuto qui représente le tutoriel du jeu.
+ * Cette classe contient les méthodes permettant de lancer le tutoriel.
+ */
 public class Tuto {
 
+    // Méthodes
+
+    // TODO : doc
     public void start(Game game) {
         step1ZooMasterCreation(game);
         step2ZooFantastiqueCreation(game);
@@ -20,6 +28,7 @@ public class Tuto {
         step4AddCreature(game);
     }
 
+    // TODO : doc
     public void step1ZooMasterCreation(Game game) {
         System.out.println("Bienvenue! Ceci est un tutoriel pour vous aider à démarrer votre premier zoo, suivez les instructions à l'écran pour continuer.");
 
@@ -39,6 +48,7 @@ public class Tuto {
         waitEnter(true);
     }
 
+    // TODO : doc
     public void step2ZooFantastiqueCreation(Game game) {
         System.out.println("Maintenant que votre personnage est créé, il est temps de créer votre premier zoo!");
         System.out.println("\nEntrez le nom de votre zoo:");
@@ -51,6 +61,7 @@ public class Tuto {
         waitEnter(true);
     }
 
+    // TODO : doc
     public void step3EnclosureCreation(Game game) {
         System.out.println("Maintenant que votre zoo est créé, il est temps de créer votre premier enclos!");
         System.out.println("\nEntrez le nom de votre enclos:");
@@ -67,6 +78,7 @@ public class Tuto {
         waitEnter(true);
     }
 
+    // TODO : doc
     public void step4AddCreature(Game game) {
         System.out.println("Maintenant que votre enclos est créé, il est temps d'ajouter votre première créature!");
         System.out.println("\nPour votre première créature nous allons vous donnez un Dragon car c'est le plus polyvalent, vous pourrez en ajouter d'autres plus tard.");

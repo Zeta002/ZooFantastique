@@ -2,8 +2,9 @@ package net.zoofantastique.controller.entity.creature.behavior;
 
 import org.jetbrains.annotations.Nullable;
 
-import java.util.List;
-
+/**
+ * Enumération Hunger représentant la faim d'une créature.
+ */
 public enum Hunger {
     MAX("Répu", 10),
     SATISFIED("Satisfait", 9),
@@ -11,17 +12,16 @@ public enum Hunger {
     HUNGRY("Affamé(e)", 3);
 
     // Attributs
-
-    // L'état de la faim de la créature, peut être "Répu", "Moyen" ou "Affamé(e)".
-    private String state;
-    // La valeur numérique de la faim de la créature, utilisée pour déterminer l'état de la faim.
-    private int value;
+    private final String state; // L'état de la faim de la créature
+    private final int value; // La valeur de la faim de la créature
 
     // Constructeur
     Hunger(String state, int value) {
         this.state = state;
         this.value = value;
     }
+
+    // Méthodes
 
     @Nullable
     public static String getStateFromValue(int value) {
@@ -34,7 +34,8 @@ public enum Hunger {
         return null;
     }
 
-    // Getter
+    // Getter et setter
+
     public String getState() {
         return state;
     }
@@ -42,5 +43,4 @@ public enum Hunger {
     public int getValue() {
         return value;
     }
-
 }

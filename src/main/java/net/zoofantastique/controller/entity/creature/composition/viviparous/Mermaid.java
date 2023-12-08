@@ -42,9 +42,6 @@ public class Mermaid extends Creature implements Viviparous, Swimmer {
         Random random = new Random();
         Gender babySexe = Gender.MALE;
 
-        double babyWeight = Utils.getRandomDoubleInRange(0.9, 3);
-        double babyHeight = Utils.getRandomDoubleInRange(0.2, 0.4);
-
         if (random.nextInt(2) == 1) {
             babySexe = Gender.FEMALE;
         }

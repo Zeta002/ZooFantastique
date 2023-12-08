@@ -31,9 +31,6 @@ public class Nymph extends Creature implements Viviparous {
         Random random = new Random();
         Gender babySexe = Gender.MALE;
 
-        double babyWeight = Utils.getRandomDoubleInRange(1, 4);
-        double babyHeight = Utils.getRandomDoubleInRange(0.7, 1.5);
-
         if (random.nextInt(2) == 1) {
             babySexe = Gender.FEMALE;
         }

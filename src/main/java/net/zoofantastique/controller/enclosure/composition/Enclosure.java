@@ -14,32 +14,17 @@ import static net.zoofantastique.controller.entity.creature.behavior.Hunger.SATI
  * Un enclos a un type, un nom, une surface, un nombre maximum de créatures, un nombre actuel de créatures, une liste de créatures et un niveau de propreté.
  */
 public class Enclosure<T extends Creature> {
-    // Le type de l'enclos est déterminé par le nom de la classe qui l'étend
-    private final String enclosureType = getClass().getSimpleName();
-    // Le nom de l'enclos
-    private String name;
-    // La surface de l'enclos en mètres carrés
-    private double surface;
-    // Le nombre maximum de créatures que l'enclos peut contenir
-    private int max;
-    // Le nombre actuel de créatures dans l'enclos
-    private int nbCreature;
-    // La liste des créatures actuellement dans l'enclos
-    private List<T> listCreature;
-    // Le niveau de propreté de l'enclos
-    private Cleanness cleanness;
+    private final String enclosureType = getClass().getSimpleName(); // Le type de l'enclos
+    private String name; // Le nom de l'enclos
+    private double surface; // La surface de l'enclos en mètres carrés
+    private int max; // Le nombre maximum de créatures que l'enclos peut contenir
+    private int nbCreature; // Le nombre actuel de créatures dans l'enclos
+    private final List<T> listCreature; // La liste des créatures dans l'enclos
+    private Cleanness cleanness; // Le niveau de propreté de l'enclos
 
     private Class<? extends Creature> creatureType = null;
 
-
-    /**
-     * Constructeur de la classe Enclosure avec nom, surface et nombre maximum de créatures.
-     * Initialise également la liste des créatures à une liste vide, le nombre de créatures à 0 et la propreté à CORRECT.
-     *
-     * @param name    le nom de l'enclos.
-     * @param surface la surface de l'enclos en mètres carrés.
-     * @param max     le nombre maximum de créatures que l'enclos peut contenir.
-     */
+    // Constructeur
     public Enclosure(String name, double surface, int max) {
         this.name = name;
         this.surface = surface;
@@ -72,6 +57,7 @@ public class Enclosure<T extends Creature> {
 
     }
 
+    // TODO : doc
     public final void removeCreature(T creature) {
         if (listCreature.contains(creature)) {
             listCreature.remove(creature);
@@ -130,7 +116,6 @@ public class Enclosure<T extends Creature> {
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
@@ -138,7 +123,6 @@ public class Enclosure<T extends Creature> {
     public double getSurface() {
         return surface;
     }
-
     public void setSurface(double surface) {
         this.surface = surface;
     }
@@ -146,7 +130,6 @@ public class Enclosure<T extends Creature> {
     public int getMax() {
         return max;
     }
-
     public void setMax(int max) {
         this.max = max;
     }
@@ -154,7 +137,6 @@ public class Enclosure<T extends Creature> {
     public int getNbCreature() {
         return nbCreature;
     }
-
     public void setNbCreature(int nbCreature) {
         this.nbCreature = nbCreature;
     }
@@ -166,7 +148,6 @@ public class Enclosure<T extends Creature> {
     public Cleanness getCleanness() {
         return cleanness;
     }
-
     public void setCleanness(Cleanness cleanness) {
         this.cleanness = cleanness;
     }
@@ -178,7 +159,6 @@ public class Enclosure<T extends Creature> {
     public Class<? extends Creature> getCreatureType() {
         return creatureType;
     }
-
     public void setCreatureType(Class<? extends Creature> creatureType) {
         this.creatureType = creatureType;
     }

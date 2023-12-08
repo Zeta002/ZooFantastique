@@ -21,7 +21,7 @@ import static net.zoofantastique.utils.Utils.*;
  * Une créature a une espèce, un nom, un sexe, un âge, un cri, un poids, une taille, un état de sommeil, un état de santé, un état de grossesse et un état de faim.
  * Cette classe étend la classe Alive.
  */
-public abstract class Creature extends Alive implements Runnable {
+public abstract class Creature extends Alive {
     // Attributs
     private ArrayList<Double> minHeight = new ArrayList<>(List.of(0.1, 0.8, 1.5, 1.6, 1.6));
     private ArrayList<Double> maxHeight = new ArrayList<>(List.of(0.2, 1.1, 1.8, 2.1, 2.0));
@@ -103,10 +103,8 @@ public abstract class Creature extends Alive implements Runnable {
         calcSizeAndWeight();
 
         this.shout = shout;
-
         this.isSleeping = false;
         this.isSick = false;
-
         this.hunger = Hunger.MAX.getValue();
 
         // Simulation
@@ -217,12 +215,10 @@ public abstract class Creature extends Alive implements Runnable {
     public void initiatePregnancy(Creature partenaire) {
         Creature female = fertilizable(partenaire);
         if (female == null) {
-            // TODO changé le mot en fonction de vivipare ovipare
             System.err.println("L'accouplement semble impossible.");
         } else {
             System.out.println("Un nouvel arrivant semble être prévu pour bientôt!");
             female.setPregnant(true);
-            // TODO appelle de la méthode giveBirtg ou eggsHatch
         }
         // TODO temps d'incubation thread
     }

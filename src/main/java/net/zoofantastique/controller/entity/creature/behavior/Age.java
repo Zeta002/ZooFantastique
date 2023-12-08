@@ -1,5 +1,8 @@
 package net.zoofantastique.controller.entity.creature.behavior;
 
+/**
+ * Enumération Age représentant l'âge d'une créature.
+ */
 public enum Age {
     BABY("Bébé", 0.1),
     CHILD("Enfant", 0.5),
@@ -8,8 +11,8 @@ public enum Age {
     DEAD("Mort", 0);
 
     // Attributs
-    private final String value;
-    private final double agePowerFactor;
+    private final String value; // Valeur de l'âge
+    private final double agePowerFactor; // Facteur de puissance de l'âge (utilisé pour les lycanthropes)
 
     // Constructeur
     Age(String value, double agePowerFactor) {
@@ -17,11 +20,7 @@ public enum Age {
         this.agePowerFactor = agePowerFactor;
     }
 
-    public String getValue() {
-        return this.value;
-    }
-
-    public double getAgePowerFactor() { return this.agePowerFactor; }
+    // Méthodes
 
     /**
      * Méthode pour obtenir l'âge suivant d'une créature.
@@ -39,7 +38,11 @@ public enum Age {
         }
     }
 
-    public int index() {
-        return this.ordinal();
+    // Getter et setter
+
+    public String getValue() {
+        return this.value;
     }
+
+    public double getAgePowerFactor() { return this.agePowerFactor; }
 }

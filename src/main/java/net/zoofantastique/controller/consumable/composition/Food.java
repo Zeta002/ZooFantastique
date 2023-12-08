@@ -4,16 +4,17 @@ import net.zoofantastique.controller.consumable.behavior.FoodType;
 
 public abstract class Food {
     // Attributs
-    // Le nom de la nourriture.
-    private String name;
-    // La valeur nutritionnelle de la nourriture.
-    private int value;
-    // La description de la nourriture.
-    private String desc;
-    // Le type de la nourriture, défini par l'énumération FoodType.
-    private FoodType foodType;
+    private String name; // Le nom de la nourriture.
+    private int value; // La valeur nutritionnelle de la nourriture.
+    private String desc; // La description de la nourriture.
+    private FoodType foodType; // Le type de nourriture.
 
-
+    // Constructeur
+    public Food(String name, int value, FoodType foodType) {
+        this.name = name;
+        this.value = value;
+        this.foodType = foodType;
+    }
 
     // Getter et Setter
 
@@ -56,12 +57,11 @@ public abstract class Food {
      */
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder("<-/ " + name + " \\->\n");
-        sb.append("--------------")
-                .append("\nValeur: ").append(value)
-                .append("\nType: ").append(foodType.getValue())
-                .append("\nDescription: ").append(desc)
-                .append("\n");
-        return sb.toString();
+        return "<-/ " + name + " \\->\n" +
+                "--------------" +
+                "\nValeur: " + value +
+                "\nType: " + foodType.getValue() +
+                "\nDescription: " + desc +
+                "\n";
     }
 }

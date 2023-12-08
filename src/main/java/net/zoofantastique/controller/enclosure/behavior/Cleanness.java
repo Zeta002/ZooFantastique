@@ -1,22 +1,19 @@
 package net.zoofantastique.controller.enclosure.behavior;
 
+/**
+ * Enum Cleanness, représente le niveau de propreté de l'enclos.
+ */
 public enum Cleanness {
     BAD("Mauvais"),
     CORRECT("Correct"),
     GOOD("Bon");
 
     // Attributs
-    private final String value;
+    private final String value; // valeur de l'enum
 
     // Constructeur
     Cleanness(String cleanness) {
         this.value = cleanness;
-    }
-
-    // Getter et setter
-
-    public String getValue() {
-        return value;
     }
 
     // Méthodes
@@ -51,5 +48,11 @@ public enum Cleanness {
         } else {
             return this;
         }
+    }
+
+    // Getter et setter
+
+    public String getValue() {
+        return value;
     }
 }

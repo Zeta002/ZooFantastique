@@ -11,7 +11,7 @@ import java.util.Random;
 /**
  * Classe Kraken qui représente un kraken dans un zoo.
  * Un kraken est une créature ovipare qui peut nager.
- * Cette classe étend la classe Oviparous et implémente l'interface Swimmer.
+ * Cette classe étend la classe Creature et implémente l'interface Oviparous, Swimmer.
  */
 public class Kraken extends Creature implements Oviparous, Swimmer {
 

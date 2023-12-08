@@ -12,7 +12,7 @@ import java.util.Random;
 /**
  * Classe Megalodon qui représente un megalodon dans un zoo.
  * Un megalodon est une créature ovipare qui peut nager.
- * Cette classe étend la classe Oviparous et implémente l'interface Swimmer.
+ * Cette classe étend la classe Creature et implémente l'interface Oviparous, Swimmer.
  */
 public class Megalodon extends Creature implements Oviparous, Swimmer {
     public Megalodon(String name, Gender sexe) {
@@ -49,9 +49,6 @@ public class Megalodon extends Creature implements Oviparous, Swimmer {
     public Megalodon eggsHatch() {
         Random random = new Random();
         Gender babySexe = Gender.MALE;
-
-        double babyWeight = Utils.getRandomDoubleInRange(90, 130);
-        double babyHeight = Utils.getRandomDoubleInRange(5, 7);
 
         if (random.nextInt(2) == 1) {
             babySexe = Gender.FEMALE;

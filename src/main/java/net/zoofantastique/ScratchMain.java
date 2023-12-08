@@ -1,5 +1,6 @@
 package net.zoofantastique;
 
+import net.zoofantastique.controller.entity.creature.behavior.CoupleAlpha;
 import net.zoofantastique.controller.entity.creature.behavior.Gender;
 import net.zoofantastique.controller.entity.creature.behavior.Pack;
 import net.zoofantastique.controller.entity.creature.behavior.Pair;
