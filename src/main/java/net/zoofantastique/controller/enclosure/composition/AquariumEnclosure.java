@@ -1,6 +1,7 @@
 package net.zoofantastique.controller.enclosure.composition;
 
 import net.zoofantastique.controller.enclosure.behavior.Salinity;
+import net.zoofantastique.controller.entity.creature.behavior.Flying;
 import net.zoofantastique.controller.entity.creature.behavior.Swimmer;
 import net.zoofantastique.controller.entity.creature.composition.Creature;
 
@@ -45,25 +46,35 @@ public class AquariumEnclosure<T extends Creature> extends Enclosure<T> {
      *
      * @param creatures Un tableau de créatures à ajouter à l'aquarium.
      */
+
+    /**
+     * Ajoute une créature à l'enclos si elle est capable de nager et s'il y a suffisamment de place dans l'enclos.
+     * Si la créature ne peut pas nager, une erreur est affichée.
+     * Si l'enclos est plein, une erreur est affichée.
+     *
+     * @param creature La créature à ajouter à l'enclos.
+     */
     @Override
-    public void addCreatures(T... creatures) {
-        for (T creature : creatures) {
-            // Vérifie si la créature est un Swimmer
+    public void addCreature(T creature) {
+        if (getListCreature().isEmpty()) {
+            setCreatureType(creature.getClass());
+        }
+        if (getCreatureType().equals(creature.getClass())) {
+            // Vérifie si la créature est un Flying
             if (creature instanceof Swimmer) {
-                // Vérifie s'il y a assez de place dans l'aquarium
-                if (getNbCreature() + 1 <= getMax()) {
-                    // Ajoute la créature à l'aquarium
-                    getListCreature().add(creature);
-                    // Augmente le nombre de créatures dans l'aquarium
+                // Vérifie s'il y a assez de place dans la volière
+                if (getNbCreature() < getMax()) {
+                    this.getListCreature().add(creature);
                     setNbCreature(getNbCreature() + 1);
                 } else {
-                    // Affiche un message d'erreur si l'aquarium est plein
                     System.err.println("Pas assez de places disponibles!");
                 }
             } else {
-                // Affiche un message d'erreur si la créature n'est pas un Swimmer
-                System.err.println("La créature:\n" + creature + "\nne peut pas nager et ne peut donc pas être ajoutée à l'aquarium!");
+                // Affiche un message d'erreur si la créature n'est pas un Flying
+                System.err.println("La créature:\n" + creature + "\nne peut pas voler et ne peut donc pas être ajoutée à la volière!");
             }
+        } else {
+            System.err.println("L'enclos ne peux pas accueillir plusieurs types de créatures!");
         }
     }
 

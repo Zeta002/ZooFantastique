@@ -1,36 +1,11 @@
 package net.zoofantastique;
 
-import net.zoofantastique.controller.enclosure.composition.Enclosure;
-import net.zoofantastique.controller.entity.creature.behavior.Age;
-import net.zoofantastique.controller.entity.creature.behavior.Gender;
-import net.zoofantastique.controller.entity.creature.composition.Creature;
-import net.zoofantastique.controller.entity.creature.composition.oviparous.Dragon;
-import net.zoofantastique.controller.entity.zoomaster.ZooMaster;
-import net.zoofantastique.controller.zoo.Zoo;
 import net.zoofantastique.view.Game;
-import net.zoofantastique.view.Terminal;
 
 public class ScratchMain {
     public static void main(String[] args) {
-        System.out.println("start");
-        Terminal terminal = new Terminal();
-        Terminal terminal2 = new Terminal();
-
-        terminal.send("Hello");
-        terminal2.send("Hello 2");
-
-        System.out.println("end");
-
-        try {
-            // Pause pour 5 secondes
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-
-//        Game game = new Game();
-//        game.start();
+        Game game = new Game();
+        game.start();
 //        Tuto tuto = new Tuto();
 
 //        tuto.step1ZooMasterCreation();

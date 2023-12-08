@@ -29,6 +29,9 @@ public class Enclosure<T extends Creature> {
     // Le niveau de propreté de l'enclos
     private Cleanness cleanness;
 
+    private Class<? extends Creature> creatureType = null;
+
+
     /**
      * Constructeur de la classe Enclosure avec nom, surface et nombre maximum de créatures.
      * Initialise également la liste des créatures à une liste vide, le nombre de créatures à 0 et la propreté à CORRECT.
@@ -46,50 +49,35 @@ public class Enclosure<T extends Creature> {
         this.cleanness = Cleanness.CORRECT;
     }
 
+    /**
+     * Ajoute une créature à l'enclos s'il y a suffisamment de place dans l'enclos.
+     * Si l'enclos est plein, une erreur est affichée.
+     *
+     * @param creature La créature à ajouter à l'enclos.
+     */
     public void addCreature(T creature) {
-        if (nbCreature < max) {
-            this.listCreature.add(creature);
-            nbCreature += 1;
-        } else {
-            System.err.println("Pas assez de places disponibles!");
+        if (getListCreature().isEmpty()) {
+            setCreatureType(creature.getClass());
         }
-    }
-
-    /**
-     * Cette méthode est utilisée pour ajouter des créatures à l'enclos.
-     * Elle accepte un tableau de créatures et vérifie si l'enclos a la capacité d'accueillir toutes les créatures.
-     * Si l'enclos a la place, toutes les créatures sont ajoutées à l'enclos et le nombre actuel de créatures est mis à jour.
-     * Si l'enclos n'a pas la place, un message d'erreur est affiché.
-     *
-     * @param creatures Un tableau de créatures à ajouter à l'enclos.
-     */
-    public void addCreatures(T... creatures) {
-        int totalCreatures = nbCreature + creatures.length;
-        if (totalCreatures <= max) {
-            this.listCreature.addAll(List.of(creatures));
-            nbCreature += creatures.length;
-        } else {
-            System.err.println("Pas assez de places disponibles!");
-        }
-    }
-
-    /**
-     * Cette méthode est utilisée pour retirer des créatures de l'enclos.
-     * Elle accepte un tableau de créatures à retirer et vérifie si chaque créature est présente dans l'enclos.
-     * Si la créature est présente dans l'enclos, elle est retirée.
-     * Si la créature n'est pas présente dans l'enclos, un message d'erreur est affiché.
-     *
-     * @param creaturesToRemove Un tableau de créatures à retirer de l'enclos.
-     */
-    @SafeVarargs
-    public final void removeCreature(T... creaturesToRemove) {
-        for (T creature : creaturesToRemove) {
-            if (listCreature.contains(creature)) {
-                listCreature.remove(creature);
-                nbCreature--;
+        if (getCreatureType().equals(creature.getClass())) {
+            if (nbCreature < max) {
+                this.listCreature.add(creature);
+                nbCreature += 1;
             } else {
-                System.err.println("La créature:\n\n" + creature + "\nn'est pas dans l'enclos!");
+                System.err.println("Pas assez de places disponibles!");
             }
+        } else {
+            System.err.println("L'enclos ne peux pas accueillir plusieurs types de créatures!");
+        }
+
+    }
+
+    public final void removeCreature(T creature) {
+        if (listCreature.contains(creature)) {
+            listCreature.remove(creature);
+            nbCreature--;
+        } else {
+            System.err.println("La créature:\n\n" + creature + "\nn'est pas dans l'enclos!");
         }
     }
 
@@ -185,6 +173,14 @@ public class Enclosure<T extends Creature> {
 
     public String getEnclosureType() {
         return enclosureType;
+    }
+
+    public Class<? extends Creature> getCreatureType() {
+        return creatureType;
+    }
+
+    public void setCreatureType(Class<? extends Creature> creatureType) {
+        this.creatureType = creatureType;
     }
 
     // TODO doc

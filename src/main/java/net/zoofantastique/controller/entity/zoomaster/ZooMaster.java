@@ -30,11 +30,15 @@ public class ZooMaster extends Alive {
         enclosure.feedCreature(food, creature);
     }
     public <T extends Creature> void tranferTo(Enclosure<T> oldEnclosure, Enclosure<T> newEnclosure, T creature){
-        if (oldEnclosure.getListCreature().contains(creature)){
-            newEnclosure.addCreatures(creature);
-            oldEnclosure.removeCreature(creature);
+        if (oldEnclosure.getCreatureType().equals(newEnclosure.getCreatureType())){
+            if (oldEnclosure.getListCreature().contains(creature)){
+                newEnclosure.addCreature(creature);
+                oldEnclosure.removeCreature(creature);
+            } else {
+                System.err.println("La créature n'est pas dans l'enclos!");
+            }
         } else {
-            System.err.println("La créature n'est pas dans l'enclos!");
+            System.err.println("Les enclos ne sont pas du même type!");
         }
     }
 }

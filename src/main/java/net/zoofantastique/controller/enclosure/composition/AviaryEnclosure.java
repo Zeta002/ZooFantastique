@@ -32,92 +32,93 @@ public class AviaryEnclosure<T extends Creature> extends Enclosure<T> {
     // Méthodes
 
     /**
-     * Cette méthode est utilisée pour ajouter des créatures à la volière.
-     * Elle accepte un tableau de créatures et vérifie si chaque créature est une instance de Flying.
-     * Si la créature est un Flying et qu'il y a assez de place dans la volière, la créature est ajoutée.
-     * Si la volière est pleine, un message d'erreur est affiché.
-     * Si la créature n'est pas un Flying, un message d'erreur est affiché.
+     * Ajoute une créature à l'enclos si elle est capable de voler et s'il y a suffisamment de place dans l'enclos.
+     * Si la créature ne peut pas voler, une erreur est affichée.
+     * Si l'enclos est plein, une erreur est affichée.
      *
-     * @param creatures Un tableau de créatures à ajouter à la volière.
+     * @param creature La créature à ajouter à l'enclos.
      */
     @Override
-    public void addCreatures(T... creatures) {
-        for (T creature : creatures) {
+    public void addCreature(T creature) {
+        if (getListCreature().isEmpty()) {
+            setCreatureType(creature.getClass());
+        }
+        if (getCreatureType().equals(creature.getClass())) {
             // Vérifie si la créature est un Flying
             if (creature instanceof Flying) {
                 // Vérifie s'il y a assez de place dans la volière
-                if (getNbCreature() + 1 <= getMax()) {
-                    // Ajoute la créature à la volière
-                    getListCreature().add(creature);
-                    // Augmente le nombre de créatures dans la volière
+                if (getNbCreature() < getMax()) {
+                    this.getListCreature().add(creature);
                     setNbCreature(getNbCreature() + 1);
                 } else {
-                    // Affiche un message d'erreur si la volière est pleine
                     System.err.println("Pas assez de places disponibles!");
                 }
             } else {
                 // Affiche un message d'erreur si la créature n'est pas un Flying
                 System.err.println("La créature:\n" + creature + "\nne peut pas voler et ne peut donc pas être ajoutée à la volière!");
             }
-        }
-    }
-
-    public void maintenance() {
-        if (getListCreature().isEmpty()) {
-            System.out.println(getClass().getSimpleName() + " : " + getName() + " est vide.");
-            return;
-        }
-        System.out.println(getClass().getSimpleName() + " : " + getName() + " est en maintenance.");
-        performMaintenanceBasedOnHeight();
-    }
-
-    // TODO plus la hauteur est grande plus le thread prend du temps
-    private void performMaintenanceBasedOnHeight() {
-        if (roofHeight <= 80) {
-            setCleanness(getCleanness().clean());
-        } else if (roofHeight > 80 && roofHeight <= 100) {
-            setCleanness(getCleanness().clean());
-        } else if (roofHeight > 100 && roofHeight <= 120) {
-            setCleanness(getCleanness().clean());
-        } else if (roofHeight > 120) {
-            setCleanness(getCleanness().clean());
-        }
-        System.out.println(getClass().getSimpleName() + " : " + getName() + " est maintenant " + getCleanness().getValue() + ".");
-    }
-
-    // Getter et setter
-
-    public double getRoofHeight() {
-        return roofHeight;
-    }
-    public void setRoofHeight(double roofHeight) {
-        this.roofHeight = roofHeight;
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder("<-/ " + getEnclosureType() + " \\->\n");
-        if (getListCreature().isEmpty()) {
-            sb.append("-------------------------")
-            .append("\nNom: ").append(getName())
-            .append("\nSuperficie: ").append(getSurface()).append("m²")
-            .append("\nMax creatures: ").append(getMax())
-            .append("\nNb creatures: ").append(getNbCreature())
-            .append(" / ").append(getMax())
-            .append("\nPropreté: ").append(getCleanness().getValue())
-            .append("\nHauteur: ").append(getRoofHeight()).append("m").append("\n");
         } else {
-            sb.append("-------------------------")
-            .append("\nNom: ").append(getName())
-            .append("\nSuperficie: ").append(getSurface()).append("m²")
-            .append("\nMax creatures: ").append(getMax())
-            .append("\nNb creatures: ").append(getNbCreature())
-            .append(" / ").append(getMax())
-            .append("\nPropreté: ").append(getCleanness().getValue())
-            .append("\nHauteur: ").append(getRoofHeight()).append("m")
-            .append("\n\nListes des créatures:\n\n")
-            .append(showCreatures());
+            System.err.println("L'enclos ne peux pas accueillir plusieurs types de créatures!");
         }
-        return sb.toString();
     }
-}
+
+        public void maintenance () {
+            if (getListCreature().isEmpty()) {
+                System.out.println(getClass().getSimpleName() + " : " + getName() + " est vide.");
+                return;
+            }
+            System.out.println(getClass().getSimpleName() + " : " + getName() + " est en maintenance.");
+            performMaintenanceBasedOnHeight();
+        }
+
+        // TODO plus la hauteur est grande plus le thread prend du temps
+        private void performMaintenanceBasedOnHeight () {
+            if (roofHeight <= 80) {
+                setCleanness(getCleanness().clean());
+            } else if (roofHeight > 80 && roofHeight <= 100) {
+                setCleanness(getCleanness().clean());
+            } else if (roofHeight > 100 && roofHeight <= 120) {
+                setCleanness(getCleanness().clean());
+            } else if (roofHeight > 120) {
+                setCleanness(getCleanness().clean());
+            }
+            System.out.println(getClass().getSimpleName() + " : " + getName() + " est maintenant " + getCleanness().getValue() + ".");
+        }
+
+        // Getter et setter
+
+        public double getRoofHeight () {
+            return roofHeight;
+        }
+
+        public void setRoofHeight ( double roofHeight){
+            this.roofHeight = roofHeight;
+        }
+
+        @Override
+        public String toString () {
+            StringBuilder sb = new StringBuilder("<-/ " + getEnclosureType() + " \\->\n");
+            if (getListCreature().isEmpty()) {
+                sb.append("-------------------------")
+                        .append("\nNom: ").append(getName())
+                        .append("\nSuperficie: ").append(getSurface()).append("m²")
+                        .append("\nMax creatures: ").append(getMax())
+                        .append("\nNb creatures: ").append(getNbCreature())
+                        .append(" / ").append(getMax())
+                        .append("\nPropreté: ").append(getCleanness().getValue())
+                        .append("\nHauteur: ").append(getRoofHeight()).append("m").append("\n");
+            } else {
+                sb.append("-------------------------")
+                        .append("\nNom: ").append(getName())
+                        .append("\nSuperficie: ").append(getSurface()).append("m²")
+                        .append("\nMax creatures: ").append(getMax())
+                        .append("\nNb creatures: ").append(getNbCreature())
+                        .append(" / ").append(getMax())
+                        .append("\nPropreté: ").append(getCleanness().getValue())
+                        .append("\nHauteur: ").append(getRoofHeight()).append("m")
+                        .append("\n\nListes des créatures:\n\n")
+                        .append(showCreatures());
+            }
+            return sb.toString();
+        }
+    }
