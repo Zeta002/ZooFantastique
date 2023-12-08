@@ -1,5 +1,6 @@
 package net.zoofantastique.controller.enclosure.composition;
 
+import net.zoofantastique.controller.enclosure.behavior.Cleanness;
 import net.zoofantastique.controller.enclosure.behavior.Salinity;
 import net.zoofantastique.controller.entity.creature.behavior.Gender;
 import net.zoofantastique.controller.entity.creature.composition.oviparous.Dragon;
@@ -17,6 +18,11 @@ class AquariumEnclosureTest {
     void setUp() {
         aquariumEnclosure = new AquariumEnclosure<>("Test Aquarium", 100.0, 50.0, 10);
         dragon = new Dragon("Test Dragon", Gender.MALE, 100.0, 2.0);
+    }
+
+    @Test
+    void whenInstanciantedCleanessIsCorrect() {
+        assertEquals(Cleanness.CORRECT, aquariumEnclosure.getCleanness());
     }
 
     @Test

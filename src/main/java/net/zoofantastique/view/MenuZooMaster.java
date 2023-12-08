@@ -31,14 +31,14 @@ public class MenuZooMaster {
             case "1" -> showEnclosure(game);
             case "2" -> doMaintenance(game);
             case "3" -> feedCreature(game);
-            case "4" -> transfertCreature(game);
+            case "4" -> transferCreature(game);
             case "5" -> addEnclosure(game);
             case "6" -> addCreature(game);
             case "7" -> {
                 System.out.println("Merci d'avoir joué à Idle Zoo Fantastique Tycoon!");
                 System.out.println("À bientôt!");
                 System.out.println("D'ailleurs, vos données ont bien " + boldText("pas") + " été sauvegardées.");
-                waitEnter(true);
+                ConsoleTricks.waitEnter(true);
                 System.exit(0);
             }
             default -> {
@@ -116,7 +116,7 @@ public class MenuZooMaster {
         ConsoleTricks.waitEnter("retourner au menu", true);
     }
 
-    public static void transfertCreature(Game game) {
+    public static void transferCreature(Game game) {
         Scanner scanner = new Scanner(System.in);
         int sourceEnclosureIndex = -1;
         int creatureIndex = -1;

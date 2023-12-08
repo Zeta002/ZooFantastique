@@ -19,6 +19,11 @@ class AviaryEnclosureTest {
     }
 
     @Test
+    void whenInstanciantedCleanessIsCorrect() {
+        assertEquals(Cleanness.CORRECT, aviaryEnclosure.getCleanness());
+    }
+
+    @Test
     void whenAddCreatureThenAddsSuccessfully() {
         aviaryEnclosure.addCreature(phoenix);
         assertEquals(aviaryEnclosure.getListCreature().get(0), phoenix);

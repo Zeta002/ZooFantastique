@@ -9,8 +9,8 @@ public enum Cleanness {
     private final String value;
 
     // Constructeur
-    Cleanness(String cleenness) {
-        this.value = cleenness;
+    Cleanness(String cleanness) {
+        this.value = cleanness;
     }
 
     // Getter et setter

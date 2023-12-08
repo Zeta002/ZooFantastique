@@ -21,6 +21,11 @@ class EnclosureTest {
     }
 
     @Test
+    void whenInstanciantedCleanessIsCorrect() {
+        assertEquals(Cleanness.CORRECT, enclosure.getCleanness());
+    }
+
+    @Test
     void whenAddCreatureThenAddsSuccessfully() {
         enclosure.addCreature(Dragon);
         assertEquals(enclosure.getListCreature().get(0), Dragon);

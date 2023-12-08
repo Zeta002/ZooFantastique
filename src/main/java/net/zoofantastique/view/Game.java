@@ -12,13 +12,7 @@ public class Game implements ConsoleTricks {
 
         tuto.start(this);
 
-        loop();
-    }
-
-    public void loop() {
-        while (true) {
-            MenuZooMaster.displayMainMenu(this);
-        }
+        MenuZooMaster.displayMainMenu(this);
     }
 
     // Getter et setter
