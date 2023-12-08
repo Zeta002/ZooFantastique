@@ -4,6 +4,8 @@ import net.zoofantastique.controller.enclosure.behavior.Salinity;
 import net.zoofantastique.controller.entity.creature.behavior.Swimmer;
 import net.zoofantastique.controller.entity.creature.composition.Creature;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * Classe AquariumEnclosure qui représente un aquarium dans un zoo.
  * Un aquarium est un type d'enclos qui a une profondeur de bassin et une salinité de bassin en plus des attributs d'un enclos.
@@ -18,6 +20,14 @@ public class AquariumEnclosure<T extends Creature> extends Enclosure<T> {
         super(name, surface, max);
         this.basinSalinity = Salinity.BRACKISHWATER;
         this.basinDepth = basinDepth;
+    }
+
+    @Override
+    public void run() {
+        super.run();
+        getExecutor().scheduleAtFixedRate(() -> {
+            this.setBasinSalinity(getBasinSalinity().decrement());
+        }, 120,  121, TimeUnit.SECONDS);
     }
 
     /**
@@ -50,10 +60,6 @@ public class AquariumEnclosure<T extends Creature> extends Enclosure<T> {
 
     // TODO : doc
     public void maintenance() {
-        if (getListCreature().isEmpty()) {
-            System.out.println(getClass().getSimpleName() + " : " + getName() + " est vide.");
-            return;
-        }
         System.out.println(getClass().getSimpleName() + " : " + getName() + " est en maintenance.");
         performMaintenanceBasedOnDepth();
     }

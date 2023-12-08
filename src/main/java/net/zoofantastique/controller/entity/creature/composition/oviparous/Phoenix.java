@@ -24,8 +24,7 @@ public class Phoenix extends Creature implements Oviparous, Flying, Rebirth {
         setMinWeight(new ArrayList<>(List.of(2.0, 5.0, 9.0, 11.0, 13.0)));
         setMaxWeight(new ArrayList<>(List.of(3.5, 8.0, 13.0, 15.0, 16.0)));
 
-        setAgeScale(200);
-        setDimHunger(90);
+        updateAndRestart(200, 90);
 
         calcSizeAndWeight();
     }

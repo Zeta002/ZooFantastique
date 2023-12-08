@@ -21,7 +21,7 @@ import static net.zoofantastique.utils.Utils.*;
  * Une créature a une espèce, un nom, un sexe, un âge, un cri, un poids, une taille, un état de sommeil, un état de santé, un état de grossesse et un état de faim.
  * Cette classe étend la classe Alive.
  */
-public abstract class Creature extends Alive {
+public abstract class Creature extends Alive implements Runnable {
     // Attributs
     private ArrayList<Double> minHeight = new ArrayList<>(List.of(0.1, 0.8, 1.5, 1.6, 1.6));
     private ArrayList<Double> maxHeight = new ArrayList<>(List.of(0.2, 1.1, 1.8, 2.1, 2.0));
@@ -48,6 +48,20 @@ public abstract class Creature extends Alive {
     private int ageScale;
     private int dimHunger;
 
+    public void stop() {
+        if (executor != null) {
+            executor.shutdown();
+            executor = null;
+        }
+    }
+
+    public void updateAndRestart(int ageScale, int dimHunger) {
+        stop();
+        setAgeScale(ageScale);
+        setDimHunger(dimHunger);
+        executor = Executors.newSingleThreadScheduledExecutor();
+        run();
+    }
 
     @Override
     public void run() {
@@ -57,7 +71,7 @@ public abstract class Creature extends Alive {
             if (getHunger() == 0) {
                 haveToGoToTheHell();
             }
-        }, (long) (getDimHunger() - 1) *timeControle, (long) getDimHunger() *timeControle, TimeUnit.SECONDS);
+        }, (long) (getDimHunger() - 1) , (long) getDimHunger() , TimeUnit.SECONDS);
         // Devient malade ?
         executor.scheduleAtFixedRate(() -> {
             boolean haveToBeSick = getRandomIntInRange(0, 100) < 3;
@@ -66,17 +80,17 @@ public abstract class Creature extends Alive {
             }
             setSick(haveToBeSick);
 
-        }, 99L *timeControle, 100L *timeControle, TimeUnit.SECONDS);
+        }, 99L , 100L , TimeUnit.SECONDS);
         // Dors ?
         executor.scheduleAtFixedRate(() -> {
-            boolean goToSleep = getRandomIntInRange(0, 100) < 5;
+            boolean goToSleep = getRandomIntInRange(0, 100) < 10;
             if (goToSleep) {
                 toggleSleeping();
             }
 
-        }, 99L *timeControle, 100L *timeControle, TimeUnit.SECONDS);
+        }, 99L , 100L , TimeUnit.SECONDS);
         // Vieillisement
-        executor.scheduleAtFixedRate(this::aging, (long) (getAgeScale() - 1) *timeControle, (long) getAgeScale() *timeControle, TimeUnit.SECONDS);
+        executor.scheduleAtFixedRate(this::aging, getAgeScale() - 1, getAgeScale(), TimeUnit.SECONDS);
     }
 
     /*
@@ -117,7 +131,7 @@ public abstract class Creature extends Alive {
 
     // Methodes
     public void calcSizeAndWeight() {
-        int age = getAge().index();
+        int age = getAge().ordinal();
         setHeight(getRandomDoubleInRange(this.minHeight.get(age), this.maxHeight.get(age)));
         setWeight(getRandomDoubleInRange(this.minWeight.get(age), this.maxWeight.get(age)));
     }

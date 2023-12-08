@@ -50,10 +50,6 @@ public class AviaryEnclosure<T extends Creature> extends Enclosure<T> {
 
     // TODO : doc
     public void maintenance () {
-        if (getListCreature().isEmpty()) {
-            System.out.println(getClass().getSimpleName() + " : " + getName() + " est vide.");
-            return;
-        }
         System.out.println(getClass().getSimpleName() + " : " + getName() + " est en maintenance.");
         performMaintenanceBasedOnHeight();
     }

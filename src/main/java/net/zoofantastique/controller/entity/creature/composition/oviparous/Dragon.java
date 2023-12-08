@@ -23,8 +23,7 @@ public class Dragon extends Creature implements Oviparous, Flying, Runner, Swimm
         setMinWeight(new ArrayList<>(List.of(60.0, 500.0, 1500.0, 2500.0, 3500.0)));
         setMaxWeight(new ArrayList<>(List.of(120.0, 1000.0, 2200.0, 3000.0, 4000.0)));
 
-        setAgeScale(120);
-        setDimHunger(50);
+        updateAndRestart(120, 40);
 
         calcSizeAndWeight();
     }

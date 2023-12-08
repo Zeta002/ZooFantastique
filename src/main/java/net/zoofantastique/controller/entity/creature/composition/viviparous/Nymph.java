@@ -14,8 +14,9 @@ import java.util.Random;
 public class Nymph extends Creature implements Viviparous {
     public Nymph(String name, Gender sexe) {
         super(name, sexe, "ahahah");
-        setAgeScale(60);
-        setDimHunger(55);
+
+        updateAndRestart(60, 55);
+
     }
 
     /**

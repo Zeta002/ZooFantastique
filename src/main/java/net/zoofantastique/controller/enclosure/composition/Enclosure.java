@@ -6,6 +6,9 @@ import net.zoofantastique.controller.entity.creature.composition.Creature;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import static net.zoofantastique.controller.entity.creature.behavior.Hunger.SATISFIED;
 
@@ -13,7 +16,7 @@ import static net.zoofantastique.controller.entity.creature.behavior.Hunger.SATI
  * Classe Enclosure représentant un enclos dans un zoo.
  * Un enclos a un type, un nom, une surface, un nombre maximum de créatures, un nombre actuel de créatures, une liste de créatures et un niveau de propreté.
  */
-public class Enclosure<T extends Creature> {
+public class Enclosure<T extends Creature> implements Runnable {
     private final String enclosureType = getClass().getSimpleName(); // Le type de l'enclos
     private String name; // Le nom de l'enclos
     private double surface; // La surface de l'enclos en mètres carrés
@@ -24,6 +27,15 @@ public class Enclosure<T extends Creature> {
 
     private Class<? extends Creature> creatureType = null;
 
+    private ScheduledExecutorService executor;
+
+    @Override
+    public void run() {
+        executor.scheduleAtFixedRate(() -> {
+            this.setCleanness(getCleanness().deteriorate());
+        }, 120,  121, TimeUnit.SECONDS);
+    }
+
     // Constructeur
     public Enclosure(String name, double surface, int max) {
         this.name = name;
@@ -32,6 +44,10 @@ public class Enclosure<T extends Creature> {
         this.listCreature = new ArrayList<>();
         this.nbCreature = 0;
         this.cleanness = Cleanness.CORRECT;
+
+        this.executor = Executors.newSingleThreadScheduledExecutor();
+
+        this.run();
     }
 
     /**
@@ -93,10 +109,6 @@ public class Enclosure<T extends Creature> {
      * Sinon, affiche un message indiquant que l'enclos est en maintenance, nettoie l'enclos, puis affiche un message indiquant le nouvel état de propreté de l'enclos.
      */
     public void maintenance() {
-        if (listCreature.isEmpty()) {
-            System.err.println("L'enclos est vide!");
-            return;
-        }
         System.out.println(getClass().getSimpleName() + " : " + getName() + " est en maintenance.");
         setCleanness(getCleanness().clean());
         System.out.println(getClass().getSimpleName() + " : " + getName() + " est maintenant " + getCleanness().getValue() + ".");
@@ -161,6 +173,10 @@ public class Enclosure<T extends Creature> {
     }
     public void setCreatureType(Class<? extends Creature> creatureType) {
         this.creatureType = creatureType;
+    }
+
+    public ScheduledExecutorService getExecutor() {
+        return executor;
     }
 
     // TODO doc
