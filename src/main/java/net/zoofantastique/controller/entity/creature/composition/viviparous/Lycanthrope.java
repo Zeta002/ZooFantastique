@@ -11,15 +11,16 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
+import static net.zoofantastique.view.ConsoleTricks.boldText;
+
 /**
  * Classe Lycanthrope qui représente un lycanthrope dans un zoo.
- * Un lycanthrope est une créature vivipare qui peut courir.
- * Cette classe étend la classe Viviparous et implémente l'interface Runner.
+ * Un lycanthrope est une créature vivipare qui peut courir et possède un rang.
+ * Cette classe étend la classe Viviparous et implémente l'interface Runner et Rank.
  */
 public class Lycanthrope extends Creature implements Viviparous, Runner, Rank {
 
     private double strength;
-
     private double dominanceFactor;
     private double impetuosityFactor;
     private int rank;
@@ -37,7 +38,7 @@ public class Lycanthrope extends Creature implements Viviparous, Runner, Rank {
     }
 
 
-    public void setLevel(){
+    public void setLevel() {
         double rankFactor = (1 + (1 - (double) this.rank / (double) greekAlphabet.size()));
         double ageFactor = getAge().getAgePowerFactor();
         this.level = Math.round(((this.strength + this.dominanceFactor) * ageFactor * rankFactor) * 100) / 100.0 ;
@@ -47,6 +48,9 @@ public class Lycanthrope extends Creature implements Viviparous, Runner, Rank {
         return level;
     }
 
+    public int getRank() {
+        return rank;
+    }
     public String getRankString() {
 
         if (rank < greekAlphabet.size()) {
@@ -55,7 +59,6 @@ public class Lycanthrope extends Creature implements Viviparous, Runner, Rank {
             return "Le rang semble incorrect";
         }
     }
-
     public void setRank(int rank) {
         if (rank > greekAlphabet.size()) {
             this.rank = greekAlphabet.size() - 1;
@@ -67,7 +70,6 @@ public class Lycanthrope extends Creature implements Viviparous, Runner, Rank {
     public double getStrength() {
         return strength;
     }
-
     public void setStrength(double strength) {
         this.strength = strength;
     }
@@ -75,7 +77,6 @@ public class Lycanthrope extends Creature implements Viviparous, Runner, Rank {
     public double getDominanceFactor() {
         return dominanceFactor;
     }
-
     public void setDominanceFactor(double dominanceFactor) {
         this.dominanceFactor = dominanceFactor;
     }
@@ -83,7 +84,6 @@ public class Lycanthrope extends Creature implements Viviparous, Runner, Rank {
     public double getImpetuosityFactor() {
         return impetuosityFactor;
     }
-
     public void setImpetuosityFactor(double impetuosityFactor) {
         this.impetuosityFactor = impetuosityFactor;
     }
@@ -91,7 +91,6 @@ public class Lycanthrope extends Creature implements Viviparous, Runner, Rank {
     public Pack getPack() {
         return pack;
     }
-
     public void setPack(Pack pack) {
         this.pack = pack;
     }
@@ -109,6 +108,16 @@ public class Lycanthrope extends Creature implements Viviparous, Runner, Rank {
         System.out.println(super.getName() + " *cours*");
     }
 
+    public void showStats() {
+        StringBuilder sb = new StringBuilder("<-/ " + boldText(getName()) + " \\->\n");
+        sb.append("\nForce : ").append(this.strength)
+                .append("\nFacteur d'impétuosité: ").append(this.impetuosityFactor)
+                .append("\nFacteur de dominance: ").append(this.dominanceFactor)
+                .append("\nRang: ").append(this.rank)
+                .append("\nNiveau: ").append(this.level);
+        System.out.println(sb);
+    }
+
     /**
      * Méthode pour faire naître un bébé Lycanthrope.
      * Cette méthode génère un nouveau Lycanthrope avec un sexe, un poids et une taille aléatoires.
@@ -118,7 +127,7 @@ public class Lycanthrope extends Creature implements Viviparous, Runner, Rank {
      * @return Un nouveau Lycanthrope qui vient de naître.
      */
     @Override
-    public Lycanthrope giveBirth(){
+    public Lycanthrope giveBirth() {
         Random random = new Random();
         Gender babySexe = Gender.MALE;
 

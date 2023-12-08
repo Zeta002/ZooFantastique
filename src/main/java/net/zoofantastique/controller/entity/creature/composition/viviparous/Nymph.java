@@ -25,7 +25,7 @@ public class Nymph extends Creature implements Viviparous {
      * @return Une nouvelle Nymphe qui vient de naître.
      */
     @Override
-    public Nymph giveBirth(){
+    public Nymph giveBirth() {
         Random random = new Random();
         Gender babySexe = Gender.MALE;
 
