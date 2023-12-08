@@ -14,6 +14,12 @@ public class CoupleAlpha {
     public CoupleAlpha(Lycanthrope first, Lycanthrope second) {
         this.first = first;
         this.second = second;
+        initCouple();
+    }
+
+    public void initCouple() {
+        this.first.setRank(0);
+        this.second.setRank(0);
     }
 
     // Getter & Setter
